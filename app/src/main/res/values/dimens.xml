@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="loginLogo">200dp</dimen>
+    <dimen name="textBoxPadding">10dp</dimen>
+    <dimen name="textBoxMargin">10dp</dimen>
+    <dimen name="textBoxHeight">40dp</dimen>
+    <dimen name="textBoxWidth">330dp</dimen>
+    <dimen name="textBoxText">20sp</dimen>
+    <dimen name="textBoxBorder">2dp</dimen>
+    <dimen name="textBoxRadius">10dp</dimen>
+    <dimen name="buttonRadius">15dp</dimen>
+    <dimen name="loginButtonWidth">140dp</dimen>
+    <dimen name="loginButtonHeight">55dp</dimen>
+    <dimen name="buttonText">25sp</dimen>
+
+
+</resources>
