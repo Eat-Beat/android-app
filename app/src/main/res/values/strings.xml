@@ -2,7 +2,15 @@
     <string name="app_name">Eat&amp;Beat</string>
     <string name="logo">logo</string>
     <string name="username">Username</string>
-    <string name="forgot_password">Forgot password</string>
+    <string name="forgotPassword"><u>Forgot Password</u></string>
     <string name="password">Password</string>
-    <string name="login">"Login "</string>
+    <string name="login">"Login"</string>
+    <string name="loginUnderlined">"<u>Login</u>"</string>
+    <string name="email">Email</string>
+    <string name="sendEmail">Send Email</string>
+    <string name="code">Code</string>
+    <string name="newPassword">New password</string>
+    <string name="confirmPassword">Confirm password</string>
+    <string name="resendEmail"><u>Resend email</u></string>
+    <string name="confirm">Confirm</string>
 </resources>

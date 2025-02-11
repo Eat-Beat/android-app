@@ -9,9 +9,10 @@
     <dimen name="textBoxBorder">2dp</dimen>
     <dimen name="textBoxRadius">10dp</dimen>
     <dimen name="buttonRadius">15dp</dimen>
-    <dimen name="loginButtonWidth">140dp</dimen>
-    <dimen name="loginButtonHeight">55dp</dimen>
-    <dimen name="buttonText">25sp</dimen>
+    <dimen name="buttonWidth">200dp</dimen>
+    <dimen name="buttonHeight">55dp</dimen>
+    <dimen name="buttonText">27sp</dimen>
+    <dimen name="underlinedButtonText">20sp</dimen>
 
 
 </resources>
