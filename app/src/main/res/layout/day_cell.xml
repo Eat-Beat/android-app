@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="8dp"
+    android:weightSum="1"
+    >
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="@drawable/calendar_day_background"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_margin="4dp"
+        >
+
+        <TextView
+            android:id="@+id/dayLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:gravity="center"
+            tools:text="15"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

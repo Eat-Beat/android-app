@@ -13,4 +13,5 @@
     <string name="confirmPassword">Confirm password</string>
     <string name="resendEmail"><u>Resend email</u></string>
     <string name="confirm">Confirm</string>
+    <string name="activity_calendar_title">CONTRACTS</string>
 </resources>

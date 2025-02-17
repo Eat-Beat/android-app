@@ -21,6 +21,8 @@
     <dimen name="searchHeight">50dp</dimen>
     <dimen name="searchWidth">50dp</dimen>
     <dimen name="logoBannerWidth">210dp</dimen>
-
+    <dimen name="midScreenHeight">590sp</dimen>
+    <dimen name="bannerTitleHeight">50dp</dimen>
+    <dimen name="bannerTitleWidth">210dp</dimen>
 
 </resources>
