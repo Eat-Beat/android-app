@@ -14,4 +14,5 @@
     <string name="resendEmail"><u>Resend email</u></string>
     <string name="confirm">Confirm</string>
     <string name="activity_calendar_title">CONTRACTS</string>
+    <string name="daytext">DDD, MMMMMM, YYYY</string>
 </resources>

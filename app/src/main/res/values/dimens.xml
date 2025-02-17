@@ -24,5 +24,11 @@
     <dimen name="midScreenHeight">590sp</dimen>
     <dimen name="bannerTitleHeight">50dp</dimen>
     <dimen name="bannerTitleWidth">210dp</dimen>
+    <dimen name="calendarLayoutWidth">395dp</dimen>
+    <dimen name="calendarLayoutHeight">405dp</dimen>
+    <dimen name="calendarViewWidth">380dp</dimen>
+    <dimen name="calendarViewHeight">405dp</dimen>
+    <dimen name="dayTextWidth">200dp</dimen>
+    <dimen name="dayTextHeight">30dp</dimen>
 
 </resources>

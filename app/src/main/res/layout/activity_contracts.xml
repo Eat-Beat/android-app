@@ -3,8 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/beigeBg"
+    >
 
+    <!-- Top Banner Part-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -18,63 +21,94 @@
         <TextView
             android:layout_width="@dimen/bannerTitleWidth"
             android:layout_height="@dimen/bannerTitleHeight"
-            android:text="@string/activity_calendar_title"
             android:fontFamily="@font/barlow_medium"
-            android:textColor="@color/white"
             android:gravity="center"
+            android:text="@string/activity_calendar_title"
+            android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/searchIcon"
-            app:layout_constraintHorizontal_bias="0.781"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/searchIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="24dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/search_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <!-- Calendar Part -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="390dp"
-        android:layout_height="350dp"
+        android:id="@+id/constraintLayout3"
+        android:layout_width="@dimen/calendarLayoutWidth"
+        android:layout_height="@dimen/calendarLayoutHeight"
         android:layout_marginTop="20dp"
+        android:background="@drawable/calendarbackgroundshape"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendarView"
-            android:layout_width="380dp"
-            android:layout_height="340dp"
+            android:layout_width="@dimen/calendarViewWidth"
+            android:layout_height="@dimen/calendarViewHeight"
             app:abbreviationsBarColor="@color/black"
             app:abbreviationsLabelsColor="@color/white"
             app:daysLabelsColor="@color/black"
             app:disabledDaysLabelsColor="@color/gray"
             app:eventsEnabled="true"
-            app:forwardButtonSrc="@drawable/ic_arrow_right"
+            app:forwardButtonSrc="@drawable/swipe_button_forward"
             app:headerColor="@color/black"
             app:headerLabelColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:pagesColor="@color/black"
-            app:previousButtonSrc="@drawable/ic_arrow_left"
+            app:previousButtonSrc="@drawable/swipe_button_back"
             app:todayLabelColor="@color/orange" />
-        s
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- List of contracts -->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/calendarbackgroundshape"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintVertical_bias="0.385">
+
+        <TextView
+            android:layout_width="@dimen/dayTextWidth"
+            android:layout_height="@dimen/dayTextHeight"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/daytext"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.018" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Botton Banner Part -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"

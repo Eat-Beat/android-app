@@ -15,5 +15,6 @@ class MainActivity : AppCompatActivity() {
 
         val calendarView : CalendarView = findViewById(R.id.calendarView)
         calendarView.setCalendarDayLayout(R.layout.day_cell)
+
     }
 }
