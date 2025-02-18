@@ -15,4 +15,6 @@
     <string name="confirm">Confirm</string>
     <string name="activity_calendar_title">CONTRACTS</string>
     <string name="daytext">DDD, MMMMMM, YYYY</string>
+    <string name="seeList">See list</string>
+    <string name="seeCalendar">See calendar</string>
 </resources>

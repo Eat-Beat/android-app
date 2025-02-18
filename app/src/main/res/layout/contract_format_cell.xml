@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="165dp">
+
+    <TextView
+        android:id="@+id/contractDayView"
+        android:layout_width="350dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center_vertical"
+        android:text="DDDDD, MMMMM DD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/calendarbackgroundshape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contractDayView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/userPrfIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/userNameView"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="NNNNNNNN"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:fontFamily="@font/barlow_medium"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toEndOf="@+id/userPrfIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userProfessionView"
+            android:layout_width="140dp"
+            android:layout_height="20dp"
+            android:text="RRRRRR"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:fontFamily="@font/barlow_medium"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/userProfessionView"
+            app:layout_constraintStart_toEndOf="@+id/userPrfIcon"
+            app:layout_constraintTop_toBottomOf="@+id/userNameView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/userGenreView"
+            android:layout_width="140dp"
+            android:layout_height="20dp"
+            android:text="GGGGGG"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:fontFamily="@font/barlow_medium"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/userPrfIcon" />
+
+        <TextView
+            android:id="@+id/contractHourView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="10:00"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/barlow_medium"
+            android:textSize="30sp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

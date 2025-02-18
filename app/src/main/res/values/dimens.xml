@@ -30,5 +30,7 @@
     <dimen name="calendarViewHeight">405dp</dimen>
     <dimen name="dayTextWidth">200dp</dimen>
     <dimen name="dayTextHeight">30dp</dimen>
+    <dimen name="contractCellWidth">350dp</dimen>
+    <dimen name="contractCellHeight">50dp</dimen>
 
 </resources>
