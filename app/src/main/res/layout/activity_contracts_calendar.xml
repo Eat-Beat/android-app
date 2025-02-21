@@ -121,14 +121,14 @@
             android:gravity="center"
             android:text="@string/daytext"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
+            app:layout_constraintBottom_toTopOf="@+id/contractsCalendarRecylcerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.018" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/contractsCalendarRecylcerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="15dp"

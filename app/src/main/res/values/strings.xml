@@ -17,4 +17,12 @@
     <string name="daytext">DDD, MMMMMM, YYYY</string>
     <string name="seeList">See list</string>
     <string name="seeCalendar">See calendar</string>
+    <string name="musicNameContractSheet">Musician | NNNN SSSSS</string>
+    <string name="musicRoleContractSheet">Role | RRRRRRRR</string>
+    <string name="musicStyleContractSheet">Style | SSSSSSSS</string>
+    <string name="musicPeriodContractSheet">Period | PPPPPPPP</string>
+    <string name="musicCostContractSheet">Cost | CCCCCCCC</string>
+    <string name="locationLabel">Location</string>
+    <string name="contractDetailsString">Contract Details</string>
+    <string name="activity_chat_title">CHAT</string>
 </resources>
