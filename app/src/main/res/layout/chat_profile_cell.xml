@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/chatCellWidth"
     android:layout_height="@dimen/chatCellHeight"
-    android:background="@drawable/calendarbackgroundshape"
+    android:background="@drawable/black_rectangle_shape"
     app:layout_constraintBottom_toTopOf="@+id/contractListRecyclerView"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

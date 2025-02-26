@@ -25,4 +25,6 @@
     <string name="locationLabel">Location</string>
     <string name="contractDetailsString">Contract Details</string>
     <string name="activity_chat_title">CHAT</string>
+    <string name="profileTitle">PROFILE</string>
+    <string name="fragment_stats_title">STATS</string>
 </resources>

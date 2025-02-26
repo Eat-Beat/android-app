@@ -38,7 +38,7 @@
     <dimen name="contractDetailsTitleHeight">40dp</dimen>
     <dimen name="contractDetails_SMCellWidth">250dp</dimen>
     <dimen name="contractDetails_SMCellHeight">40dp</dimen>
-    <dimen name="titleContractDetails_TSize">20sp</dimen>
+    <dimen name="titleHeaderSize">20sp</dimen>
     <dimen name="smallCellContract_TSize">15sp</dimen>
     <dimen name="contractSheetWidth">340dp</dimen>
     <dimen name="contractSheetHeight">450dp</dimen>

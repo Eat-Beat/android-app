@@ -25,7 +25,7 @@
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bannerHeight"
-        android:background="@drawable/options_banner"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:layout_width="@dimen/chatbox_width"
         android:layout_height="@dimen/chatbox_height"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/calendarbackgroundshape"
+        android:background="@drawable/black_rectangle_shape"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
@@ -83,7 +83,7 @@
             android:layout_width="@dimen/enterText_width"
             android:layout_height="@dimen/enterText_height"
             android:layout_marginStart="16dp"
-            android:background="@drawable/calendardaysquare"
+            android:background="@drawable/white_rectangle_shape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -102,66 +102,4 @@
             app:layout_constraintVertical_bias="0.466" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bannerHeight"
-        android:background="@drawable/options_banner"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/searchMusicianIcon"
-            android:layout_width="@dimen/bannerOptionWidth"
-            android:layout_height="@dimen/bannerOptionHeight"
-            android:layout_marginStart="50dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/clicked_search_musician_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
-
-        <ImageView
-            android:id="@+id/calendarIcon"
-            android:layout_width="@dimen/bannerOptionWidth"
-            android:layout_height="@dimen/bannerOptionHeight"
-            android:layout_marginStart="50dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/calendar_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/searchMusicianIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.466" />
-
-        <ImageView
-            android:id="@+id/chatIcon"
-            android:layout_width="@dimen/bannerOptionWidth"
-            android:layout_height="@dimen/bannerOptionHeight"
-            android:layout_marginStart="50dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/chat_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/calendarIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.466" />
-
-        <ImageView
-            android:id="@+id/profileIcon"
-            android:layout_width="@dimen/bannerOptionWidth"
-            android:layout_height="@dimen/bannerOptionHeight"
-            android:scaleType="centerInside"
-            android:src="@drawable/profile_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toEndOf="@id/chatIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.466" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
