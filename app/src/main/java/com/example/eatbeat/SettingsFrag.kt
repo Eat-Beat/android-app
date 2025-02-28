@@ -26,7 +26,10 @@ class SettingsFrag : Fragment() {
             val fragment = fragmentManager.findFragmentById(R.id.optionsScreen)
 
             val optionsScreen = requireActivity().findViewById<FragmentContainerView>(R.id.optionsScreen)
+            val opaqueBg = requireActivity().findViewById<View>(R.id.opaqueBg)
             optionsScreen.startAnimation(fadeOut)
+            opaqueBg.startAnimation(fadeOut)
+            opaqueBg.visibility = View.GONE
             closeAnimation(fadeOut, fragment)
 
 
@@ -43,6 +46,7 @@ class SettingsFrag : Fragment() {
                         ?.hide(fragment)
                         ?.commit()
                 }
+
             }
 
             override fun onAnimationStart(animation: Animation?) {}

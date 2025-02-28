@@ -37,8 +37,11 @@ class UserProfile : AppCompatActivity() {
                 .addToBackStack(null)
                 .commit()
             val optionsScreen = findViewById<FragmentContainerView>(R.id.optionsScreen)
+            val opaqueBg = findViewById<View>(R.id.opaqueBg)
 
             optionsScreen.startAnimation(fadeIn)
+            opaqueBg.startAnimation(fadeIn)
+            opaqueBg.visibility = View.VISIBLE
             optionsScreen.visibility = View.VISIBLE
         }
     }

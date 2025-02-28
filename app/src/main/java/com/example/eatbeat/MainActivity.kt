@@ -23,9 +23,31 @@ class MainActivity : AppCompatActivity() {
         val optionsButton = findViewById<ImageView>(R.id.settings_icon)
 
         BottomSheetBehavior.from(bottomSheet).apply {
-            peekHeight = 490
+            peekHeight = 330
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
 
+        settingsClick(optionsButton)
+
+
+    }
+
+    private fun settingsClick(optionsButton: ImageView){
+        optionsButton.setOnClickListener{
+            val fragment = SettingsFrag()
+            val fadeIn = AnimationUtils.loadAnimation(this, R.anim.alpha_show_up)
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.optionsScreen, fragment)
+                .addToBackStack(null)
+                .commit()
+            val optionsScreen = findViewById<FragmentContainerView>(R.id.optionsScreen)
+            val opaqueBg = findViewById<View>(R.id.opaqueBg)
+
+            optionsScreen.startAnimation(fadeIn)
+            opaqueBg.startAnimation(fadeIn)
+            opaqueBg.visibility = View.VISIBLE
+            optionsScreen.visibility = View.VISIBLE
+        }
     }
 }

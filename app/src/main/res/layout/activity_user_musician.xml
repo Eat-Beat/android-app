@@ -195,6 +195,14 @@
 
     <include layout="@layout/navigation_bar"/>
 
+    <View
+        android:id="@+id/opaqueBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/optionsScreen"
         android:layout_width="wrap_content"
