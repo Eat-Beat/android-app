@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.FragmentContainerView
 import com.applandeo.materialcalendarview.CalendarView
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val optionsButton = findViewById<ImageView>(R.id.settings_icon)
+        val ratingButton = findViewById<TextView>(R.id.ratingCount)
 
         BottomSheetBehavior.from(bottomSheet).apply {
             peekHeight = 330
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         settingsClick(optionsButton)
+        ratingsClick(ratingButton)
 
 
     }
@@ -49,5 +53,30 @@ class MainActivity : AppCompatActivity() {
             opaqueBg.visibility = View.VISIBLE
             optionsScreen.visibility = View.VISIBLE
         }
+    }
+
+    private fun ratingsClick(ratingsButton : TextView) {
+        ratingsButton.setOnClickListener{
+            val fragment = StatsFrag()
+            val fadeIn = AnimationUtils.loadAnimation(this, R.anim.alpha_show_up)
+
+            val rootLayout = findViewById<ConstraintLayout>(R.id.rootLayout)
+            rootLayout.isClickable = false
+            rootLayout.isFocusable = false
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.ratingsScreen, fragment)
+                .addToBackStack(null)
+                .commit()
+            val statsScreen = findViewById<FragmentContainerView>(R.id.ratingsScreen)
+
+            statsScreen.startAnimation(fadeIn)
+            statsScreen.visibility = View.VISIBLE
+
+            val opaqueBg = findViewById<View>(R.id.opaqueBg)
+            opaqueBg.visibility = View.VISIBLE
+
+        }
+
     }
 }
