@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.adapters.CarouselAdapter
+import com.mapbox.geojson.Point
+import com.mapbox.maps.CameraOptions
+import com.mapbox.maps.MapView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +24,15 @@ class MainActivity : AppCompatActivity() {
             R.drawable.image2,
             R.drawable.image3
         )
+
+        val mapView = findViewById<MapView>(R.id.mapRestaurant)
+
+        mapView.getMapboxMap().setCamera(
+            CameraOptions.Builder()
+                .center(Point.fromLngLat(2.17328, 41.38868))
+                .zoom(14.0)
+                .build()
+                                        )
 
         restaurantCarousel.adapter = CarouselAdapter(images)
         restaurantCarousel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

@@ -43,6 +43,24 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp">
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapRestaurant"
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            android:layout_marginBottom="68dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurantCarousel"
         android:layout_width="match_parent"
@@ -56,22 +74,23 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout8"
         android:layout_width="150dp"
         android:layout_height="30dp"
+        android:background="@drawable/orangesquarebg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/orangesquarebg"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout7"
-        app:layout_constraintVertical_bias="0.885" >
+        app:layout_constraintVertical_bias="0.885">
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@drawable/list_icon"
             android:layout_marginStart="20dp"
+            android:background="@drawable/list_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -80,10 +99,10 @@
             android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:text="See list"
-            android:gravity="center"
-            android:textColor="@color/black"
             android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="See list"
+            android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

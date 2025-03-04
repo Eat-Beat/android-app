@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Eat&amp;Beat</string>
     <string name="logo">logo</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiaXZhbmZsb2wiLCJhIjoiY203bnBzNnM0MDNrajJtc2xhdDZod2w0NyJ9.oHnjBUX7mK8R9CVgVdAKpA</string>
+
     <string name="username">Username</string>
     <string name="forgotPassword"><u>Forgot Password</u></string>
     <string name="password">Password</string>
