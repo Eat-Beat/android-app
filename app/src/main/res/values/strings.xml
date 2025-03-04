@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Eat&amp;Beat</string>
     <string name="logo">logo</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiaXZhbmZsb2wiLCJhIjoiY203bnBzNnM0MDNrajJtc2xhdDZod2w0NyJ9.oHnjBUX7mK8R9CVgVdAKpA</string>
+
     <string name="username">Username</string>
     <string name="forgotPassword"><u>Forgot Password</u></string>
     <string name="password">Password</string>
@@ -14,4 +16,17 @@
     <string name="resendEmail"><u>Resend email</u></string>
     <string name="confirm">Confirm</string>
     <string name="activity_calendar_title">CONTRACTS</string>
+    <string name="daytext">DDD, MMMMMM, YYYY</string>
+    <string name="seeList">See list</string>
+    <string name="seeCalendar">See calendar</string>
+    <string name="musicNameContractSheet">Musician | NNNN SSSSS</string>
+    <string name="musicRoleContractSheet">Role | RRRRRRRR</string>
+    <string name="musicStyleContractSheet">Style | SSSSSSSS</string>
+    <string name="musicPeriodContractSheet">Period | PPPPPPPP</string>
+    <string name="musicCostContractSheet">Cost | CCCCCCCC</string>
+    <string name="locationLabel">Location</string>
+    <string name="contractDetailsString">Contract Details</string>
+    <string name="activity_chat_title">CHAT</string>
+    <string name="profileTitle">PROFILE</string>
+    <string name="fragment_stats_title">STATS</string>
 </resources>

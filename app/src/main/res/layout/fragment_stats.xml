@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beigeBg"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bannerHeight"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/close_stats"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/return_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="@dimen/bannerTitleWidth"
+            android:layout_height="@dimen/bannerTitleHeight"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/fragment_stats_title"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/black_rectangle_shape"
+        app:layout_constraintEnd_toStartOf="@+id/actsChart"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+        <TextView
+            android:id="@+id/ratingNum"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="4,6"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:layout_width="240dp"
+            android:layout_height="53dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4.1"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:stepSize="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingNum" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/actsChart"
+        android:layout_width="220dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/black_rectangle_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/reviewsChart"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="172dp"
+        android:background="@drawable/black_rectangle_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reviewsList"
+        android:layout_width="353dp"
+        android:layout_height="294dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_rectangle_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviewsChart"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

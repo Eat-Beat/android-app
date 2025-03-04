@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/beigeBg"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bannerHeight"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/return_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="@dimen/bannerTitleWidth"
+            android:layout_height="@dimen/bannerTitleHeight"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/activity_calendar_title"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/containerWidth"
+        android:layout_height="@dimen/containerHeight"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/black_rectangle_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/contractDayHeaderFragment"
+            android:layout_width="@dimen/contractDayHeaderWidth"
+            android:layout_height="@dimen/contractDayHeaderHeight"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_rectangle_shape"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="DDDDD, MMMMM DD"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="337dp"
+            android:layout_height="450dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/orangesquarebg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.457"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contractDayHeaderFragment"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/contractSheetWidth"
+            android:layout_height="@dimen/contractSheetHeight"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/white_rectangle_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contractDayHeaderFragment"
+            app:layout_constraintVertical_bias="0.125" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="@dimen/contractDetailsTitleWidth"
+            android:layout_height="@dimen/contractDetailsTitleHeight"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/contractDetailsString"
+            android:textColor="@color/black"
+            android:textSize="@dimen/titleHeaderSize"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/musicName"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/musicNameContractSheet"
+            android:textSize="@dimen/smallCellContract_TSize"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/musicRole"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/musicRoleContractSheet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/smallCellContract_TSize"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/musicStyle"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:layout_marginTop="140dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/musicStyleContractSheet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/smallCellContract_TSize"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/musicPeriod"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:layout_marginTop="180dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/musicPeriodContractSheet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/smallCellContract_TSize"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/musicCost"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:layout_marginTop="220dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/musicCostContractSheet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/smallCellContract_TSize"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="@dimen/lineWidth"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/musicCost" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="@string/locationLabel"
+            android:textSize="@dimen/smallCellContract_TSize"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="@dimen/lineWidth"
+            android:layout_height="1dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            tools:layout_editor_absoluteY="379dp" />
+
+        <TextView
+            android:id="@+id/contractLocation"
+            android:layout_width="@dimen/contractDetails_SMCellWidth"
+            android:layout_height="@dimen/contractDetails_SMCellHeight"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center"
+            android:text="XXXXX"
+            android:textSize="@dimen/smallCellContract_TSize"
+            android:textColor="@color/black"
+
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <View
+            android:layout_width="@dimen/lineWidth"
+            android:layout_height="1dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/musicName"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintVertical_bias="0.727" />
+
+        <ImageView
+            android:id="@+id/locationImage"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/contractLocation"
+            app:layout_constraintVertical_bias="0.375" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

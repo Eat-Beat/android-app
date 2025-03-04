@@ -14,7 +14,7 @@
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="@drawable/calendar_day_background"
+        android:background="@drawable/white_rectangle_shape"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_margin="4dp"
