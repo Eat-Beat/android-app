@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.adapters.CarouselAdapter
 
-class MainActivity : AppCompatActivity() {
+class RestaurantMap : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_restaurant_map)
+
 
         val restaurantCarousel = findViewById<RecyclerView>(R.id.restaurantCarousel)
 

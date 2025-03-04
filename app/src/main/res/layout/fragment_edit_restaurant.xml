@@ -53,9 +53,9 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
         <ImageView
-            android:layout_width="120dp"
+            android:layout_width="200dp"
             android:layout_height="120dp"
-            android:background="@drawable/add_profile_image"
+            android:background="@drawable/add_restaurant_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,17 +65,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="340dp"
         android:layout_height="150dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/black_rectangle_shape"
-        app:layout_constraintBottom_toTopOf="@+id/multimediaList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
-        app:layout_constraintVertical_bias="0.225">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
 
         <TextView
             android:id="@+id/textView8"
@@ -127,14 +126,62 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/multimediaList"
-        android:layout_width="353dp"
-        android:layout_height="294dp"
-        android:layout_marginBottom="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="340dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="176dp"
         android:background="@drawable/black_rectangle_shape"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:text="Longitude"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.654" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/barlow_medium"
+            android:gravity="center_vertical"
+            android:text="Latitude"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="199dp"
+            android:layout_height="32dp"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="199dp"
+
+            android:layout_height="32dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

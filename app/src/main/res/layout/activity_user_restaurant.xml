@@ -72,8 +72,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
-        android:layout_width="415dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="665dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
         tools:layout_editor_absoluteX="-4dp">
@@ -101,11 +101,10 @@
                 android:id="@+id/imageView5"
                 android:layout_width="375dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="104dp"
+                android:layout_marginTop="72dp"
                 android:background="@drawable/ic_line"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -124,10 +123,10 @@
                 android:id="@+id/profileUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:paddingTop="8dp"
-                android:text="JORDI BONET"
+                android:text="RESTAURANTE XXX"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -136,36 +135,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-            <RatingBar
-                android:id="@+id/rating"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:numStars="5"
-                android:rating="4.1"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:stepSize="0.1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.401"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profileUserName" />
-
-            <TextView
-                android:id="@+id/ratingCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="72dp"
-                android:text="(134)"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.139"
-                app:layout_constraintStart_toEndOf="@+id/rating"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/profileDescription"
                 android:layout_width="match_parent"
@@ -173,7 +142,7 @@
                 android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Guitarrista profesional, residente en Barcelona. Especialista en jazz."
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -181,15 +150,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="375dp"
-                android:layout_height="150dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6"
-                app:layout_constraintVertical_bias="0.08" />
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/editUserScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="4dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -225,12 +190,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/editUserScreen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

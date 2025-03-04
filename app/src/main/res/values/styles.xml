@@ -16,4 +16,10 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="SpinnerStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/barlow_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
