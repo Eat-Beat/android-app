@@ -17,23 +17,35 @@
             android:name="com.mapbox.AccessToken"
             android:value="@string/mapbox_access_token" />
         <activity
-            android:name=".login.NewPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".login.ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
             android:name=".login.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContractListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ContractsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantMap"
+            android:exported="false" />
+        <activity
+            android:name=".SearchMusicianActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchRestaurantActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"
+            android:exported="false" />
     </application>
 
 </manifest>

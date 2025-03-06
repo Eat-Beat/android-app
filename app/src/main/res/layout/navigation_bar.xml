@@ -11,43 +11,43 @@
     app:layout_constraintEnd_toEndOf="parent">
 
     <ImageView
-        android:id="@+id/searchMusicianIcon"
+        android:id="@+id/navMusicianIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
         android:src="@drawable/clicked_musician_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/calendarIcon" />
+        app:layout_constraintEnd_toStartOf="@id/navCalendarIcon" />
 
     <ImageView
-        android:id="@+id/calendarIcon"
+        android:id="@+id/navCalendarIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
         android:src="@drawable/calendar_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/searchMusicianIcon"
-        app:layout_constraintEnd_toStartOf="@id/chatIcon" />
+        app:layout_constraintStart_toEndOf="@id/navMusicianIcon"
+        app:layout_constraintEnd_toStartOf="@id/navChatIcon" />
 
     <ImageView
-        android:id="@+id/chatIcon"
+        android:id="@+id/navChatIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
         android:src="@drawable/chat_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/calendarIcon"
-        app:layout_constraintEnd_toStartOf="@id/profileIcon" />
+        app:layout_constraintStart_toEndOf="@id/navCalendarIcon"
+        app:layout_constraintEnd_toStartOf="@id/navProfileIcon" />
 
     <ImageView
-        android:id="@+id/profileIcon"
+        android:id="@+id/navProfileIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
         android:src="@drawable/user_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/chatIcon"
+        app:layout_constraintStart_toEndOf="@id/navChatIcon"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.eatbeat
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -21,14 +22,38 @@ class UserProfile : AppCompatActivity() {
         val editButton = findViewById<ImageView>(R.id.editUserButton)
 
         BottomSheetBehavior.from(bottomSheet).apply {
-            peekHeight = 330
+            peekHeight = 530
             state = BottomSheetBehavior.STATE_COLLAPSED
         }
 
         settingsClick(optionsButton)
         editProfileClick(editButton)
 
+        activateNavBar()
+    }
 
+    private fun activateNavBar(){
+        val navSearch = findViewById<ImageView>(R.id.navMusicianIcon)
+        val navCalendar = findViewById<ImageView>(R.id.navCalendarIcon)
+        val navChat = findViewById<ImageView>(R.id.navChatIcon)
+
+        navSearch.setOnClickListener(){
+            val intent = Intent(this, SearchMusicianActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        navCalendar.setOnClickListener(){
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        navChat.setOnClickListener(){
+            val intent = Intent(this, UserProfile::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun settingsClick(optionsButton: ImageView){

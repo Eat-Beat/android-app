@@ -6,12 +6,13 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
-class SearchRestaurantActivity : AppCompatActivity() {
+class SearchMusicianActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_search_restaurant)
+        setContentView(R.layout.activity_search_musician)
 
+        overridePendingTransition(R.anim.zoom_out, 0)
 
         activateNavBar()
     }
