@@ -5,6 +5,11 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.eatbeat.adapters.CarouselAdapter
+import com.example.eatbeat.adapters.MusicianAdapter
+import com.example.eatbeat.users.Musician
 
 class SearchMusicianActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +19,7 @@ class SearchMusicianActivity : AppCompatActivity() {
         val navMusicianIcon = findViewById<ImageView>(R.id.navMusicianIcon)
         navMusicianIcon.setImageResource(R.drawable.clicked_search_musician_icon)
 
-        overridePendingTransition(R.anim.zoom_out, 0)
+        overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         activateNavBar()
     }
@@ -41,5 +46,13 @@ class SearchMusicianActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun showMusicians(musicianList : List<Musician>){
+
+        val musicianRecycler = findViewById<RecyclerView>(R.id.searchMusicRecyclerView)
+
+        musicianRecycler.adapter = CarouselAdapter(musicianList)
+        musicianRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 }

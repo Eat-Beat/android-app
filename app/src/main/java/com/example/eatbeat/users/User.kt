@@ -6,5 +6,11 @@ abstract class User(private val idUser: Int,
     private val password: String,
     private val ratings: ArrayList<Int>
 ){
+    fun getName(): String {
+        return name
+    }
 
+    fun getPassword(): String {
+        return password
+    }
 }

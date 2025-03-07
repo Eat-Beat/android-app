@@ -61,14 +61,13 @@
 
             <Button
                 android:id="@+id/loginButton"
-                android:background="@drawable/button"
                 android:layout_width="@dimen/buttonWidth"
                 android:layout_height="@dimen/buttonHeight"
-                android:text="@string/login"
+                android:background="@drawable/button"
                 android:fontFamily="@font/barlow_medium"
+                android:text="@string/login"
                 android:textColor="@color/black"
-                android:textSize="@dimen/buttonText"
-                />
+                android:textSize="@dimen/buttonText" />
 
         </LinearLayout>
 

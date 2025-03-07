@@ -1,6 +1,5 @@
 package com.example.eatbeat
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -13,7 +12,7 @@ class ChatActivity : AppCompatActivity(){
         enableEdgeToEdge()
         setContentView(R.layout.activity_chat)
 
-        overridePendingTransition(R.anim.zoom_out, 0)
+        overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val navChat = findViewById<ImageView>(R.id.navChatIcon)
         navChat.setImageResource(R.drawable.chat_selected_ic)

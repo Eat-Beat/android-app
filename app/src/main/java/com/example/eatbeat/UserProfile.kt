@@ -20,7 +20,7 @@ class UserProfile : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_user_musician)
 
-        overridePendingTransition(R.anim.zoom_out, 0)
+        overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val optionsButton = findViewById<ImageView>(R.id.settings_icon)

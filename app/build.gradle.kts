@@ -46,6 +46,7 @@ android {
         implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
         implementation ("androidx.viewpager2:viewpager2:1.0.0")
         implementation("com.mapbox.maps:android:11.10.2")
+        implementation ("org.mindrot:jbcrypt:0.4")
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)

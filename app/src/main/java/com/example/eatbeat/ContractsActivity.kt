@@ -5,14 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.CalendarView
-import com.example.eatbeat.adapters.CarouselAdapter
-import com.mapbox.geojson.Point
-import com.mapbox.maps.CameraOptions
-import com.mapbox.maps.MapView
 
 class ContractsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +13,7 @@ class ContractsActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_contracts_calendar)
 
-        overridePendingTransition(R.anim.zoom_out, 0)
+        overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val navContractIc = findViewById<ImageView>(R.id.navCalendarIcon)
         navContractIc.setImageResource(R.drawable.contracts_selected_ic)
