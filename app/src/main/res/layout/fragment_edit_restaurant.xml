@@ -127,8 +127,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="340dp"
-        android:layout_height="150dp"
+        android:layout_width="337dp"
+        android:layout_height="289dp"
         android:layout_marginTop="176dp"
         android:background="@drawable/black_rectangle_shape"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,9 +146,10 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintHorizontal_bias="0.857"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.654" />
+            app:layout_constraintVertical_bias="0.289" />
 
         <TextView
             android:id="@+id/textView10"
@@ -177,10 +178,20 @@
             android:layout_width="199dp"
 
             android:layout_height="32dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapRestaurantEdit"
+            android:layout_width="325dp"
+            android:layout_height="144dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.889" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

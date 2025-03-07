@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SearchMusicianActivity::class.java)
             startActivity(intent)
             finish()
-            overridePendingTransition(0, R.anim.zoom_in)
         }
     }
 

@@ -13,6 +13,10 @@ class ChatActivity : AppCompatActivity(){
         enableEdgeToEdge()
         setContentView(R.layout.activity_chat)
 
+        overridePendingTransition(R.anim.zoom_out, 0)
+
+        val navChat = findViewById<ImageView>(R.id.navChatIcon)
+        navChat.setImageResource(R.drawable.chat_selected_ic)
 
         activateNavBar()
     }

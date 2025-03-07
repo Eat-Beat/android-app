@@ -20,6 +20,10 @@ class ContractsActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_contracts_calendar)
 
+        overridePendingTransition(R.anim.zoom_out, 0)
+
+        val navContractIc = findViewById<ImageView>(R.id.navCalendarIcon)
+        navContractIc.setImageResource(R.drawable.contracts_selected_ic)
 
         val calendarView : CalendarView = findViewById(R.id.calendarView)
         calendarView.setCalendarDayLayout(R.layout.day_cell)

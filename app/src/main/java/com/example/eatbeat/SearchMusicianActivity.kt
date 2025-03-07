@@ -11,6 +11,8 @@ class SearchMusicianActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_search_musician)
+        val navMusicianIcon = findViewById<ImageView>(R.id.navMusicianIcon)
+        navMusicianIcon.setImageResource(R.drawable.clicked_search_musician_icon)
 
         overridePendingTransition(R.anim.zoom_out, 0)
 

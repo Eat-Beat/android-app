@@ -14,7 +14,7 @@
         android:id="@+id/navMusicianIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
-        android:src="@drawable/clicked_musician_icon"
+        android:src="@drawable/search_musician_ic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

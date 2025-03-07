@@ -5,27 +5,21 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
 import com.example.eatbeat.fragments.EditUserFrag
 import com.example.eatbeat.fragments.SettingsFrag
-import com.example.eatbeat.fragments.StatsFrag
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class UserProfile : AppCompatActivity() {
+class RestaurantProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_user_musician)
-
-        overridePendingTransition(R.anim.zoom_out, 0)
-
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val optionsButton = findViewById<ImageView>(R.id.settings_icon)
         val editButton = findViewById<ImageView>(R.id.editUserButton)
-        val ratingsButton = findViewById<TextView>(R.id.ratingCount)
 
         BottomSheetBehavior.from(bottomSheet).apply {
             peekHeight = 530
@@ -37,7 +31,6 @@ class UserProfile : AppCompatActivity() {
 
         settingsClick(optionsButton)
         editProfileClick(editButton)
-        statsScreenClick(ratingsButton)
 
         activateNavBar()
     }
@@ -54,13 +47,13 @@ class UserProfile : AppCompatActivity() {
         }
 
         navCalendar.setOnClickListener(){
-            val intent = Intent(this, ContractsActivity::class.java)
+            val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         navChat.setOnClickListener(){
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, UserProfile::class.java)
             startActivity(intent)
             finish()
         }
@@ -101,25 +94,6 @@ class UserProfile : AppCompatActivity() {
             opaqueBg.startAnimation(fadeIn)
             opaqueBg.visibility = View.VISIBLE
             editUserScreen.visibility = View.VISIBLE
-        }
-    }
-
-    private fun statsScreenClick(statsButton: TextView) {
-        statsButton.setOnClickListener {
-            val fragment = StatsFrag()
-            val fadeIn = AnimationUtils.loadAnimation(this, R.anim.alpha_show_up)
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.ratingsScreen, fragment)
-                .addToBackStack(null)
-                .commit()
-            val ratingsScreen = findViewById<FragmentContainerView>(R.id.ratingsScreen)
-            val opaqueBg = findViewById<View>(R.id.opaqueBg)
-
-            ratingsScreen.startAnimation(fadeIn)
-            opaqueBg.startAnimation(fadeIn)
-            opaqueBg.visibility = View.VISIBLE
-            ratingsScreen.visibility = View.VISIBLE
         }
     }
 }

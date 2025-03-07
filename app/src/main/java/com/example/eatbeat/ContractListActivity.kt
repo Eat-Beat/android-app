@@ -11,7 +11,8 @@ class ContractListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_contracts_list)
-
+        val navContractIc = findViewById<ImageView>(R.id.navCalendarIcon)
+        navContractIc.setImageResource(R.drawable.contracts_selected_ic)
 
         activateNavBar()
     }
