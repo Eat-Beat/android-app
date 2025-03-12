@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.users.Musician
@@ -13,7 +14,7 @@ class MusicianAdapter(private val musicians: List<Musician>) :
     RecyclerView.Adapter<MusicianAdapter.MusicianViewHolder>() {
 
     class MusicianViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.findViewById(R.id.musicianImageBox)
+        val musicianImage: ImageView = view.findViewById(R.id.musicianImage)
         val musicianName : TextView = view.findViewById(R.id.musicianNameBox)
         val rol : TextView = view.findViewById(R.id.rolBox)
         val location: TextView = view.findViewById(R.id.locationBox)
@@ -27,11 +28,16 @@ class MusicianAdapter(private val musicians: List<Musician>) :
     }
 
     override fun onBindViewHolder(holder: MusicianViewHolder, position: Int) {
-        holder.image.setImageResource(musicians[position].getMultimedia()[1].getImage().format)
-        holder.musicianName.text = musicians[position].getName()
-        holder.rol.text = musicians[position].getGenre()[1].getName()
-        holder.location.text = musicians[position].calculateLocationName()
-        holder.rating.text = String.format(musicians[position].calculateRating().toString())
+        val musician = musicians[position]
+
+        Glide.with(holder.itemView.context)
+            .load(musician.getMultimedia()[0].getImage())
+            .into(holder.musicianImage)
+
+        holder.musicianName.text = musician.getName()
+        holder.rol.text = musician.getGenre()[1]
+        holder.location.text = musician.calculateLocationName()
+        holder.rating.text = String.format(musician.calculateRating().toString())
     }
 
     override fun getItemCount() = musicians.size

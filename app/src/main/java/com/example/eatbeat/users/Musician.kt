@@ -1,7 +1,5 @@
 package com.example.eatbeat.users
 
-import com.example.eatbeat.users.musicianAttributes.Classification
-import com.example.eatbeat.users.musicianAttributes.Genre
 import com.example.eatbeat.users.musicianAttributes.Multimedia
 
 class Musician(
@@ -22,12 +20,12 @@ class Musician(
         return multimedia
     }
 
-    fun getGenre(): ArrayList<Genre> {
+    fun getGenre(): ArrayList<String> {
         return genre
     }
 
     fun calculateLocationName(): String{
-        return location
+        return longitude.toString() + " " + latitude.toString()
     }
 
     fun calculateRating(): Int {

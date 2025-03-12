@@ -1,0 +1,142 @@
+[
+  {
+    "idUser": 1,
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "securepass",
+    "rating": 4.5,
+    "longitude": -3.70379,
+    "latitude": 40.416775,
+    "description": "Guitarrista de rock con más de 10 años de experiencia.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 15.2,
+        "type": "video"
+      }
+    ],
+    "genre": ["Rock"],
+    "classification": ["Cuerda"]
+  },
+  {
+    "idUser": 3,
+    "name": "Jane Smith",
+    "email": "janesmith@email.com",
+    "password": "pass1234",
+    "rating": 4.7,
+    "longitude": -74.006015,
+    "latitude": 40.712776,
+    "description": "Saxofonista de jazz con presentaciones en festivales internacionales.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 5.8,
+        "type": "audio"
+      }
+    ],
+    "genre": ["Jazz"],
+    "classification": ["Viento"]
+  },
+  {
+    "idUser": 5,
+    "name": "Carlos Santana",
+    "email": "carlos@email.com",
+    "password": "guitarhero",
+    "rating": 4.9,
+    "longitude": -118.243683,
+    "latitude": 34.052235,
+    "description": "Guitarrista de blues con múltiples premios Grammy.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 20.4,
+        "type": "video"
+      }
+    ],
+    "genre": ["Blues"],
+    "classification": ["Cuerda"]
+  },
+  {
+    "idUser": 7,
+    "name": "Amy Winehouse",
+    "email": "amy@email.com",
+    "password": "rehab123",
+    "rating": 4.8,
+    "longitude": -0.127758,
+    "latitude": 51.507351,
+    "description": "Cantante de soul con un estilo inconfundible.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 18.6,
+        "type": "video"
+      }
+    ],
+    "genre": ["Soul"],
+    "classification": ["Voz"]
+  },
+  {
+    "idUser": 9,
+    "name": "Ludwig Beethoven",
+    "email": "beethoven@email.com",
+    "password": "furElise",
+    "rating": 5.0,
+    "longitude": 16.373819,
+    "latitude": 48.208176,
+    "description": "Compositor y pianista de música clásica.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 8.4,
+        "type": "audio"
+      }
+    ],
+    "genre": ["Clásica"],
+    "classification": ["Teclado"]
+  },
+  {
+    "idUser": 11,
+    "name": "Freddie Mercury",
+    "email": "freddie@email.com",
+    "password": "bohemianRhapsody",
+    "rating": 4.9,
+    "longitude": -0.142571,
+    "latitude": 51.501476,
+    "description": "Vocalista de Queen, una de las mejores voces del rock.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 22.1,
+        "type": "video"
+      }
+    ],
+    "genre": ["Rock"],
+    "classification": ["Voz"]
+  },
+  {
+    "idUser": 13,
+    "name": "Miles Davis",
+    "email": "miles@email.com",
+    "password": "kindofblue",
+    "rating": 4.8,
+    "longitude": -87.629799,
+    "latitude": 41.878113,
+    "description": "Trompetista y referente del jazz moderno.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 6.5,
+        "type": "audio"
+      }
+    ],
+    "genre": ["Jazz"],
+    "classification": ["Viento"]
+  }
+]

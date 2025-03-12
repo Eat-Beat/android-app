@@ -8,8 +8,10 @@ class Multimedia(
     private val idMultimedia: Int,
     private val url: String,
     private val size: Float,
-    private val type: MultimediaType,
-    private val image: Image
+    private val type: String,
 ) {
 
+    fun getImage(): String {
+        return url
+    }
 }
