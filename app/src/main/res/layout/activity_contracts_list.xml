@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/beigeBg"
+    android:background="@color/white"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +65,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/calendar_black_icon"
+            android:background="@drawable/calendar_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

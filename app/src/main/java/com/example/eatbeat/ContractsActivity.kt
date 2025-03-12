@@ -16,7 +16,7 @@ class ContractsActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val navContractIc = findViewById<ImageView>(R.id.navCalendarIcon)
-        navContractIc.setImageResource(R.drawable.contracts_selected_ic)
+        navContractIc.setImageResource(R.drawable.contracts_selected)
 
         val calendarView : CalendarView = findViewById(R.id.calendarView)
         calendarView.setCalendarDayLayout(R.layout.day_cell)

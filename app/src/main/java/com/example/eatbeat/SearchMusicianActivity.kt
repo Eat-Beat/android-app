@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eatbeat.adapters.CarouselAdapter
 import com.example.eatbeat.adapters.MusicianAdapter
 import com.example.eatbeat.users.Musician
 
@@ -17,7 +16,7 @@ class SearchMusicianActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_search_musician)
         val navMusicianIcon = findViewById<ImageView>(R.id.navMusicianIcon)
-        navMusicianIcon.setImageResource(R.drawable.clicked_search_musician_icon)
+        navMusicianIcon.setImageResource(R.drawable.musician_selected)
 
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
