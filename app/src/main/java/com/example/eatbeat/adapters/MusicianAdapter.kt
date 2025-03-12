@@ -35,7 +35,7 @@ class MusicianAdapter(private val musicians: List<Musician>) :
             .into(holder.musicianImage)
 
         holder.musicianName.text = musician.getName()
-        holder.rol.text = musician.getGenre()[1]
+        holder.rol.text = musician.getGenre()[0]
         holder.location.text = musician.calculateLocationName()
         holder.rating.text = String.format(musician.calculateRating().toString())
     }
