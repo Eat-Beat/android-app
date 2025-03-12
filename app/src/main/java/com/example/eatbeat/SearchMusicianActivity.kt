@@ -49,10 +49,9 @@ class SearchMusicianActivity : AppCompatActivity() {
     }
 
     private fun showMusicians(musicianList : List<Musician>){
-
         val musicianRecycler = findViewById<RecyclerView>(R.id.searchMusicRecyclerView)
 
-        musicianRecycler.adapter = CarouselAdapter(musicianList)
+        musicianRecycler.adapter = MusicianAdapter(musicianList)
         musicianRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 }

@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eatbeat.R
 import com.example.eatbeat.SearchMusicianActivity
+import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.User
 import org.mindrot.jbcrypt.BCrypt
 
@@ -31,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun verifyUser(userName : TextView, password : TextView, userList : ArrayList<User>) : Boolean{
         var foundUser = false
+
 
         for (user in userList) {
             if (user.getName() == userName.text && BCrypt.checkpw(password.text.toString(), user.getPassword())) {

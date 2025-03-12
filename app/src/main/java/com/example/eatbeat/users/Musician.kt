@@ -15,7 +15,25 @@ class Musician(
     private val description: String,
     private val multimedia: ArrayList<Multimedia> = ArrayList(),
     private val genre: ArrayList<Genre> = ArrayList(),
-    private val classification: ArrayList<Classification> = ArrayList()
+    private val classification: ArrayList<Classification> = ArrayList(),
+    private val location: String
 ) : User(idUser, name, email, password, ratings) {
 
+    fun getMultimedia(): ArrayList<Multimedia> {
+        return multimedia
+    }
+
+    fun getGenre(): ArrayList<Genre> {
+        return genre
+    }
+
+    fun calculateLocationName(): String{
+        return location
+    }
+
+    fun calculateRating(): Int {
+        val totalRating : Int = 0
+
+        return totalRating
+    }
 }
