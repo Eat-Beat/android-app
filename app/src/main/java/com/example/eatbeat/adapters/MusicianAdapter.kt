@@ -36,8 +36,8 @@ class MusicianAdapter(private val musicians: List<Musician>) :
 
         holder.musicianName.text = musician.getName()
         holder.rol.text = musician.getGenre()[0]
-        holder.location.text = musician.calculateLocationName()
-        holder.rating.text = String.format(musician.calculateRating().toString())
+        holder.location.text = musician.calculateLocationName(holder.itemView.context)
+        holder.rating.text = musician.getRating()
     }
 
     override fun getItemCount() = musicians.size

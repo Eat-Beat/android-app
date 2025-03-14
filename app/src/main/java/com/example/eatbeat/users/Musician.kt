@@ -1,6 +1,8 @@
 package com.example.eatbeat.users
 
+import android.location.Geocoder
 import com.example.eatbeat.users.musicianAttributes.Multimedia
+import java.util.Locale
 
 class Musician(
     idUser: Int,
@@ -24,13 +26,20 @@ class Musician(
         return genre
     }
 
-    fun calculateLocationName(): String{
-        return longitude.toString() + " " + latitude.toString()
+    fun calculateLocationName(context: android.content.Context): String {
+        val geocoder = Geocoder(context, Locale.getDefault())
+
+        try {
+            val addresses = geocoder.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1)
+            if (!addresses.isNullOrEmpty()) {
+                return addresses[0].locality ?: "Ubicación desconocida"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return "Ubicación desconocida"
     }
 
-    fun calculateRating(): Int {
-        val totalRating : Int = 0
 
-        return totalRating
-    }
 }
