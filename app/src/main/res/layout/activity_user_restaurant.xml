@@ -39,7 +39,7 @@
             android:id="@+id/editUserButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/edit_button"
+            android:background="@drawable/profile_edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/options_icon"
+            android:background="@drawable/settings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

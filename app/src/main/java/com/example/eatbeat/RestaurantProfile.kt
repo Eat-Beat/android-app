@@ -27,7 +27,7 @@ class RestaurantProfile : AppCompatActivity() {
         }
 
         val navProfile = findViewById<ImageView>(R.id.navProfileIcon)
-        navProfile.setImageResource(R.drawable.profile_selected_ic)
+        navProfile.setImageResource(R.drawable.user_selected)
 
         settingsClick(optionsButton)
         editProfileClick(editButton)

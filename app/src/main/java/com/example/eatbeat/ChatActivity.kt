@@ -15,7 +15,7 @@ class ChatActivity : AppCompatActivity(){
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val navChat = findViewById<ImageView>(R.id.navChatIcon)
-        navChat.setImageResource(R.drawable.chat_selected_ic)
+        navChat.setImageResource(R.drawable.chat_selected)
 
         activateNavBar()
     }
