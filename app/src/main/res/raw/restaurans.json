@@ -1,0 +1,102 @@
+[
+    {
+      "idUser": 2,
+      "name": "La Trattoria",
+      "email": "trattoria@email.com",
+      "password": "secure123",
+      "rating": 4.2,
+      "address": "Calle Italia",
+      "addressNum": 23,
+      "zipCode": "28001"
+    },
+    {
+      "idUser": 4,
+      "name": "Sushi World",
+      "email": "sushi@email.com",
+      "password": "fishlover",
+      "rating": 4.8,
+      "address": "Avenida Japón",
+      "addressNum": 12,
+      "zipCode": "28002"
+    },
+    {
+      "idUser": 6,
+      "name": "El Asador",
+      "email": "asador@email.com",
+      "password": "meatlover",
+      "rating": 4.5,
+      "address": "Calle Argentina",
+      "addressNum": 45,
+      "zipCode": "28003"
+    },
+    {
+      "idUser": 8,
+      "name": "Vegan Bliss",
+      "email": "vegan@email.com",
+      "password": "healthy123",
+      "rating": 4.1,
+      "address": "Calle Verde",
+      "addressNum": 8,
+      "zipCode": "28004"
+    },
+    {
+      "idUser": 10,
+      "name": "Taco Fiesta",
+      "email": "taco@email.com",
+      "password": "spicy",
+      "rating": 4.3,
+      "address": "Calle México",
+      "addressNum": 31,
+      "zipCode": "28005"
+    },
+    {
+      "idUser": 12,
+      "name": "Bistro Francés",
+      "email": "bistro@email.com",
+      "password": "baguette",
+      "rating": 4.7,
+      "address": "Calle París",
+      "addressNum": 14,
+      "zipCode": "28006"
+    },
+    {
+      "idUser": 14,
+      "name": "Pizza Napoli",
+      "email": "napoli@email.com",
+      "password": "pizza123",
+      "rating": 4.4,
+      "address": "Calle Roma",
+      "addressNum": 22,
+      "zipCode": "28007"
+    },
+    {
+      "idUser": 16,
+      "name": "Burger House",
+      "email": "burger@email.com",
+      "password": "cheeseburger",
+      "rating": 4.0,
+      "address": "Calle Nueva York",
+      "addressNum": 19,
+      "zipCode": "28008"
+    },
+    {
+      "idUser": 18,
+      "name": "India Spice",
+      "email": "india@email.com",
+      "password": "currylover",
+      "rating": 4.9,
+      "address": "Calle Bombay",
+      "addressNum": 7,
+      "zipCode": "28009"
+    },
+    {
+      "idUser": 20,
+      "name": "Tapas Bar",
+      "email": "tapas@email.com",
+      "password": "jamon123",
+      "rating": 4.6,
+      "address": "Calle España",
+      "addressNum": 11,
+      "zipCode": "28010"
+    }
+  ]  

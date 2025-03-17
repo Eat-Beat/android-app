@@ -5,13 +5,17 @@ abstract class User(
     private val name: String,
     private val email: String,
     private val password: String,
-    private val ratings: ArrayList<Int>
+    private val rating: Float
 ){
-    fun getName(): String {
-        return name
+    fun getName(): String{
+        return this.name
     }
 
-    fun getPassword(): String {
-        return password
+    fun getPassword(): String{
+        return this.password
+    }
+
+    fun getRating(): String{
+        return this.rating.toString()
     }
 }

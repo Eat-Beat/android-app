@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beigeBg"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:id="@+id/close_stats"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/return_icon"
+            android:background="@drawable/back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"

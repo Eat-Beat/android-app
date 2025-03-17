@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eatbeat.adapters.CarouselAdapter
 import com.example.eatbeat.adapters.MusicianAdapter
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.loadMusiciansFromJson
+import com.example.eatbeat.utils.loadJsonFromRaw
 
 class SearchMusicianActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,8 @@ class SearchMusicianActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         activateNavBar()
+        showMusicians(loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
+
     }
 
     private fun activateNavBar(){
@@ -51,7 +55,8 @@ class SearchMusicianActivity : AppCompatActivity() {
     private fun showMusicians(musicianList : List<Musician>){
         val musicianRecycler = findViewById<RecyclerView>(R.id.searchMusicRecyclerView)
 
+        musicianRecycler.layoutManager = GridLayoutManager(this, 2)
+
         musicianRecycler.adapter = MusicianAdapter(musicianList)
-        musicianRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 }

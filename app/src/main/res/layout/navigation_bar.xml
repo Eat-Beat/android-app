@@ -34,7 +34,7 @@
         android:id="@+id/navChatIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
-        android:src="@drawable/chat_icon"
+        android:src="@drawable/chat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/navCalendarIcon"

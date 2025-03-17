@@ -5,10 +5,10 @@ class Restaurant(
     name: String,
     email: String,
     password: String,
-    ratings: ArrayList<Int>,
+    rating: Float,
     private val address: String,
     private val addressNum: Int,
     private val zipCode: Int,
-) : User(idUser, name, email, password, ratings)  {
+) : User(idUser, name, email, password, rating)  {
 
 }

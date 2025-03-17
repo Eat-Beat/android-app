@@ -47,6 +47,8 @@ android {
         implementation ("androidx.viewpager2:viewpager2:1.0.0")
         implementation("com.mapbox.maps:android:11.10.2")
         implementation ("org.mindrot:jbcrypt:0.4")
+        implementation ("com.github.bumptech.glide:glide:4.15.1")
+        annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)
