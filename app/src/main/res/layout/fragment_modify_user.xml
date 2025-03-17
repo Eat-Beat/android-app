@@ -19,6 +19,7 @@
             android:id="@+id/close_modify"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:scaleX="-1"
             android:background="@drawable/back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView2"

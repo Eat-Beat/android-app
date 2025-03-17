@@ -7,6 +7,7 @@
     >
 
     <TextView
+        android:id="@+id/contractDetailsCellCalendar"
         android:layout_width="320dp"
         android:layout_height="30dp"
         android:text="XXX | XXX | XXX | XXX"

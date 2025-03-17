@@ -26,6 +26,10 @@ class Musician(
         return genre
     }
 
+    fun getClassification(): ArrayList<String> {
+        return classification
+    }
+
     fun calculateLocationName(context: android.content.Context): String {
         val geocoder = Geocoder(context, Locale.getDefault())
 

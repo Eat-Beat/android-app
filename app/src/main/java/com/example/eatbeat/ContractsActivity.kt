@@ -5,7 +5,21 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.applandeo.materialcalendarview.CalendarDay
 import com.applandeo.materialcalendarview.CalendarView
+import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
+import com.example.eatbeat.adapters.ContractsCalendarAdapter
+import com.example.eatbeat.adapters.ContractsListAdapter
+import com.example.eatbeat.adapters.MusicianAdapter
+import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.loadJsonFromRaw
+import com.example.eatbeat.utils.loadMusiciansFromJson
+import java.util.Calendar
+import java.util.Date
+
 
 class ContractsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +36,9 @@ class ContractsActivity : AppCompatActivity() {
         calendarView.setCalendarDayLayout(R.layout.day_cell)
 
         activateNavBar()
+
+        generateClickAndList(calendarView)
+
     }
 
     private fun activateNavBar(){
@@ -46,5 +63,45 @@ class ContractsActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun generateClickAndList(calendarView : CalendarView) {
+        calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
+            override fun onClick(calendarDay: CalendarDay) {
+                val clickedDayCalendar: Calendar = calendarDay.calendar
+                val date : Date = clickedDayCalendar.time
+
+                loadContractsOnDay(date)
+            }
+
+            private fun loadContractsOnDay(date: Date, contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
+                val contractOnDay: ArrayList<Perform> = ArrayList()
+
+                for (contract in contracts) {
+                    val contractDate = contract.getDate()
+                    if (isSameDay(date, contractDate)) {
+                        contractOnDay.add(contract)
+                    }
+                }
+
+                val contractsCalendarRecycler = findViewById<RecyclerView>(R.id.contractsCalendarRecylcerView)
+
+                contractsCalendarRecycler.adapter = ContractsCalendarAdapter(contracts, musicians)
+
+            }
+
+            private fun isSameDay(selectedDayDate: Date, contractDate: Date): Boolean {
+                val calendar1 = Calendar.getInstance()
+                calendar1.time = selectedDayDate
+
+                val calendar2 = Calendar.getInstance()
+                calendar2.time = contractDate
+
+                return calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR) &&
+                        calendar1.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH) &&
+                        calendar1.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH)
+            }
+
+        })
     }
 }

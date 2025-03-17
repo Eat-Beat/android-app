@@ -60,16 +60,14 @@
             android:id="@+id/locationBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="132dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:text="A 4KM DE BARCELONA"
             android:textColor="@color/white"
-            android:textSize="7sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
-            app:layout_constraintStart_toStartOf="parent" />
+            tools:layout_editor_absoluteY="58dp" />
 
         <ImageView
             android:layout_width="40dp"
