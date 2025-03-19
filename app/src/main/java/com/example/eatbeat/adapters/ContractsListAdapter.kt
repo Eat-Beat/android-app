@@ -36,11 +36,16 @@ class ContractsListAdapter(private val contracts: List<Perform>, private val mus
         val contract = contracts[position]
         val musician = musicians.find { it.getId() == contract.getIdMusician() }!!
 
+        val date = contract.getDate()
+        val hours = date.hours.toString().padStart(2, '0')
+        val minutes = date.minutes.toString().padStart(2, '0')
+        val time = "$hours:$minutes"
+
         holder.dayCell.text = contract.getDate().toString()
         holder.userCell.text = musician.getName()
         holder.professionCell.text = musician.getClassification()[0]
         holder.genreCell.text = musician.getGenre()[0]
-        holder.hourCell.text = contract.getDate().toString()
+        holder.hourCell.text = time
 
         Glide.with(holder.itemView.context)
             .load(musician.getMultimedia()[0].getImage())

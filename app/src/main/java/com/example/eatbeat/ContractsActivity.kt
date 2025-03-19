@@ -48,6 +48,13 @@ class ContractsActivity : AppCompatActivity() {
 
         generateClickAndList(calendarView, loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
 
+        val seeListButton = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.buttonSeeList)
+
+        seeListButton.setOnClickListener(){
+            val intent = Intent(this, ContractListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setCurrentDay(currDate: Date, contracts: ArrayList<Perform>, musicians: ArrayList<Musician>) {
