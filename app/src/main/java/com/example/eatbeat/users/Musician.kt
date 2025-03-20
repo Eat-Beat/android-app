@@ -1,6 +1,8 @@
 package com.example.eatbeat.users
 
 import android.location.Geocoder
+import android.os.Parcel
+import android.os.Parcelable
 import com.example.eatbeat.users.musicianAttributes.Multimedia
 import java.util.Locale
 
@@ -16,7 +18,28 @@ class Musician(
     private val multimedia: ArrayList<Multimedia> = ArrayList(),
     private val genre: ArrayList<String> = ArrayList(),
     private val classification: ArrayList<String> = ArrayList()
-) : User(idUser, name, email, password, rating) {
+) : User(idUser, name, email, password, rating), Parcelable {
+
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readFloat(),
+        parcel.readFloat(),
+        parcel.readFloat(),
+        parcel.readString()!!,
+        ArrayList<Multimedia>().apply {
+            parcel.readList(this, Multimedia::class.java.classLoader)
+        },
+        arrayListOf<String>().apply {
+            parcel.readList(this, String::class.java.classLoader)
+        },
+        arrayListOf<String>().apply {
+            parcel.readList(this, String::class.java.classLoader)
+        }
+                                      ) {
+    }
 
     fun getMultimedia(): ArrayList<Multimedia> {
         return multimedia
@@ -28,6 +51,14 @@ class Musician(
 
     fun getClassification(): ArrayList<String> {
         return classification
+    }
+
+    fun getLongitude(): Float{
+        return longitude
+    }
+
+    fun getLatitude(): Float{
+        return latitude
     }
 
     fun calculateLocationName(context: android.content.Context): String {
@@ -43,6 +74,26 @@ class Musician(
         }
 
         return "Ubicación desconocida"
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeFloat(longitude)
+        parcel.writeFloat(latitude)
+        parcel.writeString(description)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Musician> {
+        override fun createFromParcel(parcel: Parcel): Musician {
+            return Musician(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Musician?> {
+            return arrayOfNulls(size)
+        }
     }
 
 

@@ -13,16 +13,19 @@ import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.users.Musician
 
-class ContractsListAdapter(private val contracts: List<Perform>, private val musicians: List<Musician>) :
-    RecyclerView.Adapter<ContractsListAdapter.CalendarListHolder>() {
+class ContractsListAdapter(
+    private val contracts: List<Perform>,
+    private val musicians: List<Musician>,
+    private val onItemClick: (Perform, Musician) -> Unit
+                          ) : RecyclerView.Adapter<ContractsListAdapter.CalendarListHolder>() {
 
     class CalendarListHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dayCell: TextView = view.findViewById(R.id.contractDayView)
         val userCell: TextView = view.findViewById(R.id.userNameView)
         val professionCell: TextView = view.findViewById(R.id.userProfessionView)
-        val genreCell : TextView = view.findViewById(R.id.userGenreView)
-        val hourCell : TextView = view.findViewById(R.id.contractHourView)
-        val profilePictureCell : ImageView = view.findViewById(R.id.userPrfIcon)
+        val genreCell: TextView = view.findViewById(R.id.userGenreView)
+        val hourCell: TextView = view.findViewById(R.id.contractHourView)
+        val profilePictureCell: ImageView = view.findViewById(R.id.userPrfIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarListHolder {
@@ -49,7 +52,12 @@ class ContractsListAdapter(private val contracts: List<Perform>, private val mus
 
         Glide.with(holder.itemView.context)
             .load(musician.getMultimedia()[0].getImage())
-            .into(holder.profilePictureCell)    }
+            .into(holder.profilePictureCell)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(contract, musician)
+        }
+    }
 
     override fun getItemCount() = contracts.size
 }
