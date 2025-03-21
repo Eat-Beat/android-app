@@ -14,11 +14,7 @@ class MultimediaAdapter (private val musician: Musician) :
     RecyclerView.Adapter<MultimediaAdapter.MultimediaViewHolder>() {
 
     class MultimediaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val musicianImage: ImageView = view.findViewById(R.id.musicianImage)
-        val musicianName : TextView = view.findViewById(R.id.musicianNameBox)
-        val rol : TextView = view.findViewById(R.id.rolBox)
-        val location: TextView = view.findViewById(R.id.locationBox)
-        val rating: TextView = view.findViewById(R.id.ratingNumBox)
+        val musicianImage: ImageView = view.findViewById(R.id.multimediaCellView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MultimediaViewHolder {
@@ -29,7 +25,7 @@ class MultimediaAdapter (private val musician: Musician) :
 
     override fun onBindViewHolder(holder: MultimediaViewHolder, position: Int) {
 
-        for (i in 0..musician.getMultimedia().size){
+        for (i in 0 until musician.getMultimedia().size) {
             Glide.with(holder.itemView.context)
                 .load(musician.getMultimedia()[i].getImage())
                 .into(holder.musicianImage)

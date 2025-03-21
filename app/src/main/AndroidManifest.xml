@@ -19,11 +19,13 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".ChatActivity"
@@ -36,7 +38,8 @@
             android:exported="false" />
         <activity
             android:name=".RestaurantMap"
-            android:exported="false" />
+            android:exported="true"/>
+
         <activity
             android:name=".SearchMusicianActivity"
             android:exported="false" />

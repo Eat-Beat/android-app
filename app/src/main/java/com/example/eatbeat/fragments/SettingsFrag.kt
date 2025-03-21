@@ -1,5 +1,6 @@
 package com.example.eatbeat.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,12 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import com.example.eatbeat.R
+import com.example.eatbeat.SearchMusicianActivity
+import com.example.eatbeat.login.LoginActivity
 
 class SettingsFrag : Fragment() {
 
@@ -20,6 +24,7 @@ class SettingsFrag : Fragment() {
     {
         val view = inflater.inflate(R.layout.fragment_options_menu, container, false)
         val exitwindow = view.findViewById<ImageView>(R.id.close_window_view)
+        val closeSesion = view.findViewById<TextView>(R.id.closeSesionButton)
 
         exitwindow.setOnClickListener {
             val fadeOut = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_disappear)
@@ -34,6 +39,12 @@ class SettingsFrag : Fragment() {
             closeAnimation(fadeOut, fragment)
 
 
+        }
+
+        closeSesion.setOnClickListener{
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         return view

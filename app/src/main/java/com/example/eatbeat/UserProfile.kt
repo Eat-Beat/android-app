@@ -1,6 +1,7 @@
 package com.example.eatbeat
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -8,10 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.eatbeat.adapters.MultimediaAdapter
 import com.example.eatbeat.adapters.MusicianAdapter
 import com.example.eatbeat.fragments.EditUserFrag
@@ -55,12 +60,23 @@ class UserProfile : AppCompatActivity() {
     }
 
     private fun chargeMultimedia(musician: Musician) {
-        val multimediaRecycler = findViewById<RecyclerView>(R.id.multimediaList)
+        val multimediaRecycler = findViewById<RecyclerView>(R.id.multimediaUserRecyclerView)
 
-        multimediaRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val imageUrl = musician.getMultimedia()[0].getImage()
+
+        Glide.with(this)
+            .load(imageUrl)
+            .into(object : SimpleTarget<Drawable?>() {
+                override fun onResourceReady(
+                    resource: Drawable, transition: Transition<in Drawable?>?) {
+                    val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
+                    backgroundPfp.background = resource
+                }
+            })
+
+        multimediaRecycler.layoutManager = GridLayoutManager(this, 3)
 
         multimediaRecycler.adapter = MultimediaAdapter(musician)
-
     }
 
     private fun activateNavBar(){

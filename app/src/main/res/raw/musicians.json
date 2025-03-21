@@ -14,6 +14,26 @@
         "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
         "size": 15.2,
         "type": "video"
+      },
+      {
+        "idMultimedia": 2,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 15.2,
+        "type": "video"
+      }
+    ,
+      {
+        "idMultimedia": 3,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 15.2,
+        "type": "video"
+      }
+    ,
+      {
+        "idMultimedia": 4,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 15.2,
+        "type": "video"
       }
     ],
     "genre": ["Rock"],
