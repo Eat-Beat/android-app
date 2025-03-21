@@ -76,12 +76,15 @@ class ContractDetailsFrag : Fragment() {
         musicCost?.text = "COST | " + contract?.getCost()
         dayLabel?.text =  contract?.getDate().toString()
 
+        placeName?.text = user?.calculateLocationName(this.requireContext())
+
+
         val accessToken: String = getString(R.string.mapbox_access_token)
         val lon = user?.getLongitude()
         val lat = user?.getLatitude()
 
         val imageUrl : String = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/"+
-                lon + "," + lat + ",14,0/800x800?access_token=" + accessToken;
+                lon + "," + lat + ",14,0/600x600?access_token=" + accessToken;
 
         Glide.with(this)
             .load(imageUrl)
