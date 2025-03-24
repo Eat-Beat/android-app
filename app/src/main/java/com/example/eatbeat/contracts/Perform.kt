@@ -10,7 +10,7 @@ class Perform( private val idRestaurant: Int,
                val dateTime: Date,
                private val budget: Int,
                private val musicianRate : Int,
-               private val restaurantRate: Int) : Parcelable {
+               val restaurantRate: Int) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -30,9 +30,18 @@ class Perform( private val idRestaurant: Int,
         return this.idMusician
     }
 
+    fun getIdRestaurant(): Int {
+        return this.idRestaurant
+    }
+
+    fun getRatingRestaurant(): Int {
+        return this.restaurantRate
+    }
+
     fun getCost(): Int {
         return this.budget
     }
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(idRestaurant)

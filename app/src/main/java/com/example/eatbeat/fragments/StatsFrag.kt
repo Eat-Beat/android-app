@@ -8,16 +8,28 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
+import com.example.eatbeat.adapters.ContractsListAdapter
+import com.example.eatbeat.adapters.MusicianAdapter
+import com.example.eatbeat.adapters.RestaurantReviewAdapter
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
+import com.example.eatbeat.utils.loadRestaurantsFromJson
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -86,17 +98,16 @@ class StatsFrag : Fragment() {
 
         val entries = ArrayList<Entry>()
         for (i in actsCount.indices) {
-            // Asegurar que los valores de X están correctamente distribuidos
             entries.add(Entry(i.toFloat(), actsCount[i].second.toFloat()))
         }
 
         val lineDataSet = LineDataSet(entries, "Actuaciones por mes").apply {
-            color = Color.parseColor("#000000") // Amarillo pastel
-            valueTextColor = Color.TRANSPARENT // Ocultar valores sobre la línea
+            color = Color.parseColor("#000000")
+            valueTextColor = Color.TRANSPARENT //
             lineWidth = 2f
-            setDrawCircles(false) // Ocultar puntos
-            setDrawValues(false) // No mostrar valores sobre la línea
-            setMode(LineDataSet.Mode.CUBIC_BEZIER) // Líneas curvas
+            setDrawCircles(false)
+            setDrawValues(false)
+            setMode(LineDataSet.Mode.CUBIC_BEZIER)
         }
 
         val lineData = LineData(lineDataSet)
@@ -105,42 +116,37 @@ class StatsFrag : Fragment() {
 
         linechart?.apply {
             data = lineData
-            setBackgroundColor(Color.WHITE) // Fondo blanco
+            setBackgroundColor(Color.WHITE)
             description.isEnabled = false
             legend.isEnabled = true
             legend.textColor = Color.GRAY
             legend.formSize = 10f
 
-            // Configurar eje Y (valores en múltiplos de 5)
             axisLeft.apply {
                 setDrawLabels(true)
                 textColor = Color.GRAY
                 setDrawGridLines(true)
-                granularity = 5f // Intervalos de 5 en 5
+                granularity = 5f
                 axisMinimum = 0f
-                axisMaximum = 30f // Ajustar según el rango esperado
-                setLabelCount(6, true) // Forzar que se muestren varios valores
+                axisMaximum = 30f
+                setLabelCount(6, true)
             }
 
-            axisRight.isEnabled = false // Ocultar eje derecho
+            axisRight.isEnabled = false
 
-            // Configurar eje X (Mostrar 12 meses correctamente distribuidos)
             xAxis.apply {
-                valueFormatter = IndexAxisValueFormatter(
-                    listOf("Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic")
-                                                        ) // Mostrar nombres de los meses
-                granularity = 1f // Asegurar que muestre cada mes
-                labelCount = 12 // Forzar que se muestren los 12 meses
+                valueFormatter = IndexAxisValueFormatter(listOf("Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"))
+                granularity = 1f
+                labelCount = 12
                 textColor = Color.GRAY
                 setDrawGridLines(false)
                 position = XAxis.XAxisPosition.BOTTOM
-                isGranularityEnabled = true // Evitar etiquetas repetidas
+                isGranularityEnabled = true //
             }
 
-            invalidate() // Refrescar gráfico
+            invalidate()
         }
     }
-
 
     private fun getMonthlyPerformances(contracts: ArrayList<Perform>): ArrayList<Pair<String, Int>> {
         val sdf = SimpleDateFormat("yyyy-MM", Locale.getDefault())
@@ -166,10 +172,82 @@ class StatsFrag : Fragment() {
     }
 
     private fun createReviewsChart(){
+        val reviewsList = getReviewsArray()
+
+        val totalReviews = reviewsList.sum()
+
+        val percentages = ArrayList<Float>()
+        if (totalReviews > 0) {
+            for (count in reviewsList) {
+                val percentage = (count.toFloat() / totalReviews) * 100
+                percentages.add(percentage)
+            }
+        } else {
+            percentages.addAll(List(5) { 0f })
+        }
+
+        val barChart = view?.findViewById<BarChart>(R.id.reviewsChart)!!
+
+        val entries = ArrayList<BarEntry>()
+        for (i in percentages.indices) {
+            entries.add(BarEntry(i.toFloat(), percentages[i]))
+        }
+
+        val dataSet = BarDataSet(entries, "Reviews").apply {
+            color = ContextCompat.getColor(requireContext(), R.color.orange)
+        }
+
+        val barData = BarData(dataSet)
+
+        barChart.apply {
+            data = barData
+            setDrawValueAboveBar(true)
+            setBackgroundColor(Color.WHITE)
+            xAxis.isEnabled = false
+            axisLeft.isEnabled = true
+            axisRight.isEnabled = false
+            description.isEnabled = false
+            legend.isEnabled = false
+            animateY(1000)
+
+            axisLeft.apply {
+                setDrawLabels(true)
+                textColor = Color.GRAY
+                setDrawGridLines(true)
+                granularity = 1f
+                axisMinimum = 0f
+                axisMaximum = 100f
+                setLabelCount(1, true)
+            }
+
+
+            invalidate()
+        }
 
     }
 
-    private fun fillInReviews(){
+    private fun getReviewsArray() : ArrayList<Int> {
+        val array = ArrayList<Int>(5).apply {
+            for (i in 0 until 5) add(0)
+        }
 
+        val reviews: ArrayList<Perform> = loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!)
+
+        for (review in reviews) {
+            val rate = review.restaurantRate
+            if (rate in 1..5) {
+                array[rate - 1] += 1
+            }
+        }
+
+        return array
+    }
+
+    private fun fillInReviews(){
+        val reviewsRecyclerView : RecyclerView? = view?.findViewById(R.id.reviewsList)
+
+        reviewsRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
+
+        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!), loadRestaurantsFromJson(loadJsonFromRaw(requireContext(), R.raw.restaurans)!!))
     }
 }
