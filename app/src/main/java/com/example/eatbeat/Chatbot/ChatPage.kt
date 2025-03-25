@@ -1,17 +1,24 @@
 package com.example.eatbeat.Chatbot
 
 
+import android.app.Activity
+import android.content.Intent
+import android.inputmethodservice.Keyboard
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,21 +34,41 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.isShiftPressed
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.eatbeat.ChatActivity
+import com.example.eatbeat.R
+import com.example.eatbeat.ui.theme.Purple40
+import com.example.eatbeat.ui.theme.Purple80
 import com.example.eatbeat.ui.theme.bgColor
 import com.example.eatbeat.ui.theme.darkbgColor
 import com.example.eatbeat.ui.theme.orange
 
+
 @Composable
-fun ChatPage(modifier: Modifier = Modifier, viewModel: ChatViewModel) {
+fun ChatPage(
+    modifier: Modifier = Modifier, viewModel: ChatViewModel, onBackClick: () -> Unit = {}
+            ) {
+    val context = LocalContext.current
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(bgColor)
           ) {
-        AppHeader()
+        AppHeader(onBackClick = {
+            val intent = Intent(context, ChatActivity::class.java)
+            context.startActivity(intent)
+        })
         MessageList(modifier = Modifier.weight(1f), messageList = viewModel.messageList)
         MessageInput(onMessageSend = {
             viewModel.sendMessage(it)
@@ -51,11 +78,27 @@ fun ChatPage(modifier: Modifier = Modifier, viewModel: ChatViewModel) {
 
 @Composable
 fun MessageList(modifier: Modifier = Modifier, messageList: List<MessageModel>) {
-    LazyColumn(
-        modifier = modifier, reverseLayout = true
+    if (messageList.isEmpty()) {
+        Column(
+            modifier = modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
               ) {
-        items(messageList.reversed()) {
-            MessageRow(messageModel = it)
+            Icon(
+                modifier = Modifier.size(60.dp),
+                painter = painterResource(id = R.drawable.baseline_question_answer_24),
+                contentDescription = "Icon",
+                tint = orange,
+                )
+            Text(text = "Ask me anything", fontSize = 22.sp)
+        }
+    } else {
+        LazyColumn(
+            modifier = modifier, reverseLayout = true
+                  ) {
+            items(messageList.reversed()) {
+                MessageRow(messageModel = it)
+            }
         }
     }
 }
@@ -103,15 +146,24 @@ fun MessageInput(onMessageSend: (String) -> Unit) {
     }
 
     Row(
-        modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
        ) {
-        OutlinedTextField(value = message, onValueChange = {
-            message = it
-        })
-        IconButton(onClick = {
-            onMessageSend(message)
-            message = ""
-        }) {
+        OutlinedTextField(
+            value = message,
+            onValueChange = { message = it },
+            modifier = Modifier.weight(1f)
+                         )
+        IconButton(
+            onClick = {
+                if (message.isNotBlank()) {
+                    onMessageSend(message.trim())
+                    message = ""
+                }
+            }, modifier = Modifier.padding(start = 8.dp)
+                  ) {
 
             Icon(imageVector = Icons.Default.Send, contentDescription = "Send")
 
@@ -120,18 +172,26 @@ fun MessageInput(onMessageSend: (String) -> Unit) {
 }
 
 @Composable
-fun AppHeader(modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
+fun AppHeader(modifier: Modifier = Modifier, onBackClick: () -> Unit = {}) {
+    Row(
+        modifier = modifier
             .fillMaxWidth()
             .background(darkbgColor)
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
        ) {
+        IconButton(onClick = { onBackClick() }) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Back",
+                tint = Color.White
+                )
+        }
         Text(
-            modifier = Modifier.padding(16.dp),
-            text = "Easy Bot",
+            text = "Eat&Beat AI Support",
             color = Color.White,
-            fontSize = 22.sp
+            fontSize = 22.sp,
+            modifier = Modifier.padding(start = 8.dp)
             )
-
     }
 }

@@ -30,6 +30,7 @@ class ChatViewModel : ViewModel() {
                                                  )
 
     fun sendMessage(userInput: String) {
+
         viewModelScope.launch {
             try {
                 val prompt = Content.Builder()
