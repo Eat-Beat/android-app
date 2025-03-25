@@ -4,9 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.Date
 
-class Perform( private val idRestaurant: Int,
-               private val idMusician: Int,
+class Perform(
                private val idPerform: Int,
+               private val idRestaurant: Int,
+               private val idMusician: Int,
                val dateTime: Date,
                private val budget: Int,
                private val musicianRate : Int,
@@ -44,9 +45,9 @@ class Perform( private val idRestaurant: Int,
 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(idPerform)
         parcel.writeInt(idRestaurant)
         parcel.writeInt(idMusician)
-        parcel.writeInt(idPerform)
         parcel.writeInt(budget)
         parcel.writeInt(musicianRate)
         parcel.writeInt(restaurantRate)
