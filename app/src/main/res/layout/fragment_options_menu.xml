@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.133" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/closeSesionButton"
         android:layout_width="140dp"
         android:layout_height="35dp"
         android:background="@drawable/button"
@@ -55,11 +55,11 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:background="@drawable/log_out"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/closeSesionButton"
+        app:layout_constraintEnd_toEndOf="@+id/closeSesionButton"
         app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/closeSesionButton"
+        app:layout_constraintTop_toTopOf="@+id/closeSesionButton"
         app:layout_constraintVertical_bias="0.466" />
 
     <TextView

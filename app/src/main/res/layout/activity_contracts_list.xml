@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    >
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -35,20 +34,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contractListRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/midContent"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="704dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
-    <include layout="@layout/navigation_bar"/>
+    <include layout="@layout/navigation_bar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout8"
+        android:id="@+id/seeCalendarButton"
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_marginBottom="84dp"
@@ -92,15 +88,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#80000000"
-        android:focusable="true"
-        android:visibility="gone"
         android:clickable="true"
-    />
+        android:focusable="true"
+        android:visibility="gone" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/contractDetailsScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

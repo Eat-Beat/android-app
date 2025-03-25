@@ -31,7 +31,7 @@
     <dimen name="dayTextWidth">200dp</dimen>
     <dimen name="dayTextHeight">30dp</dimen>
     <dimen name="contractCellWidth">350dp</dimen>
-    <dimen name="contractCellHeight">50dp</dimen>
+    <dimen name="contractCellHeight">60dp</dimen>
     <dimen name="contractDayHeaderWidth">340dp</dimen>
     <dimen name="contractDayHeaderHeight">50dp</dimen>
     <dimen name="contractDetailsTitleWidth">280dp</dimen>
