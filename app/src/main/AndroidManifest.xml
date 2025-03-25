@@ -49,6 +49,8 @@
         <activity
             android:name=".UserProfile"
             android:exported="false" />
+        <activity android:name=".Chatbot.MainChatBotActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -35,6 +35,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chatbotid"
         android:layout_width="@dimen/chatCellWidth"
         android:layout_height="@dimen/chatCellHeight"
         android:background="@drawable/black_rectangle_shape"
