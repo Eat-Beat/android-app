@@ -2,6 +2,7 @@ package com.example.eatbeat.users
 
 abstract class User(
     private val idUser: Int,
+    private val idRol: Int,
     private val name: String,
     private val email: String,
     private val password: String,

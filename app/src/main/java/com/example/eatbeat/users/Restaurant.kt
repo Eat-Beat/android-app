@@ -2,6 +2,7 @@ package com.example.eatbeat.users
 
 class Restaurant(
     idUser: Int,
+    idRol: Int,
     name: String,
     email: String,
     password: String,
@@ -9,6 +10,6 @@ class Restaurant(
     private val address: String,
     private val addressNum: Int,
     private val zipCode: Int,
-) : User(idUser, name, email, password, rating)  {
+) : User(idUser, idRol, name, email, password, rating)  {
 
 }

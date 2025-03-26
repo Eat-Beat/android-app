@@ -6,6 +6,7 @@ import java.util.Locale
 
 class Musician(
     idUser: Int,
+    idRol: Int,
     name: String,
     email: String,
     password: String,
@@ -16,7 +17,7 @@ class Musician(
     private val multimedia: ArrayList<Multimedia> = ArrayList(),
     private val genre: ArrayList<String> = ArrayList(),
     private val classification: ArrayList<String> = ArrayList()
-) : User(idUser, name, email, password, rating) {
+) : User(idUser, idRol, name, email, password, rating) {
 
     fun getMultimedia(): ArrayList<Multimedia> {
         return multimedia
