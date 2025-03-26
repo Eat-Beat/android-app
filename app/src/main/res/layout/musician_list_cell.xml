@@ -5,6 +5,7 @@
     android:layout_width="225dp"
     android:layout_height="300dp"
     android:id="@+id/musicianImageBox"
+    android:layout_margin="3dp"
     >
     <ImageView
         android:id="@+id/musicianImage"

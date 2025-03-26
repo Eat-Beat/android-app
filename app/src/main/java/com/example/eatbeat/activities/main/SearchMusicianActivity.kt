@@ -1,5 +1,6 @@
 package com.example.eatbeat.activities.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.MusicianAdapter
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.utils.loadMusiciansFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
@@ -22,7 +24,9 @@ class SearchMusicianActivity : AppCompatActivity() {
 
         activateNavBar(this, this, 1)
 
-        showMusicians(loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
+        UserData.musicians = loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!)
+
+        showMusicians(UserData.musicians)
     }
 
     private fun showMusicians(musicianList : List<Musician>){
@@ -30,6 +34,12 @@ class SearchMusicianActivity : AppCompatActivity() {
 
         musicianRecycler.layoutManager = GridLayoutManager(this, 2)
 
-        musicianRecycler.adapter = MusicianAdapter(musicianList)
+        musicianRecycler.adapter = MusicianAdapter(musicianList){musician -> openProfile(musician)}
+    }
+
+    private fun openProfile(musician: Musician){
+        val intent = Intent(this, ViewMusicianActivity::class.java)
+        intent.putExtra("musicianId", musician.getId())
+        startActivity(intent)
     }
 }

@@ -47,8 +47,12 @@ class Musician(
         return multimedia
     }
 
-    fun getRating(): String{
-        return this.rating.toString()
+    fun getRating(): Float{
+        return this.rating
+    }
+
+    fun getDescription(): String{
+        return this.description
     }
 
     fun getGenre(): ArrayList<String> {
