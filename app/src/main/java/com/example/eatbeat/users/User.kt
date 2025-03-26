@@ -1,25 +1,29 @@
 package com.example.eatbeat.users
 
-abstract class User(
+open class User(
     private val idUser: Int,
+    private val idRol: Int,
     private val name: String,
     private val email: String,
     private val password: String,
-    private val rating: Float
 ){
     fun getId(): Int{
         return this.idUser
+    }
+
+    fun getIdRol(): Int{
+        return this.idRol
     }
 
     fun getName(): String{
         return this.name
     }
 
-    fun getPassword(): String{
-        return this.password
+    fun getEmail(): String{
+        return this.email
     }
 
-    fun getRating(): String{
-        return this.rating.toString()
+    fun getPassword(): String{
+        return this.password
     }
 }

@@ -1,4 +1,4 @@
-package com.example.eatbeat
+package com.example.eatbeat.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,9 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.eatbeat.Chatbot.MainChatBotActivity
+import com.example.eatbeat.chatbot.MainChatBotActivity
+import com.example.eatbeat.R
+import com.example.eatbeat.utils.activateNavBar
 
 class ChatActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +22,7 @@ class ChatActivity : AppCompatActivity(){
 
         navChat.setImageResource(R.drawable.chat_selected)
 
-        activateNavBar()
+        activateNavBar(this,this,3)
         activateChatBotBanner()
     }
 
@@ -28,30 +30,6 @@ class ChatActivity : AppCompatActivity(){
         val chatbotBanner= findViewById<ConstraintLayout>(R.id.chatbotid)
         chatbotBanner.setOnClickListener(){
             val intent = Intent(this, MainChatBotActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-
-    private fun activateNavBar(){
-        val navSearch = findViewById<ImageView>(R.id.navMusicianIcon)
-        val navCalendar = findViewById<ImageView>(R.id.navCalendarIcon)
-        val navProfile = findViewById<ImageView>(R.id.navProfileIcon)
-
-        navSearch.setOnClickListener(){
-            val intent = Intent(this, SearchMusicianActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navCalendar.setOnClickListener(){
-            val intent = Intent(this, ContractsActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navProfile.setOnClickListener(){
-            val intent = Intent(this, UserProfile::class.java)
             startActivity(intent)
             finish()
         }

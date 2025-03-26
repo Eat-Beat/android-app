@@ -11,7 +11,7 @@
     app:layout_constraintEnd_toEndOf="parent">
 
     <ImageView
-        android:id="@+id/navMusicianIcon"
+        android:id="@+id/navUserIcon"
         android:layout_width="@dimen/bannerOptionWidth"
         android:layout_height="@dimen/bannerOptionHeight"
         android:src="@drawable/musician"
@@ -27,7 +27,7 @@
         android:src="@drawable/contracts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/navMusicianIcon"
+        app:layout_constraintStart_toEndOf="@id/navUserIcon"
         app:layout_constraintEnd_toStartOf="@id/navChatIcon" />
 
     <ImageView

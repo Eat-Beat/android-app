@@ -12,8 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import com.example.eatbeat.R
-import com.example.eatbeat.SearchMusicianActivity
-import com.example.eatbeat.login.LoginActivity
+import com.example.eatbeat.activities.login.LoginActivity
 
 class SettingsFrag : Fragment() {
 

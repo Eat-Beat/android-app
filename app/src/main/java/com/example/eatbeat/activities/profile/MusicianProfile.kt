@@ -1,6 +1,5 @@
-package com.example.eatbeat
+package com.example.eatbeat.activities.profile
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -12,22 +11,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.eatbeat.R
 import com.example.eatbeat.adapters.MultimediaAdapter
-import com.example.eatbeat.adapters.MusicianAdapter
 import com.example.eatbeat.fragments.EditUserFrag
 import com.example.eatbeat.fragments.SettingsFrag
 import com.example.eatbeat.fragments.StatsFrag
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.activateNavBar
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class UserProfile : AppCompatActivity() {
+class MusicianProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,7 +51,7 @@ class UserProfile : AppCompatActivity() {
         editProfileClick(editButton)
         statsScreenClick(ratingsButton)
 
-        activateNavBar()
+        activateNavBar(this, this, 4)
 
         val musicians = loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!)
 
@@ -77,30 +76,6 @@ class UserProfile : AppCompatActivity() {
         multimediaRecycler.layoutManager = GridLayoutManager(this, 3)
 
         multimediaRecycler.adapter = MultimediaAdapter(musician)
-    }
-
-    private fun activateNavBar(){
-        val navSearch = findViewById<ImageView>(R.id.navMusicianIcon)
-        val navCalendar = findViewById<ImageView>(R.id.navCalendarIcon)
-        val navChat = findViewById<ImageView>(R.id.navChatIcon)
-
-        navSearch.setOnClickListener(){
-            val intent = Intent(this, SearchMusicianActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navCalendar.setOnClickListener(){
-            val intent = Intent(this, ContractsActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navChat.setOnClickListener(){
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun settingsClick(optionsButton: ImageView){

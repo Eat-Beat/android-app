@@ -1,0 +1,121 @@
+[
+    {
+        "idUser": 1,
+        "idRol": 1,
+        "name": "John Doe",
+        "email": "johndoe@email.com",
+        "password": "securepass"
+    },
+    {
+        "idUser": 2,
+        "idRol": 2,
+        "name": "La Trattoria",
+        "email": "trattoria@email.com",
+        "password": "secure123"
+    },
+    {
+        "idUser": 3,
+        "idRol": 1,
+        "name": "Jane Smith",
+        "email": "janesmith@email.com",
+        "password": "pass1234"
+    },
+    {
+        "idUser": 4,
+        "idRol": 2,
+        "name": "Sushi World",
+        "email": "sushi@email.com",
+        "password": "fishlover"
+    },
+    {
+        "idUser": 5,
+        "idRol": 1,
+        "name": "Carlos Santana",
+        "email": "carlos@email.com",
+        "password": "guitarhero"
+    },
+    {
+        "idUser": 6,
+        "idRol": 2,
+        "name": "El Asador",
+        "email": "asador@email.com",
+        "password": "meatlover"
+    },
+    {
+        "idUser": 7,
+        "idRol": 1,
+        "name": "Amy Winehouse",
+        "email": "amy@email.com",
+        "password": "rehab123"
+    },
+    {
+        "idUser": 8,
+        "idRol": 2,
+        "name": "Vegan Bliss",
+        "email": "vegan@email.com",
+        "password": "healthy123"
+    },
+    {
+        "idUser": 9,
+        "idRol": 1,
+        "name": "Ludwig Beethoven",
+        "email": "beethoven@email.com",
+        "password": "furElise"
+    },
+    {
+        "idUser": 10,
+        "idRol": 2,
+        "name": "Taco Fiesta",
+        "email": "taco@email.com",
+        "password": "spicy"
+    },
+    {
+        "idUser": 11,
+        "idRol": 1,
+        "name": "Freddie Mercury",
+        "email": "freddie@email.com",
+        "password": "bohemianRhapsody"
+    },
+    {
+        "idUser": 12,
+        "idRol": 2,
+        "name": "Bistro Franc?s",
+        "email": "bistro@email.com",
+        "password": "baguette"
+    },
+    {
+        "idUser": 13,
+        "idRol": 1,
+        "name": "Miles Davis",
+        "email": "miles@email.com",
+        "password": "kindofblue"
+    },
+    {
+        "idUser": 14,
+        "idRol": 2,
+        "name": "Pizza Napoli",
+        "email": "napoli@email.com",
+        "password": "pizza123"
+    },
+    {
+        "idUser": 16,
+        "idRol": 2,
+        "name": "Burger House",
+        "email": "burger@email.com",
+        "password": "cheeseburger"
+    },
+    {
+        "idUser": 18,
+        "idRol": 2,
+        "name": "India Spice",
+        "email": "india@email.com",
+        "password": "currylover"
+    },
+    {
+        "idUser": 20,
+        "idRol": 2,
+        "name": "Tapas Bar",
+        "email": "tapas@email.com",
+        "password": "jamon123"
+    }
+]
