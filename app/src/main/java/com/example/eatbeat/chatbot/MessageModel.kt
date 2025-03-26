@@ -1,4 +1,4 @@
-package com.example.eatbeat.Chatbot
+package com.example.eatbeat.chatbot
 
 class MessageModel (
     val message : String,

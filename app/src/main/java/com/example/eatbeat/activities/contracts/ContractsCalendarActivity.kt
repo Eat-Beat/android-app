@@ -1,8 +1,7 @@
-package com.example.eatbeat.activities
+package com.example.eatbeat.activities.contracts
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +23,7 @@ import java.util.Calendar
 import java.util.Date
 
 
-class ContractsActivity : AppCompatActivity() {
+class ContractsCalendarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -87,7 +86,7 @@ class ContractsActivity : AppCompatActivity() {
 
         val contractsCalendarRecycler = findViewById<RecyclerView>(R.id.contractsCalendarRecylcerView)
 
-        contractsCalendarRecycler.layoutManager = LinearLayoutManager(this@ContractsActivity)
+        contractsCalendarRecycler.layoutManager = LinearLayoutManager(this@ContractsCalendarActivity)
 
         val adapter = ContractsCalendarAdapter(contractOnDay, musicians)
         contractsCalendarRecycler.adapter = adapter
@@ -137,7 +136,7 @@ class ContractsActivity : AppCompatActivity() {
 
                 val contractsCalendarRecycler = findViewById<RecyclerView>(R.id.contractsCalendarRecylcerView)
 
-                contractsCalendarRecycler.layoutManager = LinearLayoutManager(this@ContractsActivity)
+                contractsCalendarRecycler.layoutManager = LinearLayoutManager(this@ContractsCalendarActivity)
 
                 val adapter = ContractsCalendarAdapter(contractOnDay, musicians)
                 contractsCalendarRecycler.adapter = adapter

@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.eatbeat.Chatbot.MainChatBotActivity
+import com.example.eatbeat.chatbot.MainChatBotActivity
 import com.example.eatbeat.R
 import com.example.eatbeat.utils.activateNavBar
 

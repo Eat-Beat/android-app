@@ -1,4 +1,4 @@
-package com.example.eatbeat.activities
+package com.example.eatbeat.activities.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

@@ -1,4 +1,4 @@
-package com.example.eatbeat.activities
+package com.example.eatbeat.activities.contracts
 
 import android.content.Intent
 import android.os.Bundle
@@ -32,7 +32,7 @@ class ContractListActivity : AppCompatActivity() {
         val seeCalendarButton = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.seeCalendarButton)
 
         seeCalendarButton.setOnClickListener(){
-            val intent = Intent(this, ContractsActivity::class.java)
+            val intent = Intent(this, ContractsCalendarActivity::class.java)
             startActivity(intent)
             finish()
         }

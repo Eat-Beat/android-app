@@ -31,25 +31,25 @@
             android:name=".activities.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ContractListActivity"
+            android:name=".activities.contracts.ContractListActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ContractsActivity"
+            android:name=".activities.contracts.ContractsCalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RestaurantMap"
+            android:name=".activities.main.SearchRestaurantMapActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".activities.SearchMusicianActivity"
+            android:name=".activities.main.SearchMusicianActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SearchRestaurantActivity"
+            android:name=".activities.main.SearchRestaurantActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.UserProfile"
+            android:name=".activities.profile.MusicianProfile"
             android:exported="false" />
-        <activity android:name=".Chatbot.MainChatBotActivity"
+        <activity android:name=".chatbot.MainChatBotActivity"
             android:exported="false"/>
     </application>
 

@@ -1,8 +1,6 @@
-package com.example.eatbeat.activities
+package com.example.eatbeat.activities.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,11 +13,11 @@ import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 
-class RestaurantMap : AppCompatActivity() {
+class SearchRestaurantMapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_restaurant_map)
+        setContentView(R.layout.activity_search_restaurant_map)
 
         val restaurantCarousel = findViewById<RecyclerView>(R.id.restaurantCarousel)
 

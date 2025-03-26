@@ -1,6 +1,5 @@
-package com.example.eatbeat.activities
+package com.example.eatbeat.activities.profile
 
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -27,7 +26,7 @@ import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class UserProfile : AppCompatActivity() {
+class MusicianProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

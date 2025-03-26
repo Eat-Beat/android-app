@@ -5,11 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.widget.ImageView
 import com.example.eatbeat.activities.ChatActivity
-import com.example.eatbeat.activities.ContractsActivity
+import com.example.eatbeat.activities.contracts.ContractsCalendarActivity
 import com.example.eatbeat.R
-import com.example.eatbeat.activities.SearchMusicianActivity
-import com.example.eatbeat.activities.SearchRestaurantActivity
-import com.example.eatbeat.activities.UserProfile
+import com.example.eatbeat.activities.main.SearchMusicianActivity
+import com.example.eatbeat.activities.main.SearchRestaurantActivity
+import com.example.eatbeat.activities.profile.MusicianProfile
 import com.example.eatbeat.data.UserData
 
 fun activateNavBar(activity: Activity, context: Context, selected: Int){
@@ -47,7 +47,7 @@ fun activateNavBar(activity: Activity, context: Context, selected: Int){
     }
 
     navCalendar.setOnClickListener{
-        val intent = Intent(context, ContractsActivity::class.java)
+        val intent = Intent(context, ContractsCalendarActivity::class.java)
         activity.startActivity(intent)
         activity.finish()
     }
@@ -59,7 +59,7 @@ fun activateNavBar(activity: Activity, context: Context, selected: Int){
     }
 
     navProfile.setOnClickListener{
-        val intent = Intent(context, UserProfile::class.java)
+        val intent = Intent(context, MusicianProfile::class.java)
         activity.startActivity(intent)
         activity.finish()
     }

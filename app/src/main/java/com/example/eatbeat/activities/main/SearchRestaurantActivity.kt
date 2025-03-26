@@ -1,8 +1,6 @@
-package com.example.eatbeat.activities
+package com.example.eatbeat.activities.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eatbeat.R

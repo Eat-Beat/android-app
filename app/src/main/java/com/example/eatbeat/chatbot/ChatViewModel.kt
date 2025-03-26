@@ -1,9 +1,8 @@
-package com.example.eatbeat.Chatbot
+package com.example.eatbeat.chatbot
 
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.ai.client.generativeai.GenerativeModel

@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eatbeat.R
-import com.example.eatbeat.activities.SearchMusicianActivity
-import com.example.eatbeat.activities.SearchRestaurantActivity
+import com.example.eatbeat.activities.main.SearchMusicianActivity
+import com.example.eatbeat.activities.main.SearchRestaurantActivity
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.User
 import com.example.eatbeat.utils.loadJsonFromRaw
