@@ -34,7 +34,7 @@ class RestaurantReviewAdapter(private val contracts : ArrayList<Perform>, privat
         val restaurant = restaurants.find { it.getId() == contract.getIdRestaurant()  }!!
 
         holder.restaurantName.text = restaurant.getName()
-        holder.starsReview.numStars = contract.getRatingRestaurant()
+        holder.starsReview.rating = contract.getRatingRestaurant().toFloat()
 
         Glide.with(holder.itemView.context)
             .load(restaurant.getMultimedia()[0].getImage())
