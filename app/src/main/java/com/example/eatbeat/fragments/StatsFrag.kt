@@ -11,19 +11,14 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
-import com.example.eatbeat.adapters.ContractsListAdapter
-import com.example.eatbeat.adapters.MusicianAdapter
 import com.example.eatbeat.adapters.RestaurantReviewAdapter
 import com.example.eatbeat.contracts.Perform
-import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.loadContractsForProfileFromJson
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
-import com.example.eatbeat.utils.loadMusiciansFromJson
-import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -37,7 +32,6 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import java.util.Map
 
 class StatsFrag : Fragment() {
 
@@ -152,7 +146,6 @@ class StatsFrag : Fragment() {
         val sdf = SimpleDateFormat("yyyy-MM", Locale.getDefault())
         val monthlyCounts = mutableMapOf<String, Int>()
 
-        // Inicializar todos los meses con 0
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         for (month in 0..11) {
@@ -160,14 +153,12 @@ class StatsFrag : Fragment() {
             monthlyCounts[monthFormatted] = 0
         }
 
-        // Contar las actuaciones por mes
         for (perform in contracts) {
             val date = SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.getDefault()).parse(perform.dateTime.toString())
             val monthYear = sdf.format(date!!)
             monthlyCounts[monthYear] = monthlyCounts.getOrDefault(monthYear, 0) + 1
         }
 
-        // Convertir a ArrayList y ordenar los meses
         return ArrayList(monthlyCounts.toList().sortedBy { it.first })
     }
 
@@ -248,6 +239,6 @@ class StatsFrag : Fragment() {
 
         reviewsRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
-        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!), loadRestaurantsFromJson(loadJsonFromRaw(requireContext(), R.raw.restaurans)!!))
+        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsForProfileFromJson(loadJsonFromRaw(requireContext(), R.raw.contract_3)!!))
     }
 }

@@ -2,6 +2,7 @@ package com.example.eatbeat.utils
 
 import android.content.Context
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.contracts.PerformProfile
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
 import com.example.eatbeat.users.User
@@ -41,6 +42,18 @@ fun loadContractsFromJson(json: String): ArrayList<Perform> {
         .create()
 
     val contractsListType = object : TypeToken<ArrayList<Perform>>() {}.type
+
+    return gson.fromJson(json, contractsListType)
+}
+
+fun loadContractsForProfileFromJson(json: String): ArrayList<PerformProfile> {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+
+    val gson = GsonBuilder()
+        .setDateFormat(dateFormat.toPattern())
+        .create()
+
+    val contractsListType = object : TypeToken<ArrayList<PerformProfile>>() {}.type
 
     return gson.fromJson(json, contractsListType)
 }

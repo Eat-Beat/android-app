@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Sushi World",
+    "address": "Avenida Jap?n",
+    "addressNum": 12,
+    "zipCode": "28002",
+    "dateTime": "2025-03-18T21:30:00",
+    "rate": 5
+  },
+  {
+    "name": "Vegan Bliss",
+    "address": "Calle Verde",
+    "addressNum": 8,
+    "zipCode": "28004",
+    "dateTime": "2025-04-10T20:00:00",
+    "rate": 4
+  },
+  {
+    "name": "Taco Fiesta",
+    "address": "Calle M?xico",
+    "addressNum": 31,
+    "zipCode": "28005",
+    "dateTime": "2025-04-18T22:00:00",
+    "rate": 5
+  }
+]

@@ -10,11 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
-import com.example.eatbeat.users.Musician
-import com.example.eatbeat.users.Restaurant
-import java.util.ArrayList
+import com.example.eatbeat.contracts.PerformProfile
 
-class RestaurantReviewAdapter(private val contracts : ArrayList<Perform>, private val restaurants : ArrayList<Restaurant>) :
+class RestaurantReviewAdapter(private val contracts: ArrayList<PerformProfile>) :
     RecyclerView.Adapter<RestaurantReviewAdapter.RestaurantViewHolder>() {
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,14 +29,10 @@ class RestaurantReviewAdapter(private val contracts : ArrayList<Perform>, privat
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val contract = contracts[position]
-        val restaurant = restaurants.find { it.getId() == contract.getIdRestaurant()  }!!
 
-        holder.restaurantName.text = restaurant.getName()
-        holder.starsReview.rating = contract.getRatingRestaurant().toFloat()
+        holder.restaurantName.text = contract.getName()
+        holder.starsReview.rating = contract.getRate().toFloat()
 
-        Glide.with(holder.itemView.context)
-            .load(restaurant.getMultimedia()[0].getImage())
-            .into(holder.restaurantProfile)
     }
 
     override fun getItemCount() = contracts.size
