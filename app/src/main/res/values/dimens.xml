@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="loginLogo">200dp</dimen>
+    <dimen name="loginMargin">70dp</dimen>
     <dimen name="textBoxPadding">10dp</dimen>
     <dimen name="textBoxMargin">10dp</dimen>
     <dimen name="textBoxHeight">40dp</dimen>
@@ -13,6 +14,7 @@
     <dimen name="buttonHeight">55dp</dimen>
     <dimen name="buttonText">27sp</dimen>
     <dimen name="underlinedButtonText">20sp</dimen>
+
     <dimen name="bannerHeight">70sp</dimen>
     <dimen name="midContent">590sp</dimen>
     <dimen name="bannerOptionHeight">40dp</dimen>

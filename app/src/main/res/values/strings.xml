@@ -30,4 +30,5 @@
     <string name="profileTitle">PROFILE</string>
     <string name="fragment_stats_title">STATS</string>
     <string name="musicians_grid_view">Musicians grid view.</string>
+    <string name="incorrect_credentials">Incorrect credentials.</string>
 </resources>

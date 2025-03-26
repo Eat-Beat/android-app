@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
+import com.example.eatbeat.users.User
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -48,4 +49,10 @@ fun loadMusiciansFromJson(json: String): ArrayList<Musician> {
     val gson = Gson()
     val restaurantListType = object : com.google.gson.reflect.TypeToken<ArrayList<Musician>>() {}.type
     return gson.fromJson(json, restaurantListType)
+}
+
+fun loadUsersFromJson(json: String): ArrayList<User> {
+    val gson = Gson()
+    val usersListType = object : com.google.gson.reflect.TypeToken<ArrayList<User>>() {}.type
+    return gson.fromJson(json, usersListType)
 }
