@@ -20,13 +20,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="225dp"
         android:layout_height="80dp"
+        android:background="@drawable/black_rectangle_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        android:background="@drawable/black_rectangle_shape"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" >
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/rolBox"
@@ -58,23 +58,22 @@
 
         <TextView
             android:id="@+id/locationBox"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center_vertical"
             android:text="A 4KM DE BARCELONA"
             android:textColor="@color/white"
-            android:textSize="7sp"
+            android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/star_icon"
+            android:background="@drawable/full_star"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.864"

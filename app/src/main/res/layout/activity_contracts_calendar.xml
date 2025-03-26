@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bannerHeight"
         android:background="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -69,45 +68,43 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <!-- Botton Banner Part -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/black_rectangle_shape"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-        app:layout_constraintVertical_bias="0.385">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <TextView
+            android:id="@+id/currentDaySelectedText"
             android:layout_width="@dimen/dayTextWidth"
             android:layout_height="@dimen/dayTextHeight"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
             android:text="@string/daytext"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/contractsCalendarRecylcerView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.018" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/contractsCalendarRecylcerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/currentDaySelectedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Botton Banner Part -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttonSeeList"

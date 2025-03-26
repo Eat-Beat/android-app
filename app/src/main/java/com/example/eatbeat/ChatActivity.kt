@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.eatbeat.Chatbot.MainChatBotActivity
 
 class ChatActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +17,20 @@ class ChatActivity : AppCompatActivity(){
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val navChat = findViewById<ImageView>(R.id.navChatIcon)
+
         navChat.setImageResource(R.drawable.chat_selected)
 
         activateNavBar()
+        activateChatBotBanner()
+    }
+
+    private fun activateChatBotBanner() {
+        val chatbotBanner= findViewById<ConstraintLayout>(R.id.chatbotid)
+        chatbotBanner.setOnClickListener(){
+            val intent = Intent(this, MainChatBotActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun activateNavBar(){

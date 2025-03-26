@@ -1,8 +1,9 @@
 package com.example.eatbeat.users
 
+import com.example.eatbeat.users.musicianAttributes.Multimedia
+
 class Restaurant(
     idUser: Int,
-    idRol: Int,
     name: String,
     email: String,
     password: String,
@@ -10,6 +11,12 @@ class Restaurant(
     private val address: String,
     private val addressNum: Int,
     private val zipCode: Int,
-) : User(idUser, idRol, name, email, password, rating)  {
+    private val multimedia: ArrayList<Multimedia> = ArrayList()
+    ) : User(idUser, name, email, password, rating){
 
-}
+
+    fun getMultimedia(): ArrayList<Multimedia> {
+        return multimedia
+    }
+
+    }

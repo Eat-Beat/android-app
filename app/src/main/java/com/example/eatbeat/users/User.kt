@@ -8,6 +8,10 @@ abstract class User(
     private val password: String,
     private val rating: Float
 ){
+    fun getId(): Int{
+        return this.idUser
+    }
+
     fun getName(): String{
         return this.name
     }

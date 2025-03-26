@@ -1,28 +1,23 @@
 [
   {
-      "idUser": 1,
-      "idRol": 1,
-      "name": "John Doe",
-      "email": "johndoe@email.com",
-      "password": "securepass",
-      "rating": 4.0,
-      "longitude": -3.703790,
-      "latitude": 40.416775,
-      "description": "Guitarrista de rock con m?s de 10 a?os de experiencia.",
-      "multimedia": [
-          {
-              "idMultimedia": 1,
-              "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
-              "size": 15.2,
-              "type": "image"
-          }
-      ],
-      "genre": [
-          "Rock"
-      ],
-      "classification": [
-          "Cuerda"
-      ]
+    "idUser": 1,
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "securepass",
+    "rating": 4.5,
+    "longitude": -3.70379,
+    "latitude": 40.416775,
+    "description": "Guitarrista de rock con más de 10 años de experiencia.",
+    "multimedia": [
+      {
+        "idMultimedia": 1,
+        "url": "https://i.ytimg.com/vi/Cz4lRi8icMs/mqdefault.jpg",
+        "size": 15.2,
+        "type": "video"
+      }
+    ],
+    "genre": ["Rock"],
+    "classification": ["Cuerda"]
   },
   {
       "idUser": 3,

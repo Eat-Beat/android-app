@@ -25,7 +25,6 @@ class SearchMusicianActivity : AppCompatActivity() {
 
         activateNavBar()
         showMusicians(loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
-
     }
 
     private fun activateNavBar(){
