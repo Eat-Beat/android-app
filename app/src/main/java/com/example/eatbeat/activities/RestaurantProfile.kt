@@ -1,4 +1,4 @@
-package com.example.eatbeat
+package com.example.eatbeat.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,10 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
+import com.example.eatbeat.R
 import com.example.eatbeat.fragments.EditUserFrag
 import com.example.eatbeat.fragments.SettingsFrag
+import com.example.eatbeat.utils.activateNavBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class RestaurantProfile : AppCompatActivity() {
@@ -32,31 +34,7 @@ class RestaurantProfile : AppCompatActivity() {
         settingsClick(optionsButton)
         editProfileClick(editButton)
 
-        activateNavBar()
-    }
-
-    private fun activateNavBar(){
-        val navSearch = findViewById<ImageView>(R.id.navMusicianIcon)
-        val navCalendar = findViewById<ImageView>(R.id.navCalendarIcon)
-        val navChat = findViewById<ImageView>(R.id.navChatIcon)
-
-        navSearch.setOnClickListener(){
-            val intent = Intent(this, SearchMusicianActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navCalendar.setOnClickListener(){
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navChat.setOnClickListener(){
-            val intent = Intent(this, UserProfile::class.java)
-            startActivity(intent)
-            finish()
-        }
+        activateNavBar(this, this, 4)
     }
 
     private fun settingsClick(optionsButton: ImageView){

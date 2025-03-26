@@ -1,4 +1,4 @@
-package com.example.eatbeat
+package com.example.eatbeat.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eatbeat.R
 import com.example.eatbeat.adapters.ContractsListAdapter
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.fragments.ContractDetailsFrag
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.activateNavBar
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
@@ -25,7 +27,7 @@ class ContractListActivity : AppCompatActivity() {
         val navContractIc = findViewById<ImageView>(R.id.navCalendarIcon)
         navContractIc.setImageResource(R.drawable.contracts_selected)
 
-        activateNavBar()
+        activateNavBar(this,this, 2)
 
         val seeCalendarButton = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.seeCalendarButton)
 
@@ -35,7 +37,9 @@ class ContractListActivity : AppCompatActivity() {
             finish()
         }
 
-        fillList(loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
+        fillList(loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this,
+            R.raw.musicians
+        )!!))
     }
 
     private fun fillList(contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
@@ -68,29 +72,5 @@ class ContractListActivity : AppCompatActivity() {
 
         contractsListRecycler.adapter = adapter
         adapter.notifyDataSetChanged()
-    }
-
-    private fun activateNavBar(){
-        val navSearch = findViewById<ImageView>(R.id.navMusicianIcon)
-        val navChat = findViewById<ImageView>(R.id.navChatIcon)
-        val navProfile = findViewById<ImageView>(R.id.navProfileIcon)
-
-        navSearch.setOnClickListener(){
-            val intent = Intent(this, SearchMusicianActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navChat.setOnClickListener(){
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navProfile.setOnClickListener(){
-            val intent = Intent(this, UserProfile::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 }

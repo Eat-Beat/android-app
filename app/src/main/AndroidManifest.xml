@@ -17,7 +17,7 @@
             android:name="com.mapbox.AccessToken"
             android:value="@string/mapbox_access_token" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".activities.login.LoginActivity"
             android:exported="true" >
 
             <intent-filter>
@@ -28,26 +28,26 @@
 
         </activity>
         <activity
-            android:name=".ChatActivity"
+            android:name=".activities.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ContractListActivity"
+            android:name=".activities.ContractListActivity"
             android:exported="false" />
         <activity
-            android:name=".ContractsActivity"
+            android:name=".activities.ContractsActivity"
             android:exported="false" />
         <activity
-            android:name=".RestaurantMap"
+            android:name=".activities.RestaurantMap"
             android:exported="true"/>
 
         <activity
-            android:name=".SearchMusicianActivity"
+            android:name=".activities.SearchMusicianActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchRestaurantActivity"
+            android:name=".activities.SearchRestaurantActivity"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".activities.UserProfile"
             android:exported="false" />
         <activity android:name=".Chatbot.MainChatBotActivity"
             android:exported="false"/>

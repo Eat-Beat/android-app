@@ -1,4 +1,4 @@
-package com.example.eatbeat.login
+package com.example.eatbeat.activities.login
 
 import android.content.Context
 import android.content.Intent
@@ -9,11 +9,10 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eatbeat.R
-import com.example.eatbeat.SearchMusicianActivity
-import com.example.eatbeat.SearchRestaurantActivity
+import com.example.eatbeat.activities.SearchMusicianActivity
+import com.example.eatbeat.activities.SearchRestaurantActivity
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.User
-import org.mindrot.jbcrypt.BCrypt
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadUsersFromJson
 
@@ -32,12 +31,12 @@ class LoginActivity : AppCompatActivity() {
             if (verifyUser(userName.text.toString(), password.text.toString(), userList)){
                 when(UserData.userType){
                     1 -> {
-                        val intent = Intent(this, SearchMusicianActivity::class.java)
+                        val intent = Intent(this, SearchRestaurantActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
                     2 -> {
-                        val intent = Intent(this, SearchRestaurantActivity::class.java)
+                        val intent = Intent(this, SearchMusicianActivity::class.java)
                         startActivity(intent)
                         finish()
                     }

@@ -45,10 +45,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchMusicRecyclerView"
-        android:layout_width="402dp"
-        android:layout_height="740dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="3dp"
         android:contentDescription="@string/musicians_grid_view"
+        android:paddingBottom="@dimen/bannerHeight"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="@id/constraintLayout10"

@@ -1,4 +1,4 @@
-package com.example.eatbeat
+package com.example.eatbeat.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,17 +6,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.CalendarDay
 import com.applandeo.materialcalendarview.CalendarView
 import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
+import com.example.eatbeat.R
 import com.example.eatbeat.adapters.ContractsCalendarAdapter
-import com.example.eatbeat.adapters.ContractsListAdapter
-import com.example.eatbeat.adapters.MusicianAdapter
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.activateNavBar
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
@@ -33,20 +32,21 @@ class ContractsActivity : AppCompatActivity() {
 
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
-        val navContractIc = findViewById<ImageView>(R.id.navCalendarIcon)
-        navContractIc.setImageResource(R.drawable.contracts_selected)
-
         val calendarView : CalendarView = findViewById(R.id.calendarView)
         calendarView.setCalendarDayLayout(R.layout.day_cell)
 
         val currentDayCalendar: Calendar = calendarView.currentPageDate
         val currDate : Date = currentDayCalendar.time
 
-        activateNavBar()
+        activateNavBar(this, this, 2)
 
-        setCurrentDay(currDate, loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
+        setCurrentDay(currDate, loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this,
+            R.raw.musicians
+        )!!))
 
-        generateClickAndList(calendarView, loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
+        generateClickAndList(calendarView, loadContractsFromJson(loadJsonFromRaw(this,
+            R.raw.contracts
+        )!!), loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
 
         val seeListButton = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.buttonSeeList)
 
@@ -93,30 +93,6 @@ class ContractsActivity : AppCompatActivity() {
         contractsCalendarRecycler.adapter = adapter
 
         adapter.notifyDataSetChanged()
-    }
-
-    private fun activateNavBar(){
-        val navSearch = findViewById<ImageView>(R.id.navMusicianIcon)
-        val navChat = findViewById<ImageView>(R.id.navChatIcon)
-        val navProfile = findViewById<ImageView>(R.id.navProfileIcon)
-
-        navSearch.setOnClickListener(){
-            val intent = Intent(this, SearchMusicianActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navChat.setOnClickListener(){
-            val intent = Intent(this, ChatActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        navProfile.setOnClickListener(){
-            val intent = Intent(this, UserProfile::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 
     private fun generateClickAndList(calendarView : CalendarView, contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
