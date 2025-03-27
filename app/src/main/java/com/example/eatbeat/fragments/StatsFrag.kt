@@ -30,6 +30,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -163,19 +164,14 @@ class StatsFrag : Fragment() {
         return ArrayList(monthlyCounts.toList().sortedBy { it.first })
     }
 
-    private fun createReviewsChart(){
+    private fun createReviewsChart() {
         val reviewsList = getReviewsArray()
-
         val totalReviews = reviewsList.sum()
 
-        val percentages = ArrayList<Float>()
-        if (totalReviews > 0) {
-            for (count in reviewsList) {
-                val percentage = (count.toFloat() / totalReviews) * 100
-                percentages.add(percentage)
-            }
+        val percentages = if (totalReviews > 0) {
+            reviewsList.map { (it.toFloat() / totalReviews) * 100 }
         } else {
-            percentages.addAll(List(5) { 0f })
+            List(5) { 0f }
         }
 
         val barChart = view?.findViewById<BarChart>(R.id.reviewsChart)!!
@@ -187,33 +183,45 @@ class StatsFrag : Fragment() {
 
         val dataSet = BarDataSet(entries, "Reviews").apply {
             color = ContextCompat.getColor(requireContext(), R.color.orange)
+            setDrawValues(false)
+            valueTextSize = 12f
         }
 
-        dataSet.setDrawValues(false)
-
         val barData = BarData(dataSet)
+        barData.barWidth = 0.8f
 
         barChart.apply {
             data = barData
-            setDrawValueAboveBar(true)
+            setDrawValueAboveBar(false)
             setBackgroundColor(Color.WHITE)
-            xAxis.isEnabled = false
-            axisLeft.isEnabled = true
-            axisRight.isEnabled = false
             description.isEnabled = false
             legend.isEnabled = false
             animateY(1000)
 
-            axisLeft.apply {
-                setDrawLabels(true)
-                setDrawGridLines(true)
+            xAxis.apply {
+                isEnabled = true
+                position = XAxis.XAxisPosition.BOTTOM
+                setDrawGridLines(false)
                 granularity = 1f
-                axisMinimum = 0f
-                axisMaximum = 5f
-                setLabelCount(6, true)
-                legend.isEnabled = false
+                axisMinimum = -0.5f
+                axisMaximum = 4.5f
+                valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        return "${(value.toInt() + 1)}★"
+                    }
+                }
             }
 
+            axisLeft.apply {
+                isEnabled = true
+                setDrawGridLines(false)
+                setDrawLabels(false)
+                axisMinimum = 0f
+            }
+
+            axisRight.apply {
+                isEnabled = false
+            }
 
             invalidate()
         }

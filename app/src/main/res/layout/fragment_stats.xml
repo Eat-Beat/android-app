@@ -93,7 +93,7 @@
     <com.github.mikephil.charting.charts.HorizontalBarChart
         android:id="@+id/reviewsChart"
         android:layout_width="350dp"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_marginTop="172dp"
         android:background="@drawable/black_rectangle_shape"
         app:layout_constraintEnd_toEndOf="parent"
