@@ -216,7 +216,9 @@ class StatsFrag : Fragment() {
                 isEnabled = true
                 setDrawGridLines(false)
                 setDrawLabels(false)
-                axisMinimum = 0f
+                granularity = 1f
+                axisMinimum = -0.5f
+                axisMaximum = 100f
             }
 
             axisRight.apply {
