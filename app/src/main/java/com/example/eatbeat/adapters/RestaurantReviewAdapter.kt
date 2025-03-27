@@ -11,8 +11,9 @@ import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.contracts.PerformProfile
+import com.example.eatbeat.users.Restaurant
 
-class RestaurantReviewAdapter(private val contracts: ArrayList<PerformProfile>) :
+class RestaurantReviewAdapter(private val contracts: ArrayList<PerformProfile>, private val restaurants: ArrayList<Restaurant>) :
     RecyclerView.Adapter<RestaurantReviewAdapter.RestaurantViewHolder>() {
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,11 +30,16 @@ class RestaurantReviewAdapter(private val contracts: ArrayList<PerformProfile>) 
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val contract = contracts[position]
+        val restaurant = restaurants.find { it.getName() == contract.getName() }
 
         holder.restaurantName.text = contract.getName()
         holder.starsReview.rating = contract.getRate().toFloat()
 
+        Glide.with(holder.itemView.context)
+            .load(restaurant?.getMultimedia()?.getImage())
+            .into(holder.restaurantProfile)
     }
+
 
     override fun getItemCount() = contracts.size
 }

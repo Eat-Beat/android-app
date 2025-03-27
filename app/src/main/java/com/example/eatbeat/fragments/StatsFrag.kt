@@ -19,6 +19,7 @@ import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.utils.loadContractsForProfileFromJson
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
+import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -188,6 +189,8 @@ class StatsFrag : Fragment() {
             color = ContextCompat.getColor(requireContext(), R.color.orange)
         }
 
+        dataSet.setDrawValues(false)
+
         val barData = BarData(dataSet)
 
         barChart.apply {
@@ -203,18 +206,17 @@ class StatsFrag : Fragment() {
 
             axisLeft.apply {
                 setDrawLabels(true)
-                textColor = Color.GRAY
                 setDrawGridLines(true)
                 granularity = 1f
                 axisMinimum = 0f
-                axisMaximum = 100f
-                setLabelCount(1, true)
+                axisMaximum = 5f
+                setLabelCount(6, true)
+                legend.isEnabled = false
             }
 
 
             invalidate()
         }
-
     }
 
     private fun getReviewsArray() : ArrayList<Int> {
@@ -239,6 +241,8 @@ class StatsFrag : Fragment() {
 
         reviewsRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
-        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsForProfileFromJson(loadJsonFromRaw(requireContext(), R.raw.contract_3)!!))
+        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsForProfileFromJson(loadJsonFromRaw(requireContext(), R.raw.contract_3)!!),
+                                                               loadRestaurantsFromJson(loadJsonFromRaw(requireContext(), R.raw.restaurans)!!)
+                                                              )
     }
 }

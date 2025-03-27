@@ -12,11 +12,11 @@ class Restaurant(
     private val address: String,
     private val addressNum: Int,
     private val zipCode: Int,
-    private val multimedia: ArrayList<Multimedia> = ArrayList()
+    private val multimedia: Multimedia
     ) : User(idUser, idRol, name, email, password){
 
 
-    fun getMultimedia(): ArrayList<Multimedia> {
+    fun getMultimedia(): Multimedia {
         return multimedia
     }
 
