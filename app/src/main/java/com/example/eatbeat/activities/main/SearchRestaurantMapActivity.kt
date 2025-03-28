@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.CarouselAdapter
 import com.example.eatbeat.utils.activateNavBar
+import com.example.eatbeat.utils.loadJsonFromRaw
+import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
@@ -21,11 +23,6 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
 
         val restaurantCarousel = findViewById<RecyclerView>(R.id.restaurantCarousel)
 
-        val images = listOf(
-            R.drawable.image1,
-            R.drawable.image2,
-            R.drawable.image3
-                           )
 
         val mapView = findViewById<MapView>(R.id.mapRestaurant)
 
@@ -36,7 +33,7 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
                 .build()
                                         )
 
-        restaurantCarousel.adapter = CarouselAdapter(images)
+        restaurantCarousel.adapter = CarouselAdapter(loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!))
         restaurantCarousel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         val snapHelper = LinearSnapHelper()

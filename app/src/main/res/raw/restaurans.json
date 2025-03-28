@@ -74,7 +74,7 @@
         "email": "taco@email.com",
         "password": "spicy",
         "rating": 4.0,
-        "address": "Calle M?xico",
+        "address": "Calle Mexico",
         "addressNum": 31,
         "zipCode": "28005",
         "multimedia": {
@@ -91,7 +91,7 @@
         "email": "bistro@email.com",
         "password": "baguette",
         "rating": 5.0,
-        "address": "Calle Par?s",
+        "address": "Calle Paris",
         "addressNum": 14,
         "zipCode": "28006",
         "multimedia": {
@@ -159,7 +159,7 @@
         "email": "tapas@email.com",
         "password": "jamon123",
         "rating": 0,
-        "address": "Calle Espa?a",
+        "address": "Calle España",
         "addressNum": 11,
         "zipCode": "28010",
         "multimedia": {

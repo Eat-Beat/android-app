@@ -24,4 +24,8 @@ class Restaurant(
         return this.rating.toString()
     }
 
+    fun getAddress(): String{
+        return this.address
+    }
+
     }

@@ -96,7 +96,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/contractsCalendarRecylcerView"
-            android:layout_width="wrap_content"
+            android:background="@drawable/white_rectangle_shape"
+            android:layout_width="385dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
