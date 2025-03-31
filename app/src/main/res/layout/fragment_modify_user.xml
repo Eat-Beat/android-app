@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/close_modify"
+            android:id="@+id/close_modify_mr"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleX="-1"

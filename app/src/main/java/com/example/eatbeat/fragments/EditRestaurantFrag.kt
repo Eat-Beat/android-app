@@ -22,7 +22,7 @@ class EditRestaurantFrag : Fragment() {
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_edit_restaurant, container, false)
 
-        val exitStats = view.findViewById<ImageView>(R.id.close_modify)
+        val exitStats = view.findViewById<ImageView>(R.id.close_modify_mr)
 
         val mapView = view.findViewById<MapView>(R.id.mapRestaurantEdit)
 

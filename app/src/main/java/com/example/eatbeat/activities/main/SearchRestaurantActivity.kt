@@ -2,6 +2,7 @@ package com.example.eatbeat.activities.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +32,14 @@ class SearchRestaurantActivity : AppCompatActivity() {
         mapButton.setOnClickListener {
             val intent = Intent(this, SearchRestaurantMapActivity::class.java)
             startActivity(intent)
+            finish()
+        }
+
+        val searchButton = findViewById<ImageView>(R.id.searchicon)
+        searchButton.setOnClickListener {
+            val intent = Intent(this, ManualSearchRestaurant::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 

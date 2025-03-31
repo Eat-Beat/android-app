@@ -54,6 +54,9 @@
             android:name=".activities.main.ViewRestaurantActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.main.ManualSearchRestaurant"
+            android:exported="false" />
+        <activity
             android:name=".chatbot.MainChatBotActivity"
             android:exported="false" />
     </application>

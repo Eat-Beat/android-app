@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/close_modify"
+            android:id="@+id/close_modify_mr"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/searchRestaurant"
             android:layout_width="230sp"
             android:layout_height="50sp"
             android:layout_marginStart="24dp"
@@ -37,11 +37,11 @@
             android:padding="10dp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/close_modify"
+            app:layout_constraintStart_toEndOf="@+id/close_modify_mr"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/searchicon"
+            android:id="@+id/searchiconapply"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="16dp"
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/editText"
+            app:layout_constraintStart_toEndOf="@+id/searchRestaurant"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -58,44 +58,39 @@
     <TextView
         android:layout_width="120dp"
         android:layout_height="40dp"
-        android:text="FILTERS"
-        android:gravity="center"
-        android:fontFamily="@font/barlow_medium"
-        android:textSize="15sp"
-        android:background="@drawable/black_rectangle_shape"
-        android:textColor="@color/white"
         android:layout_marginStart="16dp"
         android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toStartOf="@+id/_dynamic"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:background="@drawable/black_rectangle_shape"
+        android:fontFamily="@font/barlow_medium"
+        android:gravity="center"
+        android:text="FILTERS"
+        android:textColor="@color/white"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
     <Spinner
-        android:layout_width="113dp"
-        android:layout_height="38dp"
+        android:id="@+id/spinneralph"
+        android:layout_width="241dp"
+        android:layout_height="36dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/white_rectangle_shape"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
-
-    <Spinner
-        android:layout_width="113dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="407dp"
-        android:layout_height="679dp"
+        android:id="@+id/recyclerManualSearch"
+        android:layout_width="404dp"
+        android:layout_height="690dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-        app:layout_constraintVertical_bias="0.601"
-        tools:layout_editor_absoluteX="2dp" />
+        app:layout_constraintVertical_bias="0.579" />
 
     <include layout="@layout/navigation_bar" />
 

@@ -1,8 +1,10 @@
 package com.example.eatbeat.activities.main
 
 import android.content.Context
+import android.content.Intent
 import android.location.Geocoder
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +57,13 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
                 }
             }
         })
+
+        val searchButton = findViewById<ImageView>(R.id.searchiconmap)
+        searchButton.setOnClickListener {
+            val intent = Intent(this, ManualSearchRestaurant::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         activateNavBar(this, this, 1)
     }

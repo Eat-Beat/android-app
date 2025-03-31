@@ -9,7 +9,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +23,7 @@ class EditUserFrag : Fragment() {
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_modify_user, container, false)
 
-        val exitStats = view.findViewById<ImageView>(R.id.close_modify)
+        val exitStats = view.findViewById<ImageView>(R.id.close_modify_mr)
 
         exitStats.setOnClickListener {
             val fadeOut = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_disappear)
