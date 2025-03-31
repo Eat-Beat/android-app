@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
@@ -25,6 +26,12 @@ class SearchRestaurantActivity : AppCompatActivity() {
         loadRestaurants(restaurants)
 
         activateNavBar(this, this, 1)
+
+        val mapButton = findViewById<ConstraintLayout>(R.id.mapSeeRestaurant)
+        mapButton.setOnClickListener {
+            val intent = Intent(this, SearchRestaurantMapActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loadRestaurants(restaurants: ArrayList<Restaurant>) {

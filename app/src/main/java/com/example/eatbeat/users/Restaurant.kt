@@ -11,7 +11,7 @@ class Restaurant(
     private val rating: Float,
     private val address: String,
     private val addressNum: Int,
-    private val zipCode: Int,
+    val zipCode: Int,
     private val multimedia: Multimedia
     ) : User(idUser, idRol, name, email, password){
 
@@ -27,5 +27,7 @@ class Restaurant(
     fun getAddress(): String{
         return this.address
     }
+
+
 
     }

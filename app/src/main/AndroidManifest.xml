@@ -51,6 +51,9 @@
             android:name=".activities.profile.MusicianProfile"
             android:exported="false" />
         <activity
+            android:name=".activities.main.ViewRestaurantActivity"
+            android:exported="false" />
+        <activity
             android:name=".chatbot.MainChatBotActivity"
             android:exported="false" />
     </application>

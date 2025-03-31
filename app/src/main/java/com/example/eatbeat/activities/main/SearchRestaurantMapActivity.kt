@@ -1,5 +1,7 @@
 package com.example.eatbeat.activities.main
 
+import android.content.Context
+import android.location.Geocoder
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,14 +10,17 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.CarouselAdapter
+import com.example.eatbeat.users.Restaurant
 import com.example.eatbeat.utils.activateNavBar
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
+import java.util.Locale
 
 class SearchRestaurantMapActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,5 +45,49 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(restaurantCarousel)
 
         activateNavBar(this, this, 1)
+
+        restaurantCarousel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val centerView = snapHelper.findSnapView(restaurantCarousel.layoutManager) ?: return
+                    val position = restaurantCarousel.layoutManager?.getPosition(centerView) ?: return
+                    updateMapLocation(this@SearchRestaurantMapActivity, position)
+                }
+            }
+        })
+
+        activateNavBar(this, this, 1)
+    }
+
+    private fun updateMapLocation(context: Context, position: Int) {
+        val restaurants = (loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!))
+        if (position in restaurants.indices) {
+            val restaurant = restaurants[position]
+            val fullAddress = "${restaurant.getAddress()}, ${restaurant.zipCode}"
+            chargeLocation(context, fullAddress)
+        }
+    }
+
+    private fun chargeLocation(context: Context, address: String) {
+        val geocoder = Geocoder(context, Locale.getDefault())
+
+        try {
+            val addresses = geocoder.getFromLocationName(address, 1)
+            if (addresses != null && addresses.isNotEmpty()) {
+                val location = addresses[0]
+                val latitude = location.latitude
+                val longitude = location.longitude
+
+                val mapView = findViewById<MapView>(R.id.mapRestaurant)
+                mapView.getMapboxMap().setCamera(
+                    CameraOptions.Builder()
+                        .center(Point.fromLngLat(longitude, latitude))
+                        .zoom(14.0)
+                        .build()
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

@@ -50,9 +50,7 @@ class ViewRestaurantActivity: AppCompatActivity() {
         }
 
         val bottomSheet = findViewById<View>(R.id.profilesheet)
-        val messageButton = findViewById<ImageView>(R.id.chatIcon)
         val backButton = findViewById<ImageView>(R.id.backButton)
-        val ratingsButton = findViewById<TextView>(R.id.ratingCount)
 
         BottomSheetBehavior.from(bottomSheet).apply {
             peekHeight = 530
@@ -63,7 +61,6 @@ class ViewRestaurantActivity: AppCompatActivity() {
             finish()
         }
 
-        statsScreenClick(ratingsButton)
     }
 
     private fun chargeLocation(context: Context, address: String) {
@@ -90,29 +87,21 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
     }
 
-    private fun statsScreenClick(statsButton: TextView) {
-        statsButton.setOnClickListener {
-            val fragment = StatsFrag()
-            val fadeIn = AnimationUtils.loadAnimation(this, R.anim.alpha_show_up)
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.ratingsScreen, fragment)
-                .addToBackStack(null)
-                .commit()
-            val ratingsScreen = findViewById<FragmentContainerView>(R.id.ratingsScreen)
-            val opaqueBg = findViewById<View>(R.id.opaqueBg)
-
-            ratingsScreen.startAnimation(fadeIn)
-            opaqueBg.startAnimation(fadeIn)
-            opaqueBg.visibility = View.VISIBLE
-            ratingsScreen.visibility = View.VISIBLE
-        }
-    }
-
-
     private fun loadInfo(restaurant: Restaurant){
         val profileUserName = findViewById<TextView>(R.id.profileUserName)
 
         profileUserName.text = restaurant.getName()
+
+        val imageUrl = restaurant.getMultimedia().getImage()
+
+        Glide.with(this)
+            .load(imageUrl)
+            .into(object : SimpleTarget<Drawable?>() {
+                override fun onResourceReady(
+                    resource: Drawable, transition: Transition<in Drawable?>?) {
+                    val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
+                    backgroundPfp.background = resource
+                }
+            })
     }
 }
