@@ -82,7 +82,7 @@
             android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:text="See map"
+            android:text="@string/seeMap"
             android:gravity="center"
             android:textColor="@color/black"
             android:fontFamily="@font/barlow_medium"

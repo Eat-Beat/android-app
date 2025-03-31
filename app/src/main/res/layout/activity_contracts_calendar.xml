@@ -136,7 +136,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="See list"
+            android:text="@string/seeList"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

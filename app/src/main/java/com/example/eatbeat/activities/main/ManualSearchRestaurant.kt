@@ -62,7 +62,7 @@ class ManualSearchRestaurant : AppCompatActivity() {
 
     private fun activateSpinnerAlph() {
         val spinnerAlphabetic = findViewById<Spinner>(R.id.spinneralph)
-        val sortOptions = arrayOf("Ascendente", "Descendente")
+        val sortOptions = arrayOf(getString(R.string.asc), getString(R.string.desc))
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sortOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerAlphabetic.adapter = adapter
@@ -84,7 +84,7 @@ class ManualSearchRestaurant : AppCompatActivity() {
 
         restaurantList.sortBy { it.getName() }
 
-        if (selectedSortOrder == "Descendente") {
+        if (selectedSortOrder ==  getString(R.string.desc)) {
             restaurantList.reverse()
         }
 

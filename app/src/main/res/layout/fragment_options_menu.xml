@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         android:fontFamily="@font/barlow_medium"
         android:gravity="center_vertical"
-        android:text="Idioma"
+        android:text="@string/language"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:fontFamily="@font/barlow_medium"
         android:gravity="center"
         android:paddingStart="30dp"
-        android:text="Cerrar sesión"
+        android:text="@string/exit"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.466" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/englishLang"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:background="@drawable/white_rectangle_shape"
@@ -80,6 +80,7 @@
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
+        android:id="@+id/catalanLang"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:background="@drawable/white_rectangle_shape"
@@ -95,6 +96,7 @@
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
+        android:id="@+id/spanishLang"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:background="@drawable/white_rectangle_shape"

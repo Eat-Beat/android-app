@@ -69,11 +69,11 @@ class ContractDetailsFrag : Fragment() {
         val placeName = view?.findViewById<TextView>(R.id.contractLocation)
         val locationImage = view?.findViewById<ImageView>(R.id.locationImage)!!
 
-        musicName?.text = "MUSICIAN | " + user?.getName()
-        musicRol?.text = "ROLE | " + user?.getClassification()?.get(0)
-        musicStyle?.text = "STYLE | " + user?.getGenre()?.get(0)
-        musicPeriod?.text = "PERIOD | " + contract?.getDate()
-        musicCost?.text = "COST | " + contract?.getCost()
+        musicName?.text = getString(R.string.musician)+ " | " + user?.getName()
+        musicRol?.text = getString(R.string.rol)+ " | " + user?.getClassification()?.get(0)
+        musicStyle?.text = getString(R.string.style)+ " | " + user?.getGenre()?.get(0)
+        musicPeriod?.text = getString(R.string.period)+ " | " + contract?.getDate()
+        musicCost?.text = getString(R.string.cost)+ " | " + contract?.getCost()
         dayLabel?.text =  contract?.getDate().toString()
 
         placeName?.text = user?.calculateLocationName(this.requireContext())

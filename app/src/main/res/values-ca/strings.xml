@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eat&amp;Beat</string>
+    <string name="logo">logo</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiaXZhbmZsb2wiLCJhIjoiY203bnBzNnM0MDNrajJtc2xhdDZod2w0NyJ9.oHnjBUX7mK8R9CVgVdAKpA</string>
+    <string name="username">Email</string>
+    <string name="forgotPassword"><u>Heu oblidat la contrasenya?</u></string>
+    <string name="password">Contrasenya</string>
+    <string name="login">Login</string>
+    <string name="loginUnderlined"><u>Login</u></string>
+    <string name="email">Email</string>
+    <string name="sendEmail">Enviar email</string>
+    <string name="code">Codi</string>
+    <string name="newPassword">Nova contrasenya</string>
+    <string name="confirmPassword">Confirmar contrasenya</string>
+    <string name="resendEmail"><u>Reenviar email</u></string>
+    <string name="confirm">Confirmar</string>
+    <string name="activity_calendar_title">CONTRACTES</string>
+    <string name="seeList">Veure llista</string>
+    <string name="seeCalendar">Veure calendari</string>
+    <string name="locationLabel">Localització</string>
+    <string name="contractDetailsString">Detalls del contracte</string>
+    <string name="activity_chat_title">XAT</string>
+    <string name="profileTitle">PERFIL</string>
+    <string name="fragment_stats_title">ESTADÍSTIQUES</string>
+    <string name="incorrect_credentials">Credencials incorrectes.</string>
+    <string name="searchhint">Buscar...</string>
+    <string name="filters">FILTRES</string>
+    <string name="seeDetails">| VEURE DETALLS</string>
+    <string name="name">Nom</string>
+    <string name="description">Descripció</string>
+    <string name="latitude">Latitud</string>
+    <string name="longitude">Longitud</string>
+    <string name="editprofile">EDITAR PERFIL</string>
+    <string name="language">Idioma</string>
+    <string name="exit">Tancar sesió</string>
+    <string name="musician">Music</string>
+    <string name="rol">Rol</string>
+    <string name="style">Estil</string>
+    <string name="period">Periode</string>
+    <string name="cost">Cost</string>
+    <string name="asc">Alfabetic | Ascendent</string>
+    <string name="desc">Alfabetic | Descendent</string>
+    <string name="seeMap">Veure mapa</string>
+</resources>

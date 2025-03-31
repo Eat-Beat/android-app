@@ -72,7 +72,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="See calendar"
+            android:text="@string/seeCalendar"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

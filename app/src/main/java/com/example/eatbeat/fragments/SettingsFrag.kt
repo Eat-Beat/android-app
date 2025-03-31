@@ -9,10 +9,12 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import com.example.eatbeat.R
 import com.example.eatbeat.activities.login.LoginActivity
+import java.util.Locale
 
 class SettingsFrag : Fragment() {
 
@@ -46,7 +48,52 @@ class SettingsFrag : Fragment() {
             requireActivity().finish()
         }
 
+        val spanishButton = view?.findViewById<TextView>(R.id.spanishLang)
+        val englishButton = view?.findViewById<TextView>(R.id.englishLang)
+        val catalanButton = view?.findViewById<TextView>(R.id.catalanLang)
+
+
+
+        spanishButton?.setOnClickListener{
+            val locale = Locale("es")
+            Locale.setDefault(locale)
+
+            val config = resources.configuration
+            config.setLocale(locale)
+            resources.updateConfiguration(config, resources.displayMetrics)
+
+            recreate(requireActivity())
+        }
+
+        englishButton?.setOnClickListener{
+            val locale = Locale("en")
+            Locale.setDefault(locale)
+
+            val config = resources.configuration
+            config.setLocale(locale)
+            resources.updateConfiguration(config, resources.displayMetrics)
+
+            recreate(requireActivity())
+        }
+
+        catalanButton?.setOnClickListener{
+            val locale = Locale("ca")
+            Locale.setDefault(locale)
+
+            val config = resources.configuration
+            config.setLocale(locale)
+            resources.updateConfiguration(config, resources.displayMetrics)
+
+            recreate(requireActivity())
+        }
+
+        changeLanguage()
+
         return view
+    }
+
+    private fun changeLanguage() {
+
     }
 
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){

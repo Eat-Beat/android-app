@@ -1,50 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Eat&amp;Beat</string>
     <string name="logo">logo</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiaXZhbmZsb2wiLCJhIjoiY203bnBzNnM0MDNrajJtc2xhdDZod2w0NyJ9.oHnjBUX7mK8R9CVgVdAKpA</string>
-    <string name="username">Username</string>
+    <string name="username">Email</string>
     <string name="forgotPassword"><u>Forgot Password</u></string>
     <string name="password">Password</string>
-    <string name="login">"Login"</string>
-    <string name="loginUnderlined">"<u>Login</u>"</string>
+    <string name="login">Login</string>
+    <string name="loginUnderlined"><u>Login</u></string>
     <string name="email">Email</string>
-    <string name="sendEmail">Send Email</string>
+    <string name="sendEmail">Send email</string>
     <string name="code">Code</string>
     <string name="newPassword">New password</string>
     <string name="confirmPassword">Confirm password</string>
     <string name="resendEmail"><u>Resend email</u></string>
     <string name="confirm">Confirm</string>
     <string name="activity_calendar_title">CONTRACTS</string>
-    <string name="daytext" translatable="false">DDD, MMMMMM, YYYY</string>
     <string name="seeList">See list</string>
     <string name="seeCalendar">See calendar</string>
-    <string name="musicNameContractSheet" translatable="false">Musician | NNNN SSSSS</string>
-    <string name="musicRoleContractSheet" translatable="false">Role | RRRRRRRR</string>
-    <string name="musicStyleContractSheet" translatable="false">Style | SSSSSSSS</string>
-    <string name="musicPeriodContractSheet" translatable="false">Period | PPPPPPPP</string>
-    <string name="musicCostContractSheet" translatable="false">Cost | CCCCCCCC</string>
     <string name="locationLabel">Location</string>
-    <string name="contractDetailsString">Contract Details</string>
+    <string name="contractDetailsString">Contract details</string>
     <string name="activity_chat_title">CHAT</string>
     <string name="profileTitle">PROFILE</string>
     <string name="fragment_stats_title">STATS</string>
-    <string name="musicians_grid_view" translatable="false">Musicians grid view.</string>
     <string name="incorrect_credentials">Incorrect credentials.</string>
     <string name="searchhint">Search...</string>
     <string name="filters">FILTERS</string>
     <string name="seeDetails">| SEE DETAILS</string>
-    <string name="name">name\n</string>
-    <string name="description">description</string>
-    <string name="latitude">latitude</string>
-    <string name="longitude" />
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
     <string name="editprofile">EDIT PROFILE</string>
     <string name="language">Language</string>
-    <string name="exit">Exit</string>
+    <string name="exit">Log out</string>
     <string name="musician">Musician</string>
     <string name="rol">Role</string>
-    <string name="style">style</string>
-    <string name="period">Period\n</string>
-    <string name="cost">Cost\n</string>
+    <string name="style">Style</string>
+    <string name="period">Period</string>
+    <string name="cost">Cost</string>
     <string name="asc">Alphabetic | Ascendant</string>
     <string name="desc">Alphabetic | Descendant</string>
     <string name="seeMap">See map</string>

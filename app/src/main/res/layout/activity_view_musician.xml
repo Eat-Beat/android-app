@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="72dp"
-                android:text="(134) | SEE DETAILS"
+                android:text="@string/seeDetails"
                 android:textColor="@color/white"
                 android:fontFamily="@font/barlow_medium"
                 android:textSize="15sp"

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -61,6 +62,13 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
         val searchButton = findViewById<ImageView>(R.id.searchiconmap)
         searchButton.setOnClickListener {
             val intent = Intent(this, ManualSearchRestaurant::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val listButton = findViewById<ConstraintLayout>(R.id.seeListRestaurant)
+        listButton.setOnClickListener {
+            val intent = Intent(this, SearchRestaurantActivity::class.java)
             startActivity(intent)
             finish()
         }

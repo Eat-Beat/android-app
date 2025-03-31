@@ -36,6 +36,7 @@
             android:id="@+id/logoImage"
             android:layout_width="@dimen/logoBannerWidth"
             android:layout_height="@dimen/logoBannerHeight"
+            android:layout_marginStart="100dp"
             android:scaleType="fitCenter"
             android:src="@drawable/full_logo_white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +72,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout8"
+        android:id="@+id/seeListRestaurant"
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:background="@drawable/orangesquarebg"
@@ -98,7 +99,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/barlow_medium"
             android:gravity="center"
-            android:text="See list"
+            android:text="@string/seeList"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
