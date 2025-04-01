@@ -2,6 +2,7 @@ package com.example.eatbeat.activities.main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.os.Bundle
 import android.widget.ImageView
@@ -20,6 +21,10 @@ import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
+import com.mapbox.maps.extension.style.layers.addLayer
+import com.mapbox.maps.extension.style.layers.generated.SymbolLayer
+import com.mapbox.maps.extension.style.sources.addSource
+import com.mapbox.maps.extension.style.sources.generated.GeoJsonSource
 import java.util.Locale
 
 class SearchRestaurantMapActivity : AppCompatActivity() {
@@ -38,8 +43,8 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
             CameraOptions.Builder()
                 .center(Point.fromLngLat(2.17328, 41.38868))
                 .zoom(14.0)
-                .build()
-                                        )
+                .build())
+
 
         restaurantCarousel.adapter = CarouselAdapter(loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!))
         restaurantCarousel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -102,9 +107,42 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
                         .zoom(14.0)
                         .build()
                 )
+
+                addMarkerToMap(mapView, this, latitude, longitude)
+
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+
+
+    }
+
+    private fun addMarkerToMap(mapView: MapView, context: Context, latitude: Double, longitude: Double) {
+        val mapboxMap = mapView.getMapboxMap()
+
+        mapboxMap.getStyle { style ->
+            style.addImage(
+                "marker-icon-id",
+                BitmapFactory.decodeResource(context.resources, R.drawable.restaurant_waypoint)
+                          )
+
+            val geoJsonSource =
+                com.mapbox.maps.extension.style.sources.generated.geoJsonSource("marker-source") {
+                    geometry(Point.fromLngLat(longitude, latitude))
+                }
+
+            style.addSource(geoJsonSource)
+
+            val symbolLayer = com.mapbox.maps.extension.style.layers.generated.symbolLayer(
+                "marker-layer",
+                "marker-source"
+                                                                                          ) {
+                iconImage("marker-icon-id")
+                iconSize(0.1)
+            }
+
+            style.addLayer(symbolLayer)
         }
     }
 }
