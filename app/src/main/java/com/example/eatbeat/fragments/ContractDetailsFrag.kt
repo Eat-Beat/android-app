@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.loadJsonFromRaw
+import com.example.eatbeat.utils.loadRestaurantsFromJson
 
 class ContractDetailsFrag : Fragment() {
 
@@ -35,7 +37,7 @@ class ContractDetailsFrag : Fragment() {
         val exitwindow = view.findViewById<ImageView>(R.id.close_window)
 
         val dataBundle = arguments
-        val contract = dataBundle?.getParcelable<Perform>("contract")
+        val contract = dataBundle?.getParcelable<Perform>("contract")!!
         val user = dataBundle?.getParcelable<Musician>("musician")
 
 
@@ -59,7 +61,7 @@ class ContractDetailsFrag : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setContractDetails(contract: Perform?, user: Musician?) {
+    private fun setContractDetails(contract: Perform, user: Musician?) {
         val musicName = view?.findViewById<TextView>(R.id.musicName)
         val musicRol = view?.findViewById<TextView>(R.id.musicRole)
         val musicStyle = view?.findViewById<TextView>(R.id.musicStyle)
@@ -72,22 +74,16 @@ class ContractDetailsFrag : Fragment() {
         musicName?.text = getString(R.string.musician)+ " | " + user?.getName()
         musicRol?.text = getString(R.string.rol)+ " | " + user?.getClassification()?.get(0)
         musicStyle?.text = getString(R.string.style)+ " | " + user?.getGenre()?.get(0)
-        musicPeriod?.text = getString(R.string.period)+ " | " + contract?.getDate()
-        musicCost?.text = getString(R.string.cost)+ " | " + contract?.getCost()
-        dayLabel?.text =  contract?.getDate().toString()
-
+        musicPeriod?.text = getString(R.string.period)+ " | " + contract.getDate()
+        musicCost?.text = getString(R.string.cost)+ " | " + contract.getCost()
+        dayLabel?.text =  contract.getDate().toString()
         placeName?.text = user?.calculateLocationName(this.requireContext())
 
 
-        val accessToken: String = getString(R.string.mapbox_access_token)
-        val lon = user?.getLongitude()
-        val lat = user?.getLatitude()
-
-        val imageUrl : String = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/"+
-                lon + "," + lat + ",14,0/600x600?access_token=" + accessToken;
-
+        val restaurants = loadRestaurantsFromJson(loadJsonFromRaw(requireActivity(), R.raw.restaurans)!!)
+        val restaurant = restaurants[contract.getIdRestaurant()-1]
         Glide.with(this)
-            .load(imageUrl)
+            .load(restaurant.getMultimedia().getImage())
             .into(locationImage);
 
     }

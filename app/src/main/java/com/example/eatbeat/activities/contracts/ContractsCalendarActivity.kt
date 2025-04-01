@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.CalendarDay
@@ -95,6 +96,8 @@ class ContractsCalendarActivity : AppCompatActivity() {
     }
 
     private fun generateClickAndList(calendarView : CalendarView, contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
+        highlightDaysWithContracts(calendarView, contracts)
+
         calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
             override fun onClick(calendarDay: CalendarDay) {
                 val clickedDayCalendar: Calendar = calendarDay.calendar
@@ -158,5 +161,26 @@ class ContractsCalendarActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun highlightDaysWithContracts(calendarView: CalendarView, contracts: ArrayList<Perform>) {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val highlightedDays = mutableListOf<CalendarDay>()
+
+        for (contract in contracts) {
+            val contractDate = contract.getDate()
+            val calendarContractDate = Calendar.getInstance()
+            calendarContractDate.time = contractDate
+            calendarContractDate.set(Calendar.HOUR_OF_DAY, 0)
+            calendarContractDate.set(Calendar.MINUTE, 0)
+            calendarContractDate.set(Calendar.SECOND, 0)
+            calendarContractDate.set(Calendar.MILLISECOND, 0)
+
+            val calendarDay = CalendarDay(calendarContractDate)
+            calendarDay.labelColor =  R.color.orange
+            highlightedDays.add(calendarDay)
+        }
+
+        calendarView.setCalendarDays(highlightedDays)
     }
 }
