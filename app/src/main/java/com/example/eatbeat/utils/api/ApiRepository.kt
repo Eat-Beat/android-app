@@ -77,4 +77,14 @@ object ApiRepository {
         val response = apiService.getChatsByMusicianId(id)
         if (response.isSuccessful) response.body() else null
     }
+
+    suspend fun getChatByRestaurantIdAndMusicianId(restaurantId: Int, musicianId: Int): List<Message>? = withContext(Dispatchers.IO) {
+        val response = apiService.getChatByRestaurantIdAndMusicianId(restaurantId, musicianId)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun createChat(chat: Message): Message? = withContext(Dispatchers.IO) {
+        val response = apiService.createChat(chat)
+        if (response.isSuccessful) response.body() else null
+    }
 }

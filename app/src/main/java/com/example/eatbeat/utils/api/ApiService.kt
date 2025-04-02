@@ -49,4 +49,10 @@ interface ApiService {
 
     @GET("chats/musician/{id}")
     suspend fun getChatsByMusicianId(@Path("id") id: Int): Response<List<Message>>
+
+    @GET("chats/{restaurantId}/{musicianId}")
+    suspend fun getChatByRestaurantIdAndMusicianId(@Path("restaurantId") restaurantId: Int, @Path("musicianId") musicianId: Int): Response<List<Message>>
+
+    @POST("chats")
+    suspend fun createChat(@Body chat: Message): Response<Message>
 }
