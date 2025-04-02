@@ -10,10 +10,10 @@ import com.google.ai.client.generativeai.type.Content
 import com.google.ai.client.generativeai.type.generationConfig
 import kotlinx.coroutines.launch
 
-class ChatViewModel : ViewModel() {
+class ChatBotViewModel : ViewModel() {
 
     val messageList by lazy {
-        mutableStateListOf<MessageModel>()
+        mutableStateListOf<ChatBotMessageModel>()
     }
 
     private val generativeModel = GenerativeModel(
@@ -77,11 +77,11 @@ class ChatViewModel : ViewModel() {
                     .text("input: $userInput")
                     .build()
 
-                messageList.add(MessageModel(userInput, "user"))
+                messageList.add(ChatBotMessageModel(userInput, "user"))
                 // Generate content from the tuned model.
                 val response = generativeModel.generateContent(prompt)
 
-                messageList.add(MessageModel(response.text.toString(), "model"))
+                messageList.add(ChatBotMessageModel(response.text.toString(), "model"))
                 // Process the response as needed in your app (update UI, etc.)
             } catch (e: Exception) {
                 Log.e("Gemini Error", "Error generating response: ${e.message}")

@@ -1,7 +1,9 @@
-package com.example.eatbeat.chatbot
+package com.example.eatbeat.chat
 
 
 import android.content.Intent
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,16 +40,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eatbeat.activities.ChatActivity
 import com.example.eatbeat.R
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.ui.theme.bgColor
 import com.example.eatbeat.ui.theme.darkbgColor
 import com.example.eatbeat.ui.theme.orange
+import kotlinx.coroutines.launch
 
 
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatPage(
     modifier: Modifier = Modifier, viewModel: ChatViewModel, onBackClick: () -> Unit = {}
-            ) {
+                   ) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         modifier = modifier
@@ -58,14 +66,16 @@ fun ChatPage(
             context.startActivity(intent)
         })
         MessageList(modifier = Modifier.weight(1f), messageList = viewModel.messageList)
-        MessageInput(onMessageSend = {
-            viewModel.sendMessage(it)
+        MessageInput(onMessageSend = { message ->
+            coroutineScope.launch {
+                viewModel.sendMessage(message)
+            }
         })
     }
 }
 
 @Composable
-fun MessageList(modifier: Modifier = Modifier, messageList: List<MessageModel>) {
+fun MessageList(modifier: Modifier = Modifier, messageList: List<Message>) {
     if (messageList.isEmpty()) {
         Column(
             modifier = modifier.fillMaxSize(),
@@ -92,8 +102,9 @@ fun MessageList(modifier: Modifier = Modifier, messageList: List<MessageModel>) 
 }
 
 @Composable
-fun MessageRow(messageModel: MessageModel) {
-    val isModel = messageModel.role == "model"
+fun MessageRow(messageModel: Message) {
+    val isSender = if (UserData.userType== 1) messageModel.idSender == messageModel.idRestaurant
+    else messageModel.idSender == messageModel.idMusician
     Row(
         verticalAlignment = Alignment.CenterVertically
        ) {
@@ -103,22 +114,22 @@ fun MessageRow(messageModel: MessageModel) {
             Box(
                 modifier = Modifier
                     .align(
-                        if (isModel) Alignment.BottomStart else Alignment.BottomEnd
+                        if (isSender) Alignment.BottomStart else Alignment.BottomEnd
                           )
                     .padding(
-                        start = if (isModel) 8.dp else 70.dp,
-                        end = if (isModel) 70.dp else 8.dp,
+                        start = if (isSender) 8.dp else 70.dp,
+                        end = if (isSender) 70.dp else 8.dp,
                         top = 8.dp,
                         bottom = 8.dp
                             )
                     .clip(RoundedCornerShape(48f))
-                    .background(if (isModel) darkbgColor else orange)
+                    .background(if (isSender) darkbgColor else orange)
                     .padding(16.dp)
                ) {
                 Text(
                     text = messageModel.message,
                     fontWeight = FontWeight.W500,
-                    color = if (isModel) Color.White else darkbgColor
+                    color = if (isSender) Color.White else darkbgColor
                     )
             }
         }

@@ -1,15 +1,12 @@
 package com.example.eatbeat.chat
 
-import java.sql.Date
+import java.util.Date
 
-class Message(
-    private val idRestaurant: Int,
-    private val idMusician: Int,
-    private val idSender: Int,
-    private val isMultimedia: Boolean,
-    private val message: String,
-    private val timestamp: Date
-) {
-
-
-}
+class Message (
+    val idRestaurant: Int,
+    val idMusician: Int,
+    val idSender: Int,
+    val isMultimedia: Boolean,
+    val message: String,
+    val timeStamp: Date
+              )

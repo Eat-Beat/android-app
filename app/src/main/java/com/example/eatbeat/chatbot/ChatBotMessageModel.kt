@@ -1,6 +1,6 @@
 package com.example.eatbeat.chatbot
 
-class MessageModel (
+class ChatBotMessageModel(
     val message : String,
     val role : String
-                   )
+                         )
