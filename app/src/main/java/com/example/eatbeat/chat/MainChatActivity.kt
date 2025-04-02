@@ -20,8 +20,8 @@ class MainChatActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        var idReceaver= 2
-        val factory = ChatViewModelFactory(idReceaver)
+        val idReceiver = intent.getIntExtra("userId", -1)
+        val factory = ChatViewModelFactory(idReceiver)
         val chatBotViewModel = ViewModelProvider(this, factory)[ChatViewModel::class.java]
         setContent {
             GroqTestTheme {

@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatbeat.R
-import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.contracts.PerformProfile
 import com.example.eatbeat.users.Restaurant
 
@@ -17,9 +16,9 @@ class RestaurantReviewAdapter(private val contracts: ArrayList<PerformProfile>, 
     RecyclerView.Adapter<RestaurantReviewAdapter.RestaurantViewHolder>() {
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val restaurantName: TextView = view.findViewById(R.id.restaurantNameCell)
+        val restaurantName: TextView = view.findViewById(R.id.profileNameCell)
         val starsReview : RatingBar = view.findViewById(R.id.ratingBar)
-        val restaurantProfile : ImageView = view.findViewById(R.id.restaurantIconView)
+        val restaurantProfile : ImageView = view.findViewById(R.id.profileIconView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {

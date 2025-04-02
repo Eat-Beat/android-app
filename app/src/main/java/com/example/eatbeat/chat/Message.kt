@@ -9,4 +9,4 @@ class Message (
     val isMultimedia: Boolean,
     val message: String,
     val timeStamp: Date
-              )
+)

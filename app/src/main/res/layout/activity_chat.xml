@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.52">
 
         <ImageView
-            android:id="@+id/restaurantIconView"
+            android:id="@+id/profileIconView"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/restaurantNameCell"
+            android:id="@+id/profileNameCell"
             android:layout_width="@dimen/chatCell_TextViewWidth"
             android:layout_height="@dimen/chatCell_TextViewHeight"
             android:fontFamily="@font/barlow_medium"
@@ -68,14 +68,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.183"
-            app:layout_constraintStart_toEndOf="@+id/restaurantIconView"
+            app:layout_constraintStart_toEndOf="@+id/profileIconView"
             app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contractListRecyclerView"
+        android:id="@+id/chatsListRecyclerView"
         android:layout_width="410dp"
         android:layout_height="634dp"
         android:layout_marginTop="3dp"

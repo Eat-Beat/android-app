@@ -1,0 +1,34 @@
+[
+    {
+        "idRestaurant":4,
+        "idMusician":3,
+        "idSender":3,
+        "isMultimedia":false,
+        "message":"Sí, puedo tocar jazz en vivo.",
+        "timestamp":"2025-03-12T19:10:00"
+    },
+    {
+        "idRestaurant":4,
+        "idMusician":3,
+        "idSender":4,
+        "isMultimedia":false,
+        "message":"¿Estás disponible para un show el sábado?",
+        "timestamp":"2025-03-12T18:45:00"
+    },
+    {
+        "idRestaurant":6,
+        "idMusician":3,
+        "idSender":3,
+        "isMultimedia":false,
+        "message":"Sí, puedo tocar jazz en vivo.",
+        "timestamp":"2025-03-12T19:10:00"
+    },
+    {
+        "idRestaurant":6,
+        "idMusician":3,
+        "idSender":4,
+        "isMultimedia":false,
+        "message":"¿Estás disponible para un show el sábado?",
+        "timestamp":"2025-03-12T18:45:00"
+    }
+]

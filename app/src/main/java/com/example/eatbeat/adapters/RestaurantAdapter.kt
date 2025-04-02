@@ -12,7 +12,9 @@ import com.example.eatbeat.R
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
 
-class RestaurantAdapter(private val restaurants: List<Restaurant>, private val viewProfile : (Restaurant) -> Unit) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
+class RestaurantAdapter(
+    private val restaurants: List<Restaurant>,
+    private val viewProfile : (Restaurant) -> Unit) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     inner class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val restaurantPic: ImageView = view.findViewById(R.id.restaurantProfilePic)

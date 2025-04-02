@@ -12,7 +12,7 @@
     app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
     <ImageView
-        android:id="@+id/restaurantIconView"
+        android:id="@+id/profileIconView"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/restaurantNameCell"
+        android:id="@+id/profileNameCell"
         android:layout_width="@dimen/chatCell_TextViewWidth"
         android:layout_height="@dimen/chatCell_TextViewHeight"
         android:layout_marginStart="13dp"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/restaurantIconView"
+        app:layout_constraintStart_toEndOf="@+id/profileIconView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.364"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/restaurantNameCell" />
+        app:layout_constraintTop_toBottomOf="@id/profileNameCell" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

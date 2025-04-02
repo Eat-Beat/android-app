@@ -37,7 +37,6 @@ android {
 }
 
     dependencies {
-
         implementation(libs.androidx.core.ktx)
         implementation(libs.androidx.appcompat)
         implementation(libs.material)
@@ -68,4 +67,5 @@ android {
         implementation("com.squareup.retrofit2:retrofit:2.9.0")
         implementation("com.squareup.retrofit2:converter-gson:2.9.0")
         implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+        implementation ("commons-net:commons-net:3.9.0")
     }

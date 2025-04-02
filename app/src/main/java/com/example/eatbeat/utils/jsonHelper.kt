@@ -1,6 +1,7 @@
 package com.example.eatbeat.utils
 
 import android.content.Context
+import com.example.eatbeat.chat.Message
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.contracts.PerformProfile
 import com.example.eatbeat.users.Musician
@@ -68,4 +69,10 @@ fun loadUsersFromJson(json: String): ArrayList<User> {
     val gson = Gson()
     val usersListType = object : com.google.gson.reflect.TypeToken<ArrayList<User>>() {}.type
     return gson.fromJson(json, usersListType)
+}
+
+fun loadChatsFromJson(json: String): ArrayList<Message> {
+    val gson = Gson()
+    val messageListType = object : com.google.gson.reflect.TypeToken<ArrayList<Message>>() {}.type
+    return gson.fromJson(json, messageListType)
 }
