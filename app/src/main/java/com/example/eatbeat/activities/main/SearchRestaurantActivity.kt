@@ -6,27 +6,34 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.RestaurantAdapter
-import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
+import com.example.eatbeat.users.User
 import com.example.eatbeat.utils.activateNavBar
-import com.example.eatbeat.utils.loadJsonFromRaw
-import com.example.eatbeat.utils.loadRestaurantsFromJson
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
+import kotlinx.coroutines.launch
 
 class SearchRestaurantActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_search_restaurant)
-
-        val restaurants = loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!)
-
-        loadRestaurants(restaurants)
-
         activateNavBar(this, this, 1)
+
+        lifecycleScope.launch {
+            try {
+                val restaurants = getRestaurants()
+                val restaurantsList = restaurants?.toMutableList() as ArrayList<Restaurant>
+                loadRestaurants(restaurantsList)
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
 
         val mapButton = findViewById<ConstraintLayout>(R.id.mapSeeRestaurant)
         mapButton.setOnClickListener {

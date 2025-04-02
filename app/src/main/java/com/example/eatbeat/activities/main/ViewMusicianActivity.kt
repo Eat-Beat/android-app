@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,7 +22,10 @@ import com.example.eatbeat.adapters.MultimediaAdapter
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.fragments.StatsFrag
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.mapbox.maps.extension.style.image.image
+import kotlinx.coroutines.launch
 
 class ViewMusicianActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +37,20 @@ class ViewMusicianActivity : AppCompatActivity() {
 
         val musicianId = intent.getIntExtra("musicianId", -1)
 
-        val musician = UserData.musicians.find { it.getId() == musicianId }
+        lifecycleScope.launch {
+            try {
+                val musicians = getMusicians()
+                val musiciansList = musicians?.toMutableList() as ArrayList<Musician>
+                val musician = musiciansList.find { it.getId() == musicianId }
 
-        if (musician != null){
-            loadInfo(musician)
-            chargeMultimedia(musician)
+                if (musician != null){
+                    loadInfo(musician)
+                    chargeMultimedia(musician)
+                }
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
         }
 
         val bottomSheet = findViewById<View>(R.id.profilesheet)
@@ -60,17 +73,21 @@ class ViewMusicianActivity : AppCompatActivity() {
     private fun chargeMultimedia(musician: Musician) {
         val multimediaRecycler = findViewById<RecyclerView>(R.id.multimediaUserRecyclerView)
 
-        val imageUrl = musician.getMultimedia()[0].getImage()
-
-        Glide.with(this)
-            .load(imageUrl)
-            .into(object : SimpleTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable, transition: Transition<in Drawable?>?) {
-                    val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
-                    backgroundPfp.background = resource
-                }
-            })
+        if (musician.getMultimedia().isNotEmpty()) {
+            val imageUrl = musician.getMultimedia()[0].getImage()
+            Glide.with(this)
+                .load(imageUrl)
+                .into(object : SimpleTarget<Drawable?>() {
+                    override fun onResourceReady(
+                        resource: Drawable, transition: Transition<in Drawable?>?) {
+                        val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
+                        backgroundPfp.background = resource
+                    }
+                })
+        } else {
+            val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
+            backgroundPfp.setBackgroundResource( R.drawable.user_selected)
+        }
 
         multimediaRecycler.layoutManager = GridLayoutManager(this, 3)
 
@@ -95,7 +112,6 @@ class ViewMusicianActivity : AppCompatActivity() {
             ratingsScreen.visibility = View.VISIBLE
         }
     }
-
 
     private fun loadInfo(musician: Musician){
         val profileUserName = findViewById<TextView>(R.id.profileUserName)
