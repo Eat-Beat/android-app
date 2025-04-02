@@ -12,7 +12,7 @@ import com.example.eatbeat.R
 import com.example.eatbeat.users.Musician
 
 class MusicianAdapter(
-    private val musicians: List<Musician>,
+    private val musicians: ArrayList<Musician>,
     private val viewProfile : (Musician) -> Unit
 ) : RecyclerView.Adapter<MusicianAdapter.MusicianViewHolder>() {
 
@@ -24,9 +24,13 @@ class MusicianAdapter(
         private val rating: TextView = view.findViewById(R.id.ratingNumBox)
 
         fun bind(musician: Musician) {
-            Glide.with(itemView.context)
-                .load(musician.getMultimedia()[0].getImage())
-                .into(musicianImage)
+            if (musician.getMultimedia().isNotEmpty()) {
+                Glide.with(itemView.context)
+                    .load(musician.getMultimedia()[0].getImage())
+                    .into(musicianImage)
+            } else {
+                musicianImage.setImageResource(R.drawable.user_selected)
+            }
 
             musicianName.text = musician.getName()
             rol.text = musician.getGenre()[0]

@@ -8,13 +8,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.eatbeat.R
 import com.example.eatbeat.activities.main.SearchMusicianActivity
 import com.example.eatbeat.activities.main.SearchRestaurantActivity
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.User
-import com.example.eatbeat.utils.loadJsonFromRaw
-import com.example.eatbeat.utils.loadUsersFromJson
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
+import com.example.eatbeat.utils.api.ApiRepository.getUsers
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +28,17 @@ class LoginActivity : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.loginButton)
         val userName = findViewById<TextView>(R.id.usernameTextbox)
         val password = findViewById<TextView>(R.id.passwordTextbox)
-        val userList = loadUsersFromJson(loadJsonFromRaw(this, R.raw.users)!!)
+        var userList = ArrayList<User>()
+
+        lifecycleScope.launch {
+            try {
+                val users = getUsers()
+                userList = users?.toMutableList() as ArrayList<User>
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
 
         loginButton.setOnClickListener(){
             if (verifyUser(userName.text.toString(), password.text.toString(), userList)){
@@ -62,12 +75,10 @@ class LoginActivity : AppCompatActivity() {
                 UserData.userType = user.getIdRol()
             }
         }
-
         return userFound
     }
 
     private fun showIncorrectCredentialsMessage(context: Context) {
         Toast.makeText(context, context.getString(R.string.incorrect_credentials), Toast.LENGTH_SHORT).show()
     }
-
 }
