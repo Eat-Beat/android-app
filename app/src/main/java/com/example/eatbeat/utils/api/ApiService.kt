@@ -20,6 +20,9 @@ interface ApiService {
     @GET("restaurants")
     suspend fun getRestaurants(): Response<List<Restaurant>>
 
+    @GET("performs")
+    suspend fun getPerforms(): Response<List<Perform>>
+
     @GET("restaurants/{id}")
     suspend fun getRestaurantById(@Path("id") id: Int): Response<Restaurant>
 

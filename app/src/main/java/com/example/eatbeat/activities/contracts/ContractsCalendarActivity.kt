@@ -5,19 +5,30 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.applandeo.materialcalendarview.CalendarDay
 import com.applandeo.materialcalendarview.CalendarView
 import com.applandeo.materialcalendarview.listeners.OnCalendarDayClickListener
 import com.example.eatbeat.R
+import com.example.eatbeat.activities.main.SearchMusicianActivity
+import com.example.eatbeat.activities.main.SearchRestaurantActivity
 import com.example.eatbeat.adapters.ContractsCalendarAdapter
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.users.User
 import com.example.eatbeat.utils.activateNavBar
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getPerforms
+import com.example.eatbeat.utils.api.ApiRepository.getPerformsByMusicianId
+import com.example.eatbeat.utils.api.ApiRepository.getPerformsByRestaurantId
+import com.example.eatbeat.utils.api.ApiRepository.getUsers
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -39,13 +50,30 @@ class ContractsCalendarActivity : AppCompatActivity() {
 
         activateNavBar(this, this, 2)
 
-        setCurrentDay(currDate, loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this,
-            R.raw.musicians
-        )!!))
 
-        generateClickAndList(calendarView, loadContractsFromJson(loadJsonFromRaw(this,
-            R.raw.contracts
-        )!!), loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!))
+        lifecycleScope.launch {
+            try {
+                when(UserData.userType){
+                    1 -> {
+                        val contracts = getPerforms()!!
+                        val musicians = getMusicians()!!
+                        setCurrentDay(currDate, contracts, musicians)
+                        generateClickAndList(calendarView, contracts, musicians)
+
+                    }
+                    2 -> {
+                        val contracts = getPerforms()!!
+                        val musicians = getMusicians()!!
+                        setCurrentDay(currDate, contracts, musicians)
+                        generateClickAndList(calendarView, contracts, musicians)
+
+                    }
+                }
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
 
         val seeListButton = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.buttonSeeList)
 
@@ -56,8 +84,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
         }
     }
 
-    private fun setCurrentDay(currDate: Date, contracts: ArrayList<Perform>, musicians: ArrayList<Musician>) {
+    private fun setCurrentDay(currDate: Date, contracts: List<Perform>, musicians: List<Musician>) {
         val contractOnDay: ArrayList<Perform> = ArrayList()
+        val currId = UserData.userId
 
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
 
@@ -79,7 +108,7 @@ class ContractsCalendarActivity : AppCompatActivity() {
 
             val formattedSelectedDate = simpleDateFormat.format(currDate)
 
-            if (formattedContractDate == formattedSelectedDate) {
+            if (formattedContractDate == formattedSelectedDate && contract.getIdMusician() == currId) {
                 contractOnDay.add(contract)
             }
         }
@@ -94,7 +123,7 @@ class ContractsCalendarActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
-    private fun generateClickAndList(calendarView : CalendarView, contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
+    private fun generateClickAndList(calendarView : CalendarView, contracts : List<Perform>, musicians : List<Musician>) {
         calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
             override fun onClick(calendarDay: CalendarDay) {
                 val clickedDayCalendar: Calendar = calendarDay.calendar
@@ -110,8 +139,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
                 loadContractsOnDay(date, contracts, musicians)
             }
 
-            private fun loadContractsOnDay(date: Date, contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
+            private fun loadContractsOnDay(date: Date, contracts : List<Perform>, musicians : List<Musician>) {
                 val contractOnDay: ArrayList<Perform> = ArrayList()
+                val currId = UserData.userId
 
                 val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
 
@@ -129,10 +159,11 @@ class ContractsCalendarActivity : AppCompatActivity() {
 
                     val formattedSelectedDate = simpleDateFormat.format(date)
 
-                    if (formattedContractDate == formattedSelectedDate) {
+                    if (formattedContractDate == formattedSelectedDate && contract.getIdMusician() == currId) {
                         contractOnDay.add(contract)
                     }
                 }
+
 
                 val contractsCalendarRecycler = findViewById<RecyclerView>(R.id.contractsCalendarRecylcerView)
 
@@ -158,5 +189,26 @@ class ContractsCalendarActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun highlightDaysWithContracts(calendarView: CalendarView, contracts: List<Perform>) {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val highlightedDays = mutableListOf<CalendarDay>()
+
+        for (contract in contracts) {
+            val contractDate = contract.getDate()
+            val calendarContractDate = Calendar.getInstance()
+            calendarContractDate.time = contractDate
+            calendarContractDate.set(Calendar.HOUR_OF_DAY, 0)
+            calendarContractDate.set(Calendar.MINUTE, 0)
+            calendarContractDate.set(Calendar.SECOND, 0)
+            calendarContractDate.set(Calendar.MILLISECOND, 0)
+
+            val calendarDay = CalendarDay(calendarContractDate)
+            calendarDay.labelColor =  R.color.orange
+            highlightedDays.add(calendarDay)
+        }
+
+        calendarView.setCalendarDays(highlightedDays)
     }
 }

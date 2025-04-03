@@ -2,13 +2,15 @@ package com.example.eatbeat.contracts
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class Perform(
                private val idPerform: Int,
                private val idRestaurant: Int,
                private val idMusician: Int,
-               val dateTime: Date,
+               val dateTime: String,
                private val budget: Int,
                private val musicianRate : Int,
                val restaurantRate: Int) : Parcelable {
@@ -17,14 +19,15 @@ class Perform(
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
-        Date(parcel.readLong()),
+        Date(parcel.readLong()).toString(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt()
                                       )
 
     fun getDate(): Date {
-        return this.dateTime
+        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        return formatter.parse(dateTime) ?: Date()
     }
 
     fun getIdMusician(): Int {

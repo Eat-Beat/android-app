@@ -41,6 +41,13 @@ object ApiRepository {
         if (response.isSuccessful) response.body() else null
     }
 
+    suspend fun getPerforms(): List<Perform>? {
+        return withContext(Dispatchers.IO) {
+            val response = apiService.getPerforms()
+            if (response.isSuccessful) response.body() else null
+        }
+    }
+
     suspend fun getPerformsByMusicianId(id: Int): List<Perform>? {
         return withContext(Dispatchers.IO) {
             val response = apiService.getPerformsByMusicianId(id)

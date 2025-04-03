@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.Musician
 
 class ContractsCalendarAdapter(
