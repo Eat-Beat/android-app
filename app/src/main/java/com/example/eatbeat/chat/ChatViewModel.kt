@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import kotlin.concurrent.thread
 
@@ -33,6 +34,9 @@ class ChatViewModel(private val idReceaver: Int) : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun sendMessage(userInput: String) {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+        val now = LocalDateTime.now().format(formatter)
+
       if (UserData.userType == 1) {
             val msg = Message(
                 idReceaver,
@@ -40,7 +44,7 @@ class ChatViewModel(private val idReceaver: Int) : ViewModel() {
                 UserData.userId,
                 false,
                 userInput,
-                Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())
+                now
                              )
             messageList.add(msg)
             createChat(msg)
@@ -51,7 +55,7 @@ class ChatViewModel(private val idReceaver: Int) : ViewModel() {
                 UserData.userId,
                 false,
                 userInput,
-                Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())
+                now
                              )
             messageList.add(msg)
             createChat(msg)
@@ -78,7 +82,7 @@ class ChatViewModel(private val idReceaver: Int) : ViewModel() {
             if (tempMessages!!.size > messageList.size) {
                 tempMessages?.let {
                     messageList.clear()
-                    messageList.addAll(it)
+                    messageList.addAll(it.sortedBy { msg -> msg.getDate()})
                 }
             }
         } catch (e: Exception) {

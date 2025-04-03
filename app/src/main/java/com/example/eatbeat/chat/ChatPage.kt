@@ -88,7 +88,7 @@ fun MessageList(modifier: Modifier = Modifier, messageList: List<Message>) {
                 contentDescription = "Icon",
                 tint = orange,
                 )
-            Text(text = "Ask me anything", fontSize = 22.sp)
+            Text(text = "Start the Conversation!", fontSize = 22.sp)
         }
     } else {
         LazyColumn(
@@ -186,8 +186,13 @@ fun AppHeader(modifier: Modifier = Modifier, onBackClick: () -> Unit = {}) {
                 tint = Color.White
                 )
         }
+        val headerText: String;
+        if (UserData.userType== 1)
+            headerText = "Restaurant"
+        else
+            headerText= "Musician"
         Text(
-            text = "Eat&Beat AI Support",
+            text = headerText,
             color = Color.White,
             fontSize = 22.sp,
             modifier = Modifier.padding(start = 8.dp)

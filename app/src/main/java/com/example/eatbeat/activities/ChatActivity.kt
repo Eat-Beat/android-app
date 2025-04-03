@@ -39,20 +39,23 @@ class ChatActivity : AppCompatActivity(){
 
         lifecycleScope.launch {
             try {
-                val messages = if (UserData.userType == 1){
+                val messages = if (UserData.userType == 1) {
                     getChatsByMusicianId(UserData.userId)
-                }else{
+                } else {
                     getChatsByRestaurantId(UserData.userId)
                 }
+
                 val profileCellsRecycler = findViewById<RecyclerView>(R.id.chatsListRecyclerView)
                 profileCellsRecycler.layoutManager = LinearLayoutManager(this@ChatActivity)
+
                 if (messages != null) {
-                    profileCellsRecycler.adapter = ChatsAdapter(loadProfileCellsList(messages)){
-                        profileCell -> openChat(profileCell)}
+                    val profileCells = loadProfileCellsList(messages)
+                    profileCellsRecycler.adapter = ChatsAdapter(profileCells) { profileCell ->
+                        openChat(profileCell)
+                    }
                 }
-            }catch (e: Exception)
-            {
-                println("API Connexion Error")
+            } catch (e: Exception) {
+                println("API Connection Error: ${e.message}")
             }
         }
     }
@@ -63,54 +66,43 @@ class ChatActivity : AppCompatActivity(){
         startActivity(intent)
     }
 
-    private fun loadProfileCellsList(messages: List<Message>) : ArrayList<ProfileCell>{
+    private suspend fun loadProfileCellsList(messages: List<Message>): ArrayList<ProfileCell> {
         val profileCells = ArrayList<ProfileCell>()
 
-        if (UserData.userType == 1){
-            lifecycleScope.launch {
-                try {
-                    val restaurants = getRestaurants()
-
-                    for (message in messages){
-                        val restaurant = restaurants?.find { it.getId() == message.idRestaurant }
-                        val profileCell = ProfileCell(
-                            message.idRestaurant,
-                            restaurant?.getName()!!,
-                            restaurant.getMultimedia())
-
-                        if (!profileCells.contains(profileCell)){   //Puede que falle
-                            profileCells.add(profileCell)
-                        }
+        if (UserData.userType == 1) {
+            val restaurants = getRestaurants()
+            for (message in messages) {
+                val restaurant = restaurants?.find { it.getId() == message.idRestaurant }
+                if (restaurant != null) {
+                    val profileCell = ProfileCell(
+                        message.idRestaurant,
+                        restaurant.getName(),
+                        restaurant.getMultimedia()
+                                                 )
+                    if (!profileCells.contains(profileCell)) {
+                        profileCells.add(profileCell)
                     }
-                }catch (e: Exception)
-                {
-                    println("API Connexion Error")
                 }
             }
         } else {
-            lifecycleScope.launch {
-                try {
-                    val musicians = getMusicians()
-
-                    for (message in messages){
-                        val musician = musicians?.find { it.getId() == message.idMusician }
-                        val profileCell = ProfileCell(
-                            message.idMusician,
-                            musician?.getName()!!,
-                            musician.getMultimedia().first())
-
-                        if (!profileCells.contains(profileCell)){   //Puede que falle
-                            profileCells.add(profileCell)
-                        }
+            val musicians = getMusicians()
+            for (message in messages) {
+                val musician = musicians?.find { it.getId() == message.idMusician }
+                if (musician != null) {
+                    val profileCell = ProfileCell(
+                        message.idMusician,
+                        musician.getName(),
+                        musician.getMultimedia().first()
+                                                 )
+                    if (!profileCells.contains(profileCell)) {
+                        profileCells.add(profileCell)
                     }
-                }catch (e: Exception)
-                {
-                    println("API Connexion Error")
                 }
             }
         }
         return profileCells
     }
+
 
     private fun activateChatBotBanner() {
         val chatbotBanner= findViewById<ConstraintLayout>(R.id.chatbotid)

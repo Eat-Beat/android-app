@@ -60,6 +60,9 @@
         <activity
             android:name=".chatbot.MainChatBotActivity"
             android:exported="false" />
+        <activity
+            android:name=".chat.MainChatActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
