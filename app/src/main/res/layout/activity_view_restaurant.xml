@@ -160,7 +160,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <include layout="@layout/navigation_bar"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

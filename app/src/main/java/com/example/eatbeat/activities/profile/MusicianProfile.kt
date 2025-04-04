@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,14 +19,19 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.MultimediaAdapter
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.fragments.EditUserFrag
 import com.example.eatbeat.fragments.SettingsFrag
 import com.example.eatbeat.fragments.StatsFrag
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.utils.activateNavBar
+import com.example.eatbeat.utils.api.ApiRepository.getMusicianById
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getPerforms
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.coroutines.launch
 
 class MusicianProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,15 +54,34 @@ class MusicianProfile : AppCompatActivity() {
         val navProfile = findViewById<ImageView>(R.id.navProfileIcon)
         navProfile.setImageResource(R.drawable.user_selected)
 
+        lifecycleScope.launch {
+            try {
+                val musician = getMusicianById(UserData.userId)!!
+                chargeMultimedia(musician)
+                chargeDetails(musician)
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
         settingsClick(optionsButton)
         editProfileClick(editButton)
         statsScreenClick(ratingsButton)
 
         activateNavBar(this, this, 4)
 
-        val musicians = loadMusiciansFromJson(loadJsonFromRaw(this, R.raw.musicians)!!)
 
-        chargeMultimedia(musicians[0])
+    }
+
+    private fun chargeDetails(musician: Musician) {
+        val userName = findViewById<TextView>(R.id.profileUserName)
+        val rating = findViewById<RatingBar>(R.id.rating)
+        val description = findViewById<TextView>(R.id.profileDescription)
+
+        userName.text = musician.getName()
+        rating.rating = musician.getRating()
+        description.text = musician.getDescription()
     }
 
     private fun chargeMultimedia(musician: Musician) {

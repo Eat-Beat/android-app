@@ -2,6 +2,7 @@ package com.example.eatbeat.utils.api
 
 import com.example.eatbeat.chat.Message
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.contracts.PerformProfile
 import com.example.eatbeat.users.*
 import com.example.eatbeat.users.musicianAttributes.Multimedia
 import retrofit2.Response
@@ -33,10 +34,10 @@ interface ApiService {
     suspend fun getMusicianById(@Path("id") id: Int): Response<Musician>
 
     @GET("performs/profile/musician/{id}")
-    suspend fun getPerformsByMusicianId(@Path("id") id: Int): Response<List<Perform>>
+    suspend fun getPerformsByMusicianId(@Path("id") id: Int): Response<List<PerformProfile>>
 
     @GET("performs/restaurant/{id}")
-    suspend fun getPerformsByRestaurantId(@Path("id") id: Int): Response<List<Perform>>
+    suspend fun getPerformsByRestaurantId(@Path("id") id: Int): Response<List<PerformProfile>>
 
     @PUT("multimedias/{id}")
     suspend fun updateMultimedia(@Path("id") id: Int, @Body multimedia: Multimedia): Response<Multimedia>

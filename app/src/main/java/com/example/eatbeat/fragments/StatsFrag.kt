@@ -11,11 +11,19 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.RestaurantReviewAdapter
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
+import com.example.eatbeat.users.User
+import com.example.eatbeat.utils.api.ApiRepository.getMusicianById
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getPerforms
+import com.example.eatbeat.utils.api.ApiRepository.getPerformsByMusicianId
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadContractsForProfileFromJson
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
@@ -31,11 +39,14 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class StatsFrag : Fragment() {
+
+    private lateinit var contractsMusician : List<Perform>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,7 +78,8 @@ class StatsFrag : Fragment() {
         }
 
 
-        createEventsLineChart(loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!))
+        getContractsFromMusician()
+        createEventsLineChart(contractsMusician)
         createReviewsChart()
         fillInReviews()
 
@@ -89,7 +101,7 @@ class StatsFrag : Fragment() {
         })
     }
 
-    private fun createEventsLineChart(contracts: ArrayList<Perform>) {
+    private fun createEventsLineChart(contracts: List<Perform>) {
         val actsCount = getMonthlyPerformances(contracts)
 
         val entries = ArrayList<Entry>()
@@ -144,7 +156,7 @@ class StatsFrag : Fragment() {
         }
     }
 
-    private fun getMonthlyPerformances(contracts: ArrayList<Perform>): ArrayList<Pair<String, Int>> {
+    private fun getMonthlyPerformances(contracts: List<Perform>): ArrayList<Pair<String, Int>> {
         val sdf = SimpleDateFormat("yyyy-MM", Locale.getDefault())
         val monthlyCounts = mutableMapOf<String, Int>()
 
@@ -246,13 +258,42 @@ class StatsFrag : Fragment() {
         return array
     }
 
+    private fun getContractsFromMusician(){
+        val contractsFromMusician: MutableList<Perform> = mutableListOf()
+
+        lifecycleScope.launch {
+            try {
+                val contracts = getPerforms()!!
+                val musician = getMusicianById(UserData.userId)!!
+
+                musician.let { m ->
+                    contractsFromMusician.addAll(contracts.filter { it.getIdMusician() == m.getId() })
+                }
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
+        contractsMusician = contractsFromMusician
+    }
+
     private fun fillInReviews(){
         val reviewsRecyclerView : RecyclerView? = view?.findViewById(R.id.reviewsList)
 
         reviewsRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
-        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsForProfileFromJson(loadJsonFromRaw(requireContext(), R.raw.contract_3)!!),
-                                                               loadRestaurantsFromJson(loadJsonFromRaw(requireContext(), R.raw.restaurans)!!)
-                                                              )
+        lifecycleScope.launch {
+            try {
+                val contracts = getPerformsByMusicianId(UserData.userId)!!
+                val restaurants = getRestaurants()!!
+                reviewsRecyclerView?.adapter = RestaurantReviewAdapter(contracts, restaurants)
+
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
     }
 }

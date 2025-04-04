@@ -12,7 +12,7 @@ import com.example.eatbeat.R
 import com.example.eatbeat.contracts.PerformProfile
 import com.example.eatbeat.users.Restaurant
 
-class RestaurantReviewAdapter(private val contracts: ArrayList<PerformProfile>, private val restaurants: ArrayList<Restaurant>) :
+class RestaurantReviewAdapter(private val contracts: List<PerformProfile>, private val restaurants: List<Restaurant>) :
     RecyclerView.Adapter<RestaurantReviewAdapter.RestaurantViewHolder>() {
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -10,20 +10,34 @@ import android.widget.ImageView
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.ManualSearchAdapter
 import com.example.eatbeat.users.Restaurant
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadRestaurantsFromJson
+import kotlinx.coroutines.launch
 
 class ManualSearchRestaurant : AppCompatActivity() {
+    private lateinit var restaurantList : ArrayList<Restaurant>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_manual_search_restaurant)
 
+        lifecycleScope.launch {
+            try {
+                val restaurants = getRestaurants()
+                val restaurantsList = restaurants?.toMutableList() as ArrayList<Restaurant>
+                restaurantList = restaurantsList
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
 
         createList()
         activateSpinnerAlph()
@@ -44,7 +58,6 @@ class ManualSearchRestaurant : AppCompatActivity() {
 
     private fun updateListOnSearch() {
         val searchText = findViewById<EditText>(R.id.searchRestaurant)
-        val restaurantList = loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!)
         val filteredList = mutableListOf<Restaurant>()
 
         for (restaurant in restaurantList) {
@@ -80,7 +93,6 @@ class ManualSearchRestaurant : AppCompatActivity() {
     private fun sortRestaurants() {
         val spinnerAlphabetic = findViewById<Spinner>(R.id.spinneralph)
         val selectedSortOrder = spinnerAlphabetic.selectedItem.toString()
-        val restaurantList = loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!)
 
         restaurantList.sortBy { it.getName() }
 
@@ -95,7 +107,6 @@ class ManualSearchRestaurant : AppCompatActivity() {
     }
 
     private fun createList() {
-        val restaurantList = loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!)
         val restaurantRecycler = findViewById<RecyclerView>(R.id.recyclerManualSearch )
 
         restaurantRecycler.layoutManager = LinearLayoutManager(this)
