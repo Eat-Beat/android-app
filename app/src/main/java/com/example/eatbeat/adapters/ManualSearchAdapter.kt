@@ -29,9 +29,16 @@ class ManualSearchAdapter (private val restaurants: List<Restaurant>, private va
 
         holder.restaurantName.text = restaurant.getName()
 
-        Glide.with(holder.itemView.context)
-            .load(restaurant.getMultimedia().getImage())
-            .into(holder.image)
+        val multimedia = restaurant.getMultimedia()
+        if (multimedia == null || multimedia.getImage() == null) {
+            Glide.with(holder.itemView.context)
+                .load(R.drawable.not_load_restaurant_bc)
+                .into(holder.image)
+        } else {
+            Glide.with(holder.itemView.context)
+                .load(multimedia.getImage())
+                .into(holder.image)
+        }
 
         holder.itemView.setOnClickListener {
             viewProfile(restaurant)

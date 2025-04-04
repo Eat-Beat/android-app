@@ -22,7 +22,8 @@ import com.example.eatbeat.utils.loadRestaurantsFromJson
 import kotlinx.coroutines.launch
 
 class ManualSearchRestaurant : AppCompatActivity() {
-    private lateinit var restaurantList : ArrayList<Restaurant>
+    private var restaurantList : ArrayList<Restaurant> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

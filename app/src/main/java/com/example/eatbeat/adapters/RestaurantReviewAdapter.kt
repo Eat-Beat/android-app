@@ -29,14 +29,21 @@ class RestaurantReviewAdapter(private val contracts: List<PerformProfile>, priva
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val contract = contracts[position]
-        val restaurant = restaurants.find { it.getName() == contract.getName() }
+        val restaurant = restaurants.find { it.getName() == contract.getName() }!!
 
         holder.restaurantName.text = contract.getName()
         holder.starsReview.rating = contract.getRate().toFloat()
 
-        Glide.with(holder.itemView.context)
-            .load(restaurant?.getMultimedia()?.getImage())
-            .into(holder.restaurantProfile)
+        val multimedia = restaurant.getMultimedia()
+        if (multimedia == null || multimedia.getImage() == null) {
+            Glide.with(holder.itemView.context)
+                .load(R.drawable.not_load_restaurant_bc)
+                .into(holder.restaurantProfile)
+        } else {
+            Glide.with(holder.itemView.context)
+                .load(multimedia.getImage())
+                .into(holder.restaurantProfile)
+        }
     }
 
 

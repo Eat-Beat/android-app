@@ -46,12 +46,14 @@ class ContractListActivity : AppCompatActivity() {
                     1 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
-                        fillList(contracts, musicians)
+                        val filteredContracts = filterContracts(contracts)
+                        fillList(filteredContracts, musicians)
                     }
                     2 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
-                        fillList(contracts, musicians)
+                        val filteredContracts = filterContracts(contracts)
+                        fillList(filteredContracts, musicians)
                     }
                 }
             }catch (e: Exception)
@@ -60,6 +62,23 @@ class ContractListActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
+        val filteredContracts: MutableList<Perform> = mutableListOf()
+        val contracts = contractsAPI
+        val currId = UserData.userId
+
+        when(UserData.userType){
+            1 -> {
+                filteredContracts.addAll(contracts.filter { it.getIdMusician() == currId })
+            }
+            2 -> {
+                filteredContracts.addAll(contracts.filter { it.getIdRestaurant() == currId })
+            }
+        }
+
+        return filteredContracts
     }
 
     private fun fillList(contracts : List<Perform>, musicians : List<Musician>) {

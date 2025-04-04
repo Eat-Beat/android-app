@@ -107,14 +107,28 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
         val imageUrl = restaurant.getMultimedia().getImage()
 
-        Glide.with(this)
-            .load(imageUrl)
-            .into(object : SimpleTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable, transition: Transition<in Drawable?>?) {
-                    val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
-                    backgroundPfp.background = resource
-                }
-            })
+        val multimedia = restaurant.getMultimedia()
+        if (multimedia == null || multimedia.getImage() == null) {
+            Glide.with(this)
+                .load(R.drawable.not_load_restaurant_bc)
+                .into(object : SimpleTarget<Drawable?>() {
+                    override fun onResourceReady(
+                        resource: Drawable, transition: Transition<in Drawable?>?) {
+                        val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
+                        backgroundPfp.background = resource
+                    }
+                })
+        } else {
+            Glide.with(this)
+                .load(imageUrl)
+                .into(object : SimpleTarget<Drawable?>() {
+                    override fun onResourceReady(
+                        resource: Drawable, transition: Transition<in Drawable?>?) {
+                        val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
+                        backgroundPfp.background = resource
+                    }
+                })
+        }
+
     }
 }

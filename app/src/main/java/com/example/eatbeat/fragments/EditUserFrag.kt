@@ -1,6 +1,9 @@
 package com.example.eatbeat.fragments
 
+import android.R.attr.path
+import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +14,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.eatbeat.R
+import com.example.eatbeat.data.UserData
+import com.example.eatbeat.users.musicianAttributes.Multimedia
+import com.example.eatbeat.utils.api.ApiRepository.getMusicianById
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
+import com.example.eatbeat.utils.api.ApiRepository.updateMultimedia
+import com.example.eatbeat.utils.uploadBitmap
+import kotlinx.coroutines.launch
 
 
 class EditUserFrag : Fragment() {
@@ -39,24 +51,43 @@ class EditUserFrag : Fragment() {
             closeAnimation(fadeOut, fragment)
         }
 
-        saveChanges()
-        getPhotoFromGallery()
+
+        val save = view.findViewById<ImageView>(R.id.saveChanges)
+        save.setOnClickListener {
+            saveChanges()
+        }
+
+        val pickPhoto = view.findViewById<ImageView>(R.id.profileImageEdit)
+        pickPhoto.setOnClickListener {
+            getPhotoFromGallery()
+        }
 
         return view
     }
 
     private fun saveChanges(){
         val profileImage = view?.findViewById<ImageView>(R.id.profileImageEdit)
-        val name = view?.findViewById<EditText>(R.id.nameEdit)
-        val description = view?.findViewById<EditText>(R.id.descriptionEdit)
-        val multimedia = view?.findViewById<RecyclerView>(R.id.multimediaListEdit)
 
     }
 
-    private fun getPhotoFromGallery(){
+    private fun getPhotoFromGallery() {
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
-        photoPickerIntent.setType("image/*")
-        startActivityForResult(photoPickerIntent, R.id.profileImageEdit)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, 1)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            val selectedImageUri = data?.data
+
+            selectedImageUri?.let {
+                val profileImage = view?.findViewById<ImageView>(R.id.profileImageEdit)!!
+
+                Glide.with(this).load(it).into(profileImage)
+            }
+        }
     }
 
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){

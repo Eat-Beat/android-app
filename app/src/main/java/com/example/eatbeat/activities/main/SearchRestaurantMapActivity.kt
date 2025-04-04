@@ -130,22 +130,28 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
                         .center(Point.fromLngLat(longitude, latitude))
                         .zoom(14.0)
                         .build()
-                )
+                                                )
 
                 val annotationApi = mapView.annotations
-                val pointAnnotationManager: PointAnnotationManager =
-                    annotationApi.createPointAnnotationManager()
+                val pointAnnotationManager: PointAnnotationManager = annotationApi.createPointAnnotationManager()
 
+                val originalBitmap = bitmapFromDrawableRes(context, R.drawable.restaurant_waypoint)
+
+                val scaledBitmap = scaleBitmap(originalBitmap!!, 100, 100) // 100x100 for example
 
                 val pointAnnotationOptions = PointAnnotationOptions()
                     .withPoint(Point.fromLngLat(longitude, latitude))
-                    .withIconImage(bitmapFromDrawableRes(context, R.drawable.restaurant_waypoint)!!)
+                    .withIconImage(scaledBitmap)
 
                 pointAnnotationManager.create(pointAnnotationOptions)
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun scaleBitmap(original: Bitmap, width: Int, height: Int): Bitmap {
+        return Bitmap.createScaledBitmap(original, width, height, false)
     }
 
     private fun bitmapFromDrawableRes(context: Context, @DrawableRes resId: Int): Bitmap? {

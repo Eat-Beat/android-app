@@ -10,6 +10,7 @@ import com.example.eatbeat.R
 import com.example.eatbeat.activities.main.SearchMusicianActivity
 import com.example.eatbeat.activities.main.SearchRestaurantActivity
 import com.example.eatbeat.activities.profile.MusicianProfile
+import com.example.eatbeat.activities.profile.RestaurantProfile
 import com.example.eatbeat.data.UserData
 
 fun activateNavBar(activity: Activity, context: Context, selected: Int){
@@ -59,8 +60,15 @@ fun activateNavBar(activity: Activity, context: Context, selected: Int){
     }
 
     navProfile.setOnClickListener{
-        val intent = Intent(context, MusicianProfile::class.java)
-        activity.startActivity(intent)
-        activity.finish()
+       if (UserData.userType == 1){
+           val intent = Intent(context, MusicianProfile::class.java)
+           activity.startActivity(intent)
+           activity.finish()
+       }
+       if (UserData.userType == 2){
+           val intent = Intent(context, RestaurantProfile::class.java)
+           activity.startActivity(intent)
+           activity.finish()
+       }
     }
 }

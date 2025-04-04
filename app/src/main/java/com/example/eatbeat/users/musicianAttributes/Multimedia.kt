@@ -14,4 +14,8 @@ class Multimedia(
     fun getImage(): String {
         return url
     }
+
+    fun getId(): Int {
+        return idMultimedia
+    }
 }
