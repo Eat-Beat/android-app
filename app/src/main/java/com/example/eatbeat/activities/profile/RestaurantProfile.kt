@@ -79,7 +79,7 @@ class RestaurantProfile : AppCompatActivity() {
                     val latitude = location.latitude
                     val longitude = location.longitude
 
-                    val map = findViewById<MapView>(R.id.mapRestaurantProfile)
+                    val map = findViewById<MapView>(R.id.mapRestaurant)
 
                     map.getMapboxMap().setCamera(
                         CameraOptions.Builder()

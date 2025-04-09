@@ -18,6 +18,7 @@ import com.example.eatbeat.R
 import com.example.eatbeat.adapters.RestaurantReviewAdapter
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.data.UserData
+import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.User
 import com.example.eatbeat.utils.api.ApiRepository.getMusicianById
 import com.example.eatbeat.utils.api.ApiRepository.getMusicians
@@ -27,6 +28,7 @@ import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadContractsForProfileFromJson
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
+import com.example.eatbeat.utils.loadMusiciansFromJson
 import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
@@ -168,8 +170,8 @@ class StatsFrag : Fragment() {
         }
 
         for (perform in contracts) {
-            val date = SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.getDefault()).parse(perform.dateTime.toString())
-            val monthYear = sdf.format(date!!)
+            val date = perform.getDate()
+            val monthYear = sdf.format(date)
             monthlyCounts[monthYear] = monthlyCounts.getOrDefault(monthYear, 0) + 1
         }
 
@@ -261,21 +263,16 @@ class StatsFrag : Fragment() {
     private fun getContractsFromMusician(){
         val contractsFromMusician: MutableList<Perform> = mutableListOf()
 
-        lifecycleScope.launch {
-            try {
-                val contracts = getPerforms()!!
-                val musician = getMusicianById(UserData.userId)!!
+        val reviews: ArrayList<Perform> = loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!)
+        val musicians: ArrayList<Musician> = loadMusiciansFromJson(loadJsonFromRaw(requireContext(), R.raw.musicians)!!)
+        val musician = musicians.find { it.getId() == UserData.userId }!!
 
-                musician.let { m ->
-                    contractsFromMusician.addAll(contracts.filter { it.getIdMusician() == m.getId() })
-                }
-            }catch (e: Exception)
-            {
-                println("API Connexion Error")
-            }
+        musician.let { m ->
+            contractsFromMusician.addAll(reviews.filter { it.getIdMusician() == m.getId() })
         }
 
         contractsMusician = contractsFromMusician
+
     }
 
     private fun fillInReviews(){

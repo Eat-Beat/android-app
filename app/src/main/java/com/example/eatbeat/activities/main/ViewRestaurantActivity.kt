@@ -1,6 +1,7 @@
 package com.example.eatbeat.activities.main
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.location.Geocoder
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.MultimediaAdapter
+import com.example.eatbeat.chat.MainChatActivity
 import com.example.eatbeat.fragments.StatsFrag
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
@@ -65,6 +67,13 @@ class ViewRestaurantActivity: AppCompatActivity() {
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val backButton = findViewById<ImageView>(R.id.backButton)
 
+        val messageButton = findViewById<ImageView>(R.id.chatIcon)
+        messageButton.setOnClickListener {
+            val intent = Intent(this, MainChatActivity::class.java)
+            intent.putExtra("userId", restaurantId)
+            startActivity(intent)
+        }
+
         BottomSheetBehavior.from(bottomSheet).apply {
             peekHeight = 530
             state = BottomSheetBehavior.STATE_COLLAPSED
@@ -109,25 +118,15 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
         val multimedia = restaurant.getMultimedia()
         if (multimedia == null || multimedia.getImage() == null) {
+            val profileImage = findViewById<ImageView>(R.id.pflUserLargeImage)
             Glide.with(this)
                 .load(R.drawable.not_load_restaurant_bc)
-                .into(object : SimpleTarget<Drawable?>() {
-                    override fun onResourceReady(
-                        resource: Drawable, transition: Transition<in Drawable?>?) {
-                        val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
-                        backgroundPfp.background = resource
-                    }
-                })
+                .into(profileImage)
         } else {
+            val profileImage = findViewById<ImageView>(R.id.pflUserLargeImage)
             Glide.with(this)
                 .load(imageUrl)
-                .into(object : SimpleTarget<Drawable?>() {
-                    override fun onResourceReady(
-                        resource: Drawable, transition: Transition<in Drawable?>?) {
-                        val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
-                        backgroundPfp.background = resource
-                    }
-                })
+                .into(profileImage)
         }
 
     }

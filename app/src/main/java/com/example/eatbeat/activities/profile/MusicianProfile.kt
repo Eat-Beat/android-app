@@ -88,16 +88,11 @@ class MusicianProfile : AppCompatActivity() {
         val multimediaRecycler = findViewById<RecyclerView>(R.id.multimediaUserRecyclerView)
 
         val imageUrl = musician.getMultimedia()[0].getImage()
+        val profileImage = findViewById<ImageView>(R.id.profileImage)
 
         Glide.with(this)
             .load(imageUrl)
-            .into(object : SimpleTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable, transition: Transition<in Drawable?>?) {
-                    val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
-                    backgroundPfp.background = resource
-                }
-            })
+            .into(profileImage)
 
         multimediaRecycler.layoutManager = GridLayoutManager(this, 3)
 

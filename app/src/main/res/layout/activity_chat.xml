@@ -77,8 +77,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatsListRecyclerView"
-        android:layout_width="407dp"
-        android:layout_height="489dp"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.966" />
 
     <include layout="@layout/navigation_bar"/>
 
