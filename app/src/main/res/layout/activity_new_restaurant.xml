@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.login.ForgotPasswordActivity">
+    tools:context=".activities.login.NewRestaurantActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,16 +18,17 @@
             android:id="@+id/logo"
             android:layout_width="@dimen/loginLogo"
             android:layout_height="@dimen/loginLogo"
+            android:layout_marginBottom="@dimen/loginMargin"
             android:background="@drawable/logo"
             android:contentDescription="@string/logo"
             />
 
         <EditText
-            android:id="@+id/emailTextbox"
+            android:id="@+id/addressTextbox"
             android:layout_width="@dimen/textBoxWidth"
             android:layout_height="@dimen/textBoxHeight"
             android:background="@drawable/textbox"
-            android:hint="@string/email"
+            android:hint="@string/address"
             android:paddingStart="@dimen/textBoxPadding"
             android:paddingEnd="@dimen/textBoxPadding"
             android:fontFamily="@font/barlow_light"
@@ -36,26 +37,58 @@
             android:layout_margin="@dimen/textBoxMargin"
             />
 
+        <EditText
+            android:id="@+id/numberTextbox"
+            android:layout_width="@dimen/textBoxWidth"
+            android:layout_height="@dimen/textBoxHeight"
+            android:background="@drawable/textbox"
+            android:hint="@string/number"
+            android:paddingStart="@dimen/textBoxPadding"
+            android:paddingEnd="@dimen/textBoxPadding"
+            android:fontFamily="@font/barlow_light"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:textSize="@dimen/textBoxText"
+            android:layout_margin="@dimen/textBoxMargin"
+            />
+
+        <EditText
+            android:id="@+id/postalCodeTextbox"
+            android:layout_width="@dimen/textBoxWidth"
+            android:layout_height="@dimen/textBoxHeight"
+            android:background="@drawable/textbox"
+            android:hint="@string/postalCode"
+            android:paddingStart="@dimen/textBoxPadding"
+            android:paddingEnd="@dimen/textBoxPadding"
+            android:fontFamily="@font/barlow_light"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:textSize="@dimen/textBoxText"
+            android:layout_margin="@dimen/textBoxMargin"
+            />
+
         <Button
-            android:id="@+id/sendEmailButton"
+            android:id="@+id/createButton"
             android:background="@drawable/button"
             android:layout_width="@dimen/buttonWidth"
             android:layout_height="@dimen/buttonHeight"
-            android:text="@string/sendEmail"
+            android:layout_marginTop="@dimen/loginMargin"
+            android:text="@string/create"
             android:fontFamily="@font/barlow_medium"
             android:textColor="@color/black"
             android:textSize="@dimen/buttonText"
             />
 
         <TextView
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/underlinedButtonText"
+            android:layout_marginTop="@dimen/textBoxMargin"
             android:fontFamily="@font/barlow_light"
             android:textColor="@color/black"
-            android:text="@string/loginUnderlined"
+            android:text="@string/back"
             />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

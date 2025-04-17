@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.login.NewPasswordActivity">
+    tools:context=".activities.login.NewUserActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,16 +18,31 @@
             android:id="@+id/logo"
             android:layout_width="@dimen/loginLogo"
             android:layout_height="@dimen/loginLogo"
+            android:layout_marginBottom="@dimen/loginMargin"
             android:background="@drawable/logo"
             android:contentDescription="@string/logo"
             />
 
         <EditText
-            android:id="@+id/codeTextbox"
+            android:id="@+id/nameTextbox"
             android:layout_width="@dimen/textBoxWidth"
             android:layout_height="@dimen/textBoxHeight"
             android:background="@drawable/textbox"
-            android:hint="@string/code"
+            android:hint="@string/textBoxName"
+            android:paddingStart="@dimen/textBoxPadding"
+            android:paddingEnd="@dimen/textBoxPadding"
+            android:fontFamily="@font/barlow_light"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textBoxText"
+            android:layout_margin="@dimen/textBoxMargin"
+            />
+
+        <EditText
+            android:id="@+id/emailTextbox"
+            android:layout_width="@dimen/textBoxWidth"
+            android:layout_height="@dimen/textBoxHeight"
+            android:background="@drawable/textbox"
+            android:hint="@string/email"
             android:paddingStart="@dimen/textBoxPadding"
             android:paddingEnd="@dimen/textBoxPadding"
             android:fontFamily="@font/barlow_light"
@@ -41,9 +56,10 @@
             android:layout_width="@dimen/textBoxWidth"
             android:layout_height="@dimen/textBoxHeight"
             android:background="@drawable/textbox"
-            android:hint="@string/newPassword"
+            android:hint="@string/password"
             android:paddingStart="@dimen/textBoxPadding"
             android:paddingEnd="@dimen/textBoxPadding"
+            android:inputType="textPassword"
             android:fontFamily="@font/barlow_light"
             android:textColor="@color/black"
             android:textSize="@dimen/textBoxText"
@@ -58,30 +74,54 @@
             android:hint="@string/confirmPassword"
             android:paddingStart="@dimen/textBoxPadding"
             android:paddingEnd="@dimen/textBoxPadding"
+            android:inputType="textPassword"
             android:fontFamily="@font/barlow_light"
             android:textColor="@color/black"
             android:textSize="@dimen/textBoxText"
             android:layout_margin="@dimen/textBoxMargin"
             />
 
+        <RadioGroup
+            android:id="@+id/radioGroupUserType"
+            android:layout_width="@dimen/textBoxWidth"
+            android:layout_height="@dimen/textBoxHeight"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <RadioButton
+                android:id="@+id/musicianRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/musician"/>
+            <RadioButton
+                android:id="@+id/restaurantRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/restaurant"/>
+        </RadioGroup>
+
         <Button
-            android:id="@+id/confirmButton"
+            android:id="@+id/continueButton"
             android:background="@drawable/button"
             android:layout_width="@dimen/buttonWidth"
             android:layout_height="@dimen/buttonHeight"
-            android:text="@string/confirm"
+            android:layout_marginTop="@dimen/loginMargin"
+            android:text="@string/next"
             android:fontFamily="@font/barlow_medium"
             android:textColor="@color/black"
             android:textSize="@dimen/buttonText"
             />
 
         <TextView
+            android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/underlinedButtonText"
+            android:layout_marginTop="@dimen/textBoxMargin"
             android:fontFamily="@font/barlow_light"
             android:textColor="@color/black"
-            android:text="@string/resendEmail"
+            android:text="@string/loginUnderlined"
             />
     </LinearLayout>
 

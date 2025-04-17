@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.login.NewUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.login.NewMusicianActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.login.NewRestaurantActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.main.ViewMusicianActivity"
             android:exported="false" />
 

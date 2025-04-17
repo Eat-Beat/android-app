@@ -4,17 +4,16 @@
     <string name="logo">logo</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiaXZhbmZsb2wiLCJhIjoiY203bnBzNnM0MDNrajJtc2xhdDZod2w0NyJ9.oHnjBUX7mK8R9CVgVdAKpA</string>
     <string name="username">Email</string>
-    <string name="forgotPassword"><u>Olvidaste la contraseña?</u></string>
+    <string name="signUp"><u>Regístrate</u></string>
     <string name="password">Contraseña</string>
     <string name="login">Login</string>
     <string name="loginUnderlined"><u>Login</u></string>
     <string name="email">Email</string>
     <string name="sendEmail">Enviar email</string>
-    <string name="code">Codigo</string>
+    <string name="textBoxName">Nombre</string>
     <string name="newPassword">Nueva contraseña</string>
     <string name="confirmPassword">Confirmar contraseña</string>
-    <string name="resendEmail"><u>Renviar email</u></string>
-    <string name="confirm">Confirmar</string>
+    <string name="create">Crear</string>
     <string name="activity_calendar_title">CONTRATOS</string>
     <string name="seeList">Ver lista</string>
     <string name="seeCalendar">Ver calendario</string>
@@ -42,4 +41,10 @@
     <string name="asc">Alfabetico | Ascendiente</string>
     <string name="desc">Alfabetico | Descendiente</string>
     <string name="seeMap">Ver mapa</string>
+    <string name="restaurant">Restaurante</string>
+    <string name="address">Dirección</string>
+    <string name="number">Número</string>
+    <string name="postalCode">Código postal</string>
+    <string name="back"><u>Atrás</u></string>
+    <string name="next">Continuar</string>
 </resources>

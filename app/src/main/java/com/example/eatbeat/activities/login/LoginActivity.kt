@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val loginButton = findViewById<Button>(R.id.loginButton)
+        val signUpButton = findViewById<TextView>(R.id.signUpButton)
         val userName = findViewById<TextView>(R.id.usernameTextbox)
         val password = findViewById<TextView>(R.id.passwordTextbox)
         var userList = ArrayList<User>()
@@ -38,6 +39,11 @@ class LoginActivity : AppCompatActivity() {
             {
                 println("API Connexion Error")
             }
+        }
+
+        signUpButton.setOnClickListener(){
+            val intent = Intent(this, NewUserActivity::class.java)
+            startActivity(intent)
         }
 
         loginButton.setOnClickListener(){

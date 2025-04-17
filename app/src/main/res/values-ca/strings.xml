@@ -4,17 +4,16 @@
     <string name="logo">logo</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiaXZhbmZsb2wiLCJhIjoiY203bnBzNnM0MDNrajJtc2xhdDZod2w0NyJ9.oHnjBUX7mK8R9CVgVdAKpA</string>
     <string name="username">Email</string>
-    <string name="forgotPassword"><u>Heu oblidat la contrasenya?</u></string>
+    <string name="signUp"><u>Inscriu-te</u></string>
     <string name="password">Contrasenya</string>
     <string name="login">Login</string>
     <string name="loginUnderlined"><u>Login</u></string>
     <string name="email">Email</string>
     <string name="sendEmail">Enviar email</string>
-    <string name="code">Codi</string>
+    <string name="textBoxName">Nom</string>
     <string name="newPassword">Nova contrasenya</string>
     <string name="confirmPassword">Confirmar contrasenya</string>
-    <string name="resendEmail"><u>Reenviar email</u></string>
-    <string name="confirm">Confirmar</string>
+    <string name="create">Crear</string>
     <string name="activity_calendar_title">CONTRACTES</string>
     <string name="seeList">Veure llista</string>
     <string name="seeCalendar">Veure calendari</string>
@@ -42,4 +41,10 @@
     <string name="asc">Alfabetic | Ascendent</string>
     <string name="desc">Alfabetic | Descendent</string>
     <string name="seeMap">Veure mapa</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="address">Direcció</string>
+    <string name="number">Número</string>
+    <string name="postalCode">Codi postal</string>
+    <string name="back"><u>Enrere</u></string>
+    <string name="next">Continuar</string>
 </resources>
