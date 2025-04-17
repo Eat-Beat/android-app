@@ -23,9 +23,16 @@ class RestaurantAdapter(
 
 
         fun bind(restaurant: Restaurant) {
-            Glide.with(itemView.context)
-                .load(restaurant.getMultimedia().getImage())
-                .into(restaurantPic)
+            val multimedia = restaurant.getMultimedia()
+            if (multimedia == null || multimedia.getImage() == null) {
+                Glide.with(itemView.context)
+                    .load(R.drawable.not_load_restaurant_bc)
+                    .into(restaurantPic)
+            } else {
+                Glide.with(itemView.context)
+                    .load(multimedia.getImage())
+                    .into(restaurantPic)
+            }
 
             restaurantName.text = restaurant.getName()
             restaurantLocation.text = restaurant.getAddress()

@@ -2,12 +2,16 @@ package com.example.eatbeat.activities.main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Geocoder
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +19,17 @@ import com.example.eatbeat.R
 import com.example.eatbeat.adapters.CarouselAdapter
 import com.example.eatbeat.users.Restaurant
 import com.example.eatbeat.utils.activateNavBar
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
+import com.mapbox.maps.plugin.annotation.annotations
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
+import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class SearchRestaurantMapActivity : AppCompatActivity() {
@@ -41,7 +51,18 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
                 .build()
                                         )
 
-        restaurantCarousel.adapter = CarouselAdapter(loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!))
+        lifecycleScope.launch {
+            try {
+                val restaurants = getRestaurants()
+                val restaurantsList = restaurants?.toMutableList() as ArrayList<Restaurant>
+                restaurantCarousel.adapter = CarouselAdapter(restaurantsList)
+
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
         restaurantCarousel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         val snapHelper = LinearSnapHelper()
@@ -77,11 +98,19 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
     }
 
     private fun updateMapLocation(context: Context, position: Int) {
-        val restaurants = (loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!))
-        if (position in restaurants.indices) {
-            val restaurant = restaurants[position]
-            val fullAddress = "${restaurant.getAddress()}, ${restaurant.zipCode}"
-            chargeLocation(context, fullAddress)
+        lifecycleScope.launch {
+            try {
+                val restaurants = getRestaurants()
+                val restaurantsList = restaurants?.toMutableList() as ArrayList<Restaurant>
+                if (position in restaurantsList.indices) {
+                    val restaurant = restaurantsList[position]
+                    val fullAddress = "${restaurant.getAddress()}, ${restaurant.zipCode}"
+                    chargeLocation(context, fullAddress)
+                }
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
         }
     }
 
@@ -101,10 +130,31 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
                         .center(Point.fromLngLat(longitude, latitude))
                         .zoom(14.0)
                         .build()
-                )
+                                                )
+
+                val annotationApi = mapView.annotations
+                val pointAnnotationManager: PointAnnotationManager = annotationApi.createPointAnnotationManager()
+
+                val originalBitmap = bitmapFromDrawableRes(context, R.drawable.restaurant_waypoint)
+
+                val scaledBitmap = scaleBitmap(originalBitmap!!, 100, 100) // 100x100 for example
+
+                val pointAnnotationOptions = PointAnnotationOptions()
+                    .withPoint(Point.fromLngLat(longitude, latitude))
+                    .withIconImage(scaledBitmap)
+
+                pointAnnotationManager.create(pointAnnotationOptions)
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun scaleBitmap(original: Bitmap, width: Int, height: Int): Bitmap {
+        return Bitmap.createScaledBitmap(original, width, height, false)
+    }
+
+    private fun bitmapFromDrawableRes(context: Context, @DrawableRes resId: Int): Bitmap? {
+        return BitmapFactory.decodeResource(context.resources, resId)
     }
 }

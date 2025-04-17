@@ -2,6 +2,7 @@ package com.example.eatbeat.utils.api
 
 import com.example.eatbeat.chat.Message
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.contracts.PerformProfile
 import com.example.eatbeat.users.*
 import com.example.eatbeat.users.musicianAttributes.Multimedia
 import kotlinx.coroutines.Dispatchers
@@ -48,14 +49,14 @@ object ApiRepository {
         }
     }
 
-    suspend fun getPerformsByMusicianId(id: Int): List<Perform>? {
+    suspend fun getPerformsByMusicianId(id: Int): List<PerformProfile>? {
         return withContext(Dispatchers.IO) {
             val response = apiService.getPerformsByMusicianId(id)
             if (response.isSuccessful) response.body() else null
         }
     }
 
-    suspend fun getPerformsByRestaurantId(id: Int): List<Perform>? = withContext(Dispatchers.IO) {
+    suspend fun getPerformsByRestaurantId(id: Int): List<PerformProfile>? = withContext(Dispatchers.IO) {
         val response = apiService.getPerformsByRestaurantId(id)
         if (response.isSuccessful) response.body() else null
     }

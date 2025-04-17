@@ -11,14 +11,24 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.RestaurantReviewAdapter
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
+import com.example.eatbeat.users.Musician
+import com.example.eatbeat.users.User
+import com.example.eatbeat.utils.api.ApiRepository.getMusicianById
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getPerforms
+import com.example.eatbeat.utils.api.ApiRepository.getPerformsByMusicianId
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadContractsForProfileFromJson
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
+import com.example.eatbeat.utils.loadMusiciansFromJson
 import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
@@ -31,11 +41,14 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class StatsFrag : Fragment() {
+
+    private lateinit var contractsMusician : List<Perform>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,7 +80,8 @@ class StatsFrag : Fragment() {
         }
 
 
-        createEventsLineChart(loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!))
+        getContractsFromMusician()
+        createEventsLineChart(contractsMusician)
         createReviewsChart()
         fillInReviews()
 
@@ -89,7 +103,7 @@ class StatsFrag : Fragment() {
         })
     }
 
-    private fun createEventsLineChart(contracts: ArrayList<Perform>) {
+    private fun createEventsLineChart(contracts: List<Perform>) {
         val actsCount = getMonthlyPerformances(contracts)
 
         val entries = ArrayList<Entry>()
@@ -144,7 +158,7 @@ class StatsFrag : Fragment() {
         }
     }
 
-    private fun getMonthlyPerformances(contracts: ArrayList<Perform>): ArrayList<Pair<String, Int>> {
+    private fun getMonthlyPerformances(contracts: List<Perform>): ArrayList<Pair<String, Int>> {
         val sdf = SimpleDateFormat("yyyy-MM", Locale.getDefault())
         val monthlyCounts = mutableMapOf<String, Int>()
 
@@ -156,8 +170,8 @@ class StatsFrag : Fragment() {
         }
 
         for (perform in contracts) {
-            val date = SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.getDefault()).parse(perform.dateTime.toString())
-            val monthYear = sdf.format(date!!)
+            val date = perform.getDate()
+            val monthYear = sdf.format(date)
             monthlyCounts[monthYear] = monthlyCounts.getOrDefault(monthYear, 0) + 1
         }
 
@@ -246,13 +260,37 @@ class StatsFrag : Fragment() {
         return array
     }
 
+    private fun getContractsFromMusician(){
+        val contractsFromMusician: MutableList<Perform> = mutableListOf()
+
+        val reviews: ArrayList<Perform> = loadContractsFromJson(loadJsonFromRaw(requireContext(), R.raw.contracts)!!)
+        val musicians: ArrayList<Musician> = loadMusiciansFromJson(loadJsonFromRaw(requireContext(), R.raw.musicians)!!)
+        val musician = musicians.find { it.getId() == UserData.userId }!!
+
+        musician.let { m ->
+            contractsFromMusician.addAll(reviews.filter { it.getIdMusician() == m.getId() })
+        }
+
+        contractsMusician = contractsFromMusician
+
+    }
+
     private fun fillInReviews(){
         val reviewsRecyclerView : RecyclerView? = view?.findViewById(R.id.reviewsList)
 
         reviewsRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
 
-        reviewsRecyclerView?.adapter = RestaurantReviewAdapter(loadContractsForProfileFromJson(loadJsonFromRaw(requireContext(), R.raw.contract_3)!!),
-                                                               loadRestaurantsFromJson(loadJsonFromRaw(requireContext(), R.raw.restaurans)!!)
-                                                              )
+        lifecycleScope.launch {
+            try {
+                val contracts = getPerformsByMusicianId(UserData.userId)!!
+                val restaurants = getRestaurants()!!
+                reviewsRecyclerView?.adapter = RestaurantReviewAdapter(contracts, restaurants)
+
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
     }
 }

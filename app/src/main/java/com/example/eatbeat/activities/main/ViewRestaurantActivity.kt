@@ -1,6 +1,7 @@
 package com.example.eatbeat.activities.main
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.location.Geocoder
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,8 +21,12 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.MultimediaAdapter
+import com.example.eatbeat.chat.MainChatActivity
 import com.example.eatbeat.fragments.StatsFrag
+import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadRestaurantsFromJson
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -28,6 +34,7 @@ import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
+import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.security.auth.callback.Callback
 
@@ -41,16 +48,31 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
         val restaurantId = intent.getIntExtra("restaurantId", -1)
 
-        val restaurants = loadRestaurantsFromJson(loadJsonFromRaw(this, R.raw.restaurans)!!)
-        val restaurant = restaurants.find { it.getId() == restaurantId }
+        lifecycleScope.launch {
+            try {
+                val restaurants = getRestaurants()
+                val restaurantList = restaurants?.toMutableList() as ArrayList<Restaurant>
+                val restaurant = restaurantList.find { it.getId() == restaurantId }
 
-        if (restaurant != null){
-            loadInfo(restaurant)
-            chargeLocation(this, restaurant.getAddress())
+                if (restaurant != null){
+                    loadInfo(restaurant)
+                    chargeLocation(restaurant.getAddress())
+                }
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
         }
 
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val backButton = findViewById<ImageView>(R.id.backButton)
+
+        val messageButton = findViewById<ImageView>(R.id.chatIcon)
+        messageButton.setOnClickListener {
+            val intent = Intent(this, MainChatActivity::class.java)
+            intent.putExtra("userId", restaurantId)
+            startActivity(intent)
+        }
 
         BottomSheetBehavior.from(bottomSheet).apply {
             peekHeight = 530
@@ -63,8 +85,8 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
     }
 
-    private fun chargeLocation(context: Context, address: String) {
-        val geocoder = Geocoder(context, Locale.getDefault())
+    private fun chargeLocation(address: String) {
+        val geocoder = Geocoder(this, Locale.getDefault())
 
         try {
             val addresses = geocoder.getFromLocationName(address, 1)
@@ -94,14 +116,18 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
         val imageUrl = restaurant.getMultimedia().getImage()
 
-        Glide.with(this)
-            .load(imageUrl)
-            .into(object : SimpleTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable, transition: Transition<in Drawable?>?) {
-                    val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayoutRest)
-                    backgroundPfp.background = resource
-                }
-            })
+        val multimedia = restaurant.getMultimedia()
+        if (multimedia == null || multimedia.getImage() == null) {
+            val profileImage = findViewById<ImageView>(R.id.pflUserLargeImage)
+            Glide.with(this)
+                .load(R.drawable.not_load_restaurant_bc)
+                .into(profileImage)
+        } else {
+            val profileImage = findViewById<ImageView>(R.id.pflUserLargeImage)
+            Glide.with(this)
+                .load(imageUrl)
+                .into(profileImage)
+        }
+
     }
 }

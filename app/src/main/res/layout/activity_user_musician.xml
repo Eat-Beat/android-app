@@ -10,6 +10,14 @@
     android:background="@color/white"
     >
 
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
@@ -58,14 +66,18 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="415dp"
         android:layout_height="0dp"
-
+        android:background="@color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-        tools:layout_editor_absoluteX="-4dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profilesheet"
@@ -132,11 +144,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:numStars="5"
+                android:progressBackgroundTint="@color/white"
                 android:rating="3.5"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:stepSize="0.1"
-                android:progressBackgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.34"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,9 +160,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="72dp"
+                android:fontFamily="@font/barlow_medium"
                 android:text="@string/seeDetails"
                 android:textColor="@color/white"
-                android:fontFamily="@font/barlow_medium"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.139"
@@ -162,11 +174,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/barlow_medium"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Guitarrista profesional, residente en Barcelona. Especialista en jazz."
                 android:textColor="@color/white"
-                android:fontFamily="@font/barlow_medium"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.428"

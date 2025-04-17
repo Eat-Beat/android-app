@@ -1,5 +1,6 @@
 package com.example.eatbeat.activities.main
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -19,6 +20,8 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.MultimediaAdapter
+import com.example.eatbeat.chat.MainChatActivity
+import com.example.eatbeat.chat.ProfileCell
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.fragments.StatsFrag
 import com.example.eatbeat.users.Musician
@@ -55,6 +58,13 @@ class ViewMusicianActivity : AppCompatActivity() {
 
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val messageButton = findViewById<ImageView>(R.id.chatIcon)
+
+        messageButton.setOnClickListener {
+            val intent = Intent(this, MainChatActivity::class.java)
+            intent.putExtra("userId", musicianId)
+            startActivity(intent)
+        }
+
         val backButton = findViewById<ImageView>(R.id.backButton)
         val ratingsButton = findViewById<TextView>(R.id.ratingCount)
 
@@ -75,15 +85,11 @@ class ViewMusicianActivity : AppCompatActivity() {
 
         if (musician.getMultimedia().isNotEmpty()) {
             val imageUrl = musician.getMultimedia()[0].getImage()
+            val profileImage = findViewById<ImageView>(R.id.profileImage)
+
             Glide.with(this)
                 .load(imageUrl)
-                .into(object : SimpleTarget<Drawable?>() {
-                    override fun onResourceReady(
-                        resource: Drawable, transition: Transition<in Drawable?>?) {
-                        val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
-                        backgroundPfp.background = resource
-                    }
-                })
+                .into(profileImage)
         } else {
             val backgroundPfp = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
             backgroundPfp.setBackgroundResource( R.drawable.user_selected)

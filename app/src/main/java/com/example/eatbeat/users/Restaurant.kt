@@ -28,6 +28,10 @@ class Restaurant(
         return this.address
     }
 
+    fun getAddressNum(): Int{
+        return this.addressNum
+    }
+
 
 
     }

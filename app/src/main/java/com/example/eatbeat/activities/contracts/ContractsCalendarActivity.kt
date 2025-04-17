@@ -57,6 +57,8 @@ class ContractsCalendarActivity : AppCompatActivity() {
                     1 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
+                        val filteredContracts = filterContracts(contracts)
+                        highlightDaysWithContracts(calendarView, filteredContracts)
                         setCurrentDay(currDate, contracts, musicians)
                         generateClickAndList(calendarView, contracts, musicians)
 
@@ -64,6 +66,8 @@ class ContractsCalendarActivity : AppCompatActivity() {
                     2 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
+                        val filteredContracts = filterContracts(contracts)
+                        highlightDaysWithContracts(calendarView, filteredContracts)
                         setCurrentDay(currDate, contracts, musicians)
                         generateClickAndList(calendarView, contracts, musicians)
 
@@ -75,6 +79,7 @@ class ContractsCalendarActivity : AppCompatActivity() {
             }
         }
 
+
         val seeListButton = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.buttonSeeList)
 
         seeListButton.setOnClickListener(){
@@ -82,6 +87,23 @@ class ContractsCalendarActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
+        val filteredContracts: MutableList<Perform> = mutableListOf()
+        val contracts = contractsAPI
+        val currId = UserData.userId
+
+        when(UserData.userType){
+            1 -> {
+                filteredContracts.addAll(contracts.filter { it.getIdMusician() == currId })
+            }
+            2 -> {
+                filteredContracts.addAll(contracts.filter { it.getIdRestaurant() == currId })
+            }
+        }
+
+        return filteredContracts
     }
 
     private fun setCurrentDay(currDate: Date, contracts: List<Perform>, musicians: List<Musician>) {

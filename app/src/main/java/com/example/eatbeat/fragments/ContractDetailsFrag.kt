@@ -11,10 +11,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.users.Restaurant
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
+import kotlinx.coroutines.launch
 
 class ContractDetailsFrag : Fragment() {
 
@@ -79,16 +84,31 @@ class ContractDetailsFrag : Fragment() {
         placeName?.text = user?.calculateLocationName(this.requireContext())
 
 
-        val accessToken: String = getString(R.string.mapbox_access_token)
-        val lon = user?.getLongitude()
-        val lat = user?.getLatitude()
+        lifecycleScope.launch {
+            try {
+                val restaurants = getRestaurants()!!
+                val userId = UserData.userId
 
-        val imageUrl : String = "https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/"+
-                lon + "," + lat + ",14,0/600x600?access_token=" + accessToken;
+                val restaurant = restaurants.find { it.getId() == userId }!!
 
-        Glide.with(this)
-            .load(imageUrl)
-            .into(locationImage);
+                val multimedia = restaurant.getMultimedia()
+                if (multimedia == null || multimedia.getImage() == null) {
+                    Glide.with(requireContext())
+                        .load(R.drawable.not_load_restaurant_bc)
+                        .into(locationImage)
+                } else {
+                    Glide.with(requireContext())
+                        .load(multimedia.getImage())
+                        .into(locationImage)
+                }
+
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
+
 
     }
 

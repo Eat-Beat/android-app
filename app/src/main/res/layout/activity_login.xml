@@ -52,15 +52,6 @@
                 android:layout_margin="@dimen/textBoxMargin"
                 />
 
-            <TextView
-                android:layout_width="@dimen/textBoxWidth"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:fontFamily="@font/barlow_light"
-                android:textColor="@color/black"
-                android:text="@string/forgotPassword"
-                />
-
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="@dimen/buttonWidth"

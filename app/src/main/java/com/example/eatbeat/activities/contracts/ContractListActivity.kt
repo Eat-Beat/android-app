@@ -7,17 +7,22 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatbeat.R
 import com.example.eatbeat.adapters.ContractsListAdapter
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.fragments.ContractDetailsFrag
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.utils.activateNavBar
+import com.example.eatbeat.utils.api.ApiRepository.getMusicians
+import com.example.eatbeat.utils.api.ApiRepository.getPerforms
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
+import kotlinx.coroutines.launch
 
 class ContractListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +40,48 @@ class ContractListActivity : AppCompatActivity() {
             finish()
         }
 
-        fillList(loadContractsFromJson(loadJsonFromRaw(this, R.raw.contracts)!!), loadMusiciansFromJson(loadJsonFromRaw(this,
-            R.raw.musicians
-        )!!))
+        lifecycleScope.launch {
+            try {
+                when(UserData.userType){
+                    1 -> {
+                        val contracts = getPerforms()!!
+                        val musicians = getMusicians()!!
+                        val filteredContracts = filterContracts(contracts)
+                        fillList(filteredContracts, musicians)
+                    }
+                    2 -> {
+                        val contracts = getPerforms()!!
+                        val musicians = getMusicians()!!
+                        val filteredContracts = filterContracts(contracts)
+                        fillList(filteredContracts, musicians)
+                    }
+                }
+            }catch (e: Exception)
+            {
+                println("API Connexion Error")
+            }
+        }
+
     }
 
-    private fun fillList(contracts : ArrayList<Perform>, musicians : ArrayList<Musician>) {
+    private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
+        val filteredContracts: MutableList<Perform> = mutableListOf()
+        val contracts = contractsAPI
+        val currId = UserData.userId
+
+        when(UserData.userType){
+            1 -> {
+                filteredContracts.addAll(contracts.filter { it.getIdMusician() == currId })
+            }
+            2 -> {
+                filteredContracts.addAll(contracts.filter { it.getIdRestaurant() == currId })
+            }
+        }
+
+        return filteredContracts
+    }
+
+    private fun fillList(contracts : List<Perform>, musicians : List<Musician>) {
         val contractsListRecycler = findViewById<RecyclerView>(R.id.contractListRecyclerView)
 
         contractsListRecycler.layoutManager = LinearLayoutManager(this)
