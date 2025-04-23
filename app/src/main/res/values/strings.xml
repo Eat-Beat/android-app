@@ -53,4 +53,5 @@
     <string name="postalCode">Postal Code</string>
     <string name="back"><u>Back</u></string>
     <string name="next">Continue</string>
+    <string name="noevents">noevents</string>
 </resources>

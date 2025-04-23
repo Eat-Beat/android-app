@@ -2,9 +2,11 @@ package com.example.eatbeat.activities.contracts
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -87,6 +89,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val noeventsview = findViewById<ConstraintLayout>(R.id.noeventsview)
+        noeventsview.visibility = View.VISIBLE
     }
 
     private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
@@ -186,6 +191,13 @@ class ContractsCalendarActivity : AppCompatActivity() {
                     }
                 }
 
+                if (contractOnDay.isEmpty()){
+                    val noeventsview = findViewById<ConstraintLayout>(R.id.noeventsview)
+                    noeventsview.visibility = View.VISIBLE
+                } else {
+                    val noeventsview = findViewById<ConstraintLayout>(R.id.noeventsview)
+                    noeventsview.visibility = View.GONE
+                }
 
                 val contractsCalendarRecycler = findViewById<RecyclerView>(R.id.contractsCalendarRecylcerView)
 
