@@ -27,6 +27,9 @@ class SettingsFrag : Fragment() {
         val exitwindow = view.findViewById<ImageView>(R.id.close_window_view)
         val closeSesion = view.findViewById<TextView>(R.id.closeSesionButton)
 
+        val currentLocale = resources.configuration.locales.get(0)
+        val currentLanguage = currentLocale.language
+
         exitwindow.setOnClickListener {
             val fadeOut = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_disappear)
             val fragmentManager = parentFragmentManager
@@ -52,6 +55,20 @@ class SettingsFrag : Fragment() {
         val englishButton = view?.findViewById<TextView>(R.id.englishLang)
         val catalanButton = view?.findViewById<TextView>(R.id.catalanLang)
 
+        if (currentLanguage == "en") {
+            englishButton?.setBackgroundResource(R.drawable.orangesquarebg)
+            spanishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            catalanButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+        } else if (currentLanguage == "ca") {
+            englishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            spanishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            catalanButton?.setBackgroundResource(R.drawable.orangesquarebg)
+        } else {
+            englishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            spanishButton?.setBackgroundResource(R.drawable.orangesquarebg)
+            catalanButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+        }
+
 
 
         spanishButton?.setOnClickListener{
@@ -61,6 +78,10 @@ class SettingsFrag : Fragment() {
             val config = resources.configuration
             config.setLocale(locale)
             resources.updateConfiguration(config, resources.displayMetrics)
+
+            spanishButton.setBackgroundResource(R.drawable.orangesquarebg)
+            englishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            catalanButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
 
             recreate(requireActivity())
         }
@@ -73,6 +94,10 @@ class SettingsFrag : Fragment() {
             config.setLocale(locale)
             resources.updateConfiguration(config, resources.displayMetrics)
 
+            spanishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            englishButton.setBackgroundResource(R.drawable.orangesquarebg)
+            catalanButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+
             recreate(requireActivity())
         }
 
@@ -83,6 +108,10 @@ class SettingsFrag : Fragment() {
             val config = resources.configuration
             config.setLocale(locale)
             resources.updateConfiguration(config, resources.displayMetrics)
+
+            spanishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            englishButton?.setBackgroundResource(R.drawable.white_rectangle_shape)
+            catalanButton.setBackgroundResource(R.drawable.orangesquarebg)
 
             recreate(requireActivity())
         }

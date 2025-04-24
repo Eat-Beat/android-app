@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.users.Musician
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ContractsListAdapter(
     private val contracts: List<Perform>,
@@ -43,8 +45,9 @@ class ContractsListAdapter(
         val hours = date.hours.toString().padStart(2, '0')
         val minutes = date.minutes.toString().padStart(2, '0')
         val time = "$hours:$minutes"
+        val dateFormat = SimpleDateFormat("EEEE dd MMMM yyyy", Locale.getDefault())
 
-        holder.dayCell.text = contract.getDate().toString()
+        holder.dayCell.text = contract.getDate().let { dateFormat.format(it) }
         holder.userCell.text = musician.getName()
         holder.professionCell.text = musician.getClassification()[0]
         holder.genreCell.text = musician.getGenre()[0]

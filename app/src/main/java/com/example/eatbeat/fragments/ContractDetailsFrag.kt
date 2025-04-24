@@ -20,6 +20,8 @@ import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.Restaurant
 import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ContractDetailsFrag : Fragment() {
 
@@ -73,13 +75,16 @@ class ContractDetailsFrag : Fragment() {
         val dayLabel = view?.findViewById<TextView>(R.id.contractDayHeaderFragment)
         val placeName = view?.findViewById<TextView>(R.id.contractLocation)
         val locationImage = view?.findViewById<ImageView>(R.id.locationImage)!!
+        val dateFormat = SimpleDateFormat("EEEE dd MMMM yyyy", Locale.getDefault())
+        val dateFormat2 = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+
 
         musicName?.text = getString(R.string.musician)+ " | " + user?.getName()
         musicRol?.text = getString(R.string.rol)+ " | " + user?.getClassification()?.get(0)
         musicStyle?.text = getString(R.string.style)+ " | " + user?.getGenre()?.get(0)
-        musicPeriod?.text = getString(R.string.period)+ " | " + contract?.getDate()
+        musicPeriod?.text = getString(R.string.period)+ " | " + contract?.getDate().let { dateFormat2.format(it!!) }
         musicCost?.text = getString(R.string.cost)+ " | " + contract?.getCost()
-        dayLabel?.text =  contract?.getDate().toString()
+        dayLabel?.text =  contract?.getDate().let { dateFormat.format(it!!) }
 
         placeName?.text = user?.calculateLocationName(this.requireContext())
 
