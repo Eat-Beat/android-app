@@ -190,8 +190,14 @@ class ContractsCalendarActivity : AppCompatActivity() {
 
                     val formattedSelectedDate = simpleDateFormat.format(date)
 
-                    if (formattedContractDate == formattedSelectedDate && contract.getIdMusician() == currId) {
-                        contractOnDay.add(contract)
+                    if (UserData.userType == 1){
+                        if (formattedContractDate == formattedSelectedDate && contract.getIdMusician() == currId) {
+                            contractOnDay.add(contract)
+                        }
+                    } else if (UserData.userType == 2){
+                        if (formattedContractDate == formattedSelectedDate && contract.getIdRestaurant() == currId) {
+                            contractOnDay.add(contract)
+                        }
                     }
                 }
 
