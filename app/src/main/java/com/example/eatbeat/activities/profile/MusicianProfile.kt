@@ -39,6 +39,7 @@ class MusicianProfile : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_user_musician)
 
+
         window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                         or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -64,7 +65,9 @@ class MusicianProfile : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                val musician = getMusicianById(UserData.userId)!!
+                val musicians = getMusicians()
+                val musiciansList = musicians?.toMutableList() as ArrayList<Musician>
+                val musician = musiciansList.find { it.getId() == UserData.userId }!!
                 chargeMultimedia(musician)
                 chargeDetails(musician)
             }catch (e: Exception)

@@ -44,6 +44,14 @@ class ViewRestaurantActivity: AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_view_restaurant)
 
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN)
+
         overridePendingTransition(R.anim.transition_fade_activity, 0)
 
         val restaurantId = intent.getIntExtra("restaurantId", -1)
@@ -111,8 +119,11 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
     private fun loadInfo(restaurant: Restaurant){
         val profileUserName = findViewById<TextView>(R.id.profileUserName)
+        val description = findViewById<TextView>(R.id.profileDescription)
 
         profileUserName.text = restaurant.getName()
+
+        description.text = restaurant.getAddress() + " " + restaurant.getAddressNum()
 
         val imageUrl = restaurant.getMultimedia().getImage()
 

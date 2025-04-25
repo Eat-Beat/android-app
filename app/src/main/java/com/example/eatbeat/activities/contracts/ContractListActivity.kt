@@ -16,9 +16,11 @@ import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.fragments.ContractDetailsFrag
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.users.Restaurant
 import com.example.eatbeat.utils.activateNavBar
 import com.example.eatbeat.utils.api.ApiRepository.getMusicians
 import com.example.eatbeat.utils.api.ApiRepository.getPerforms
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
 import com.example.eatbeat.utils.loadMusiciansFromJson
@@ -46,14 +48,16 @@ class ContractListActivity : AppCompatActivity() {
                     1 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
+                        val restaurants = getRestaurants()!!
                         val filteredContracts = filterContracts(contracts)
-                        fillList(filteredContracts, musicians)
+                        fillList(filteredContracts, musicians, restaurants)
                     }
                     2 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
+                        val restaurants = getRestaurants()!!
                         val filteredContracts = filterContracts(contracts)
-                        fillList(filteredContracts, musicians)
+                        fillList(filteredContracts, musicians, restaurants)
                     }
                 }
             }catch (e: Exception)
@@ -81,12 +85,12 @@ class ContractListActivity : AppCompatActivity() {
         return filteredContracts
     }
 
-    private fun fillList(contracts : List<Perform>, musicians : List<Musician>) {
+    private fun fillList(contracts : List<Perform>, musicians : List<Musician>, restaurants : List<Restaurant>) {
         val contractsListRecycler = findViewById<RecyclerView>(R.id.contractListRecyclerView)
 
         contractsListRecycler.layoutManager = LinearLayoutManager(this)
 
-        val adapter = ContractsListAdapter(contracts, musicians) { contract, musician ->
+        val adapter = ContractsListAdapter(contracts, musicians, restaurants) { contract, musician ->
             val fragment = ContractDetailsFrag()
 
             val bundle = Bundle().apply {
