@@ -2,9 +2,11 @@ package com.example.eatbeat.activities.contracts
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,12 +20,14 @@ import com.example.eatbeat.adapters.ContractsCalendarAdapter
 import com.example.eatbeat.contracts.Perform
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.users.Restaurant
 import com.example.eatbeat.users.User
 import com.example.eatbeat.utils.activateNavBar
 import com.example.eatbeat.utils.api.ApiRepository.getMusicians
 import com.example.eatbeat.utils.api.ApiRepository.getPerforms
 import com.example.eatbeat.utils.api.ApiRepository.getPerformsByMusicianId
 import com.example.eatbeat.utils.api.ApiRepository.getPerformsByRestaurantId
+import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.api.ApiRepository.getUsers
 import com.example.eatbeat.utils.loadContractsFromJson
 import com.example.eatbeat.utils.loadJsonFromRaw
@@ -57,19 +61,21 @@ class ContractsCalendarActivity : AppCompatActivity() {
                     1 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
+                        val restaurants = getRestaurants()!!
                         val filteredContracts = filterContracts(contracts)
                         highlightDaysWithContracts(calendarView, filteredContracts)
-                        setCurrentDay(currDate, contracts, musicians)
-                        generateClickAndList(calendarView, contracts, musicians)
+                        setCurrentDay(currDate, contracts, musicians, restaurants)
+                        generateClickAndList(calendarView, contracts, musicians, restaurants)
 
                     }
                     2 -> {
                         val contracts = getPerforms()!!
                         val musicians = getMusicians()!!
+                        val restaurants = getRestaurants()!!
                         val filteredContracts = filterContracts(contracts)
                         highlightDaysWithContracts(calendarView, filteredContracts)
-                        setCurrentDay(currDate, contracts, musicians)
-                        generateClickAndList(calendarView, contracts, musicians)
+                        setCurrentDay(currDate, contracts, musicians, restaurants)
+                        generateClickAndList(calendarView, contracts, musicians, restaurants)
 
                     }
                 }
@@ -87,6 +93,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val noeventsview = findViewById<ConstraintLayout>(R.id.noeventsview)
+        noeventsview.visibility = View.VISIBLE
     }
 
     private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
@@ -106,7 +115,7 @@ class ContractsCalendarActivity : AppCompatActivity() {
         return filteredContracts
     }
 
-    private fun setCurrentDay(currDate: Date, contracts: List<Perform>, musicians: List<Musician>) {
+    private fun setCurrentDay(currDate: Date, contracts: List<Perform>, musicians: List<Musician>, restaurants : List<Restaurant>) {
         val contractOnDay: ArrayList<Perform> = ArrayList()
         val currId = UserData.userId
 
@@ -139,13 +148,13 @@ class ContractsCalendarActivity : AppCompatActivity() {
 
         contractsCalendarRecycler.layoutManager = LinearLayoutManager(this@ContractsCalendarActivity)
 
-        val adapter = ContractsCalendarAdapter(contractOnDay, musicians)
+        val adapter = ContractsCalendarAdapter(contractOnDay, musicians, restaurants)
         contractsCalendarRecycler.adapter = adapter
 
         adapter.notifyDataSetChanged()
     }
 
-    private fun generateClickAndList(calendarView : CalendarView, contracts : List<Perform>, musicians : List<Musician>) {
+    private fun generateClickAndList(calendarView : CalendarView, contracts : List<Perform>, musicians : List<Musician>, restaurants : List<Restaurant>) {
         calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
             override fun onClick(calendarDay: CalendarDay) {
                 val clickedDayCalendar: Calendar = calendarDay.calendar
@@ -181,17 +190,30 @@ class ContractsCalendarActivity : AppCompatActivity() {
 
                     val formattedSelectedDate = simpleDateFormat.format(date)
 
-                    if (formattedContractDate == formattedSelectedDate && contract.getIdMusician() == currId) {
-                        contractOnDay.add(contract)
+                    if (UserData.userType == 1){
+                        if (formattedContractDate == formattedSelectedDate && contract.getIdMusician() == currId) {
+                            contractOnDay.add(contract)
+                        }
+                    } else if (UserData.userType == 2){
+                        if (formattedContractDate == formattedSelectedDate && contract.getIdRestaurant() == currId) {
+                            contractOnDay.add(contract)
+                        }
                     }
                 }
 
+                if (contractOnDay.isEmpty()){
+                    val noeventsview = findViewById<ConstraintLayout>(R.id.noeventsview)
+                    noeventsview.visibility = View.VISIBLE
+                } else {
+                    val noeventsview = findViewById<ConstraintLayout>(R.id.noeventsview)
+                    noeventsview.visibility = View.GONE
+                }
 
                 val contractsCalendarRecycler = findViewById<RecyclerView>(R.id.contractsCalendarRecylcerView)
 
                 contractsCalendarRecycler.layoutManager = LinearLayoutManager(this@ContractsCalendarActivity)
 
-                val adapter = ContractsCalendarAdapter(contractOnDay, musicians)
+                val adapter = ContractsCalendarAdapter(contractOnDay, musicians, restaurants)
                 contractsCalendarRecycler.adapter = adapter
 
                 adapter.notifyDataSetChanged()

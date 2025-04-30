@@ -11,11 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatbeat.R
 import com.example.eatbeat.contracts.Perform
+import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.Musician
+import com.example.eatbeat.users.Restaurant
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ContractsListAdapter(
     private val contracts: List<Perform>,
     private val musicians: List<Musician>,
+    private val restaurants: List<Restaurant>,
     private val onItemClick: (Perform, Musician) -> Unit
                           ) : RecyclerView.Adapter<ContractsListAdapter.CalendarListHolder>() {
 
@@ -38,25 +43,41 @@ class ContractsListAdapter(
     override fun onBindViewHolder(holder: CalendarListHolder, position: Int) {
         val contract = contracts[position]
         val musician = musicians.find { it.getId() == contract.getIdMusician() }!!
+        val restaurant = restaurants.find { it.getId() == contract.getIdRestaurant() }!!
 
         val date = contract.getDate()
         val hours = date.hours.toString().padStart(2, '0')
         val minutes = date.minutes.toString().padStart(2, '0')
         val time = "$hours:$minutes"
+        val dateFormat = SimpleDateFormat("EEEE dd MMMM yyyy", Locale.getDefault())
 
-        holder.dayCell.text = contract.getDate().toString()
-        holder.userCell.text = musician.getName()
+        holder.dayCell.text = contract.getDate().let { dateFormat.format(it) }
         holder.professionCell.text = musician.getClassification()[0]
         holder.genreCell.text = musician.getGenre()[0]
         holder.hourCell.text = time
 
-        Glide.with(holder.itemView.context)
-            .load(musician.getMultimedia()[0].getImage())
-            .into(holder.profilePictureCell)
+        if (UserData.userType == 1){
+            holder.userCell.text = restaurant.getName()
 
-        holder.itemView.setOnClickListener {
-            onItemClick(contract, musician)
+            Glide.with(holder.itemView.context)
+                .load(restaurant.getMultimedia().getImage())
+                .into(holder.profilePictureCell)
+
+            holder.itemView.setOnClickListener {
+                onItemClick(contract, musician)
+            }
+        } else if (UserData.userType == 2){
+            holder.userCell.text = musician.getName()
+
+            Glide.with(holder.itemView.context)
+                .load(musician.getMultimedia()[0].getImage())
+                .into(holder.profilePictureCell)
+
+            holder.itemView.setOnClickListener {
+                onItemClick(contract, musician)
+            }
         }
+
     }
 
     override fun getItemCount() = contracts.size

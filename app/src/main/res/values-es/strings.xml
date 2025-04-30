@@ -47,4 +47,5 @@
     <string name="postalCode">Código postal</string>
     <string name="back"><u>Atrás</u></string>
     <string name="next">Continuar</string>
+    <string name="noevents">No hay eventos este dia.</string>
 </resources>
