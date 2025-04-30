@@ -3,7 +3,7 @@ package com.example.eatbeat.users
 import java.io.Serializable
 
 open class User(
-    private val idUser: Int,
+    private var idUser: Int,
     private var idRol: Int,
     private val name: String,
     private val email: String,
@@ -11,6 +11,10 @@ open class User(
 ): Serializable {
     fun setIdRol(idRol: Int){
         this.idRol = idRol
+    }
+
+    fun setId(idUser: Int){
+        this.idUser = idUser
     }
 
     fun getId(): Int{

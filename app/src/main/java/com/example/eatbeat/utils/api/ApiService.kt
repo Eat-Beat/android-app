@@ -59,4 +59,34 @@ interface ApiService {
 
     @POST("chats")
     suspend fun createChat(@Body chat: Message): Response<Message>
+
+    // USERS
+    @POST("users")
+    suspend fun createUser(@Body user: User): Response<User>
+
+    @PUT("users/{id}")
+    suspend fun updateUser(@Path("id") id: Int, @Body user: User): Response<User>
+
+    @DELETE("users/{id}")
+    suspend fun deleteUser(@Path("id") id: Int): Response<Void>
+
+    // MUSICIANS
+    @POST("musicians")
+    suspend fun createMusician(@Body musician: Musician): Response<Musician>
+
+    @PUT("musicians/{id}")
+    suspend fun updateMusician(@Path("id") id: Int, @Body musician: Musician): Response<Musician>
+
+    @DELETE("musicians/{id}")
+    suspend fun deleteMusician(@Path("id") id: Int): Response<Void>
+
+    // RESTAURANTS
+    @POST("restaurants")
+    suspend fun createRestaurant(@Body restaurant: Restaurant): Response<Restaurant>
+
+    @PUT("restaurants/{id}")
+    suspend fun updateRestaurant(@Path("id") id: Int, @Body restaurant: Restaurant): Response<Restaurant>
+
+    @DELETE("restaurants/{id}")
+    suspend fun deleteRestaurant(@Path("id") id: Int): Response<Void>
 }

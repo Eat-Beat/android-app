@@ -95,4 +95,49 @@ object ApiRepository {
         val response = apiService.createChat(chat)
         if (response.isSuccessful) response.body() else null
     }
+
+    // USERS
+    suspend fun createUser(user: User): User? = withContext(Dispatchers.IO) {
+        val response = apiService.createUser(user)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun updateUser(id: Int, user: User): User? = withContext(Dispatchers.IO) {
+        val response = apiService.updateUser(id, user)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun deleteUser(id: Int): Boolean = withContext(Dispatchers.IO) {
+        apiService.deleteUser(id).isSuccessful
+    }
+
+    // MUSICIANS
+    suspend fun createMusician(musician: Musician): Musician? = withContext(Dispatchers.IO) {
+        val response = apiService.createMusician(musician)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun updateMusician(id: Int, musician: Musician): Musician? = withContext(Dispatchers.IO) {
+        val response = apiService.updateMusician(id, musician)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun deleteMusician(id: Int): Boolean = withContext(Dispatchers.IO) {
+        apiService.deleteMusician(id).isSuccessful
+    }
+
+    // RESTAURANTS
+    suspend fun createRestaurant(restaurant: Restaurant): Restaurant? = withContext(Dispatchers.IO) {
+        val response = apiService.createRestaurant(restaurant)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun updateRestaurant(id: Int, restaurant: Restaurant): Restaurant? = withContext(Dispatchers.IO) {
+        val response = apiService.updateRestaurant(id, restaurant)
+        if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun deleteRestaurant(id: Int): Boolean = withContext(Dispatchers.IO) {
+        apiService.deleteRestaurant(id).isSuccessful
+    }
 }

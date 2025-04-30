@@ -70,8 +70,6 @@ class MusicianProfile : AppCompatActivity() {
         statsScreenClick(ratingsButton)
 
         activateNavBar(this, this, 4)
-
-
     }
 
     private fun chargeDetails(musician: Musician) {

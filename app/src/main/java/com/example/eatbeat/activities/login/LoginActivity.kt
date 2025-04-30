@@ -1,5 +1,6 @@
 package com.example.eatbeat.activities.login
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.eatbeat.R
@@ -62,6 +64,15 @@ class LoginActivity : AppCompatActivity() {
                 }
             }else {
                 showIncorrectCredentialsMessage(this)
+                lifecycleScope.launch {
+                    try {
+                        val users = getUsers()
+                        userList = users?.toMutableList() as ArrayList<User>
+                    }catch (e: Exception)
+                    {
+                        println("API Connexion Error")
+                    }
+                }
             }
         }
     }

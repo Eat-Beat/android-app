@@ -2,6 +2,7 @@ package com.example.eatbeat.activities.login
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -16,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.eatbeat.R
 import com.example.eatbeat.users.Musician
 import com.example.eatbeat.users.User
+import com.example.eatbeat.utils.api.ApiRepository
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
@@ -34,6 +37,7 @@ import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import com.mapbox.maps.plugin.gestures.addOnMapClickListener
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
+import kotlinx.coroutines.launch
 
 class NewMusicianActivity : AppCompatActivity() {
     private lateinit var mapboxMap: MapboxMap
@@ -57,12 +61,15 @@ class NewMusicianActivity : AppCompatActivity() {
         }
 
         createButton.setOnClickListener(){
-            if(longitude.text.isEmpty() || latitude.text.isEmpty()){
+            if(!(longitude.text.isEmpty() || latitude.text.isEmpty())){
                 val musician = Musician(user.getId(), user.getIdRol(), user.getName(),
                     user.getEmail(), user.getPassword(), -1.toFloat(),
                     longitude.text.toString().toFloat(), latitude.text.toString().toFloat(),
                     "", ArrayList(), ArrayList(), ArrayList())
                 setResult(Activity.RESULT_OK)
+
+                createUser(user, musician)
+
                 finish()
             }
         }
@@ -84,6 +91,29 @@ class NewMusicianActivity : AppCompatActivity() {
                 val point = Point.fromLngLat(clickedPoint.longitude(), clickedPoint.latitude())
                 updateMarker(point, latitude, longitude)
                 true
+            }
+        }
+    }
+
+    private fun createUser(user: User, musician: Musician) {
+        // Usar lifecycleScope para llamar a la función suspendida en el contexto adecuado
+        lifecycleScope.launch {
+            try {
+                // Llamar a la función de creación de usuario
+                val createdUser = ApiRepository.createUser(user)
+                // Verificar si la respuesta fue exitosa
+                if (createdUser != null) {
+                    // Aquí puedes manejar la respuesta, como actualizar la UI con el nuevo usuario
+                    Toast.makeText(this@NewMusicianActivity, "Usuario creado exitosamente: $createdUser", Toast.LENGTH_SHORT).show()
+                    musician.setId(createdUser.getId())
+                    ApiRepository.createMusician(musician)
+                } else {
+                    // Manejo de error si la creación del usuario falla
+                    Toast.makeText(this@NewMusicianActivity, "Error al crear usuario", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                // Manejo de errores de red o excepciones
+                Toast.makeText(this@NewMusicianActivity, "Error de conexión: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
         }
     }
