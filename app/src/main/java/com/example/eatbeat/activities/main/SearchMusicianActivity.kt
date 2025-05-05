@@ -48,6 +48,9 @@ class SearchMusicianActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Generates the list of musicians on screen.
+     */
     private fun showMusicians(musicianList : ArrayList<Musician>){
         val musicianRecycler = findViewById<RecyclerView>(R.id.searchMusicRecyclerView)
 
@@ -56,6 +59,9 @@ class SearchMusicianActivity : AppCompatActivity() {
         musicianRecycler.adapter = MusicianAdapter(musicianList){musician -> openProfile(musician)}
     }
 
+    /**
+     * When clicking a musician, it will open its profile.
+     */
     private fun openProfile(musician: Musician){
         val intent = Intent(this, ViewMusicianActivity::class.java)
         intent.putExtra("musicianId", musician.getId())

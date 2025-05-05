@@ -98,6 +98,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
         noeventsview.visibility = View.VISIBLE
     }
 
+    /**
+     * Filter contracts by only getting those that belong to the current user.
+     */
     private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
         val filteredContracts: MutableList<Perform> = mutableListOf()
         val contracts = contractsAPI
@@ -115,6 +118,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
         return filteredContracts
     }
 
+    /**
+     * Get contracts that take place on each day and linking them. When the user clicks on a day, it will show the contracts that take place on that day.
+     */
     private fun setCurrentDay(currDate: Date, contracts: List<Perform>, musicians: List<Musician>, restaurants : List<Restaurant>) {
         val contractOnDay: ArrayList<Perform> = ArrayList()
         val currId = UserData.userId
@@ -154,6 +160,10 @@ class ContractsCalendarActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
     }
 
+    /**
+     * Activate the click action on the calendar. When the user clicks on a day, it will show
+     * the contracts that take place on that day. If none takes place, it will show a message.
+     */
     private fun generateClickAndList(calendarView : CalendarView, contracts : List<Perform>, musicians : List<Musician>, restaurants : List<Restaurant>) {
         calendarView.setOnCalendarDayClickListener(object : OnCalendarDayClickListener {
             override fun onClick(calendarDay: CalendarDay) {
@@ -235,6 +245,9 @@ class ContractsCalendarActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Highlight the days that have contracts.
+     */
     private fun highlightDaysWithContracts(calendarView: CalendarView, contracts: List<Perform>) {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         val highlightedDays = mutableListOf<CalendarDay>()

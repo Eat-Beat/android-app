@@ -68,6 +68,9 @@ class ContractListActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Filter contracts by only getting those that belong to the current user.
+     */
     private fun filterContracts(contractsAPI : List<Perform>) : List<Perform> {
         val filteredContracts: MutableList<Perform> = mutableListOf()
         val contracts = contractsAPI
@@ -85,6 +88,9 @@ class ContractListActivity : AppCompatActivity() {
         return filteredContracts
     }
 
+    /**
+     * Fill the recycler view with the contracts.
+     */
     private fun fillList(contracts : List<Perform>, musicians : List<Musician>, restaurants : List<Restaurant>) {
         val contractsListRecycler = findViewById<RecyclerView>(R.id.contractListRecyclerView)
 

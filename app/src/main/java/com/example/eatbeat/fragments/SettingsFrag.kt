@@ -27,8 +27,7 @@ class SettingsFrag : Fragment() {
         val exitwindow = view.findViewById<ImageView>(R.id.close_window_view)
         val closeSesion = view.findViewById<TextView>(R.id.closeSesionButton)
 
-        val currentLocale = resources.configuration.locales.get(0)
-        val currentLanguage = currentLocale.language
+
 
         exitwindow.setOnClickListener {
             val fadeOut = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_disappear)
@@ -50,6 +49,20 @@ class SettingsFrag : Fragment() {
             startActivity(intent)
             requireActivity().finish()
         }
+
+
+
+        changeLanguage()
+
+        return view
+    }
+
+    /**
+     * Changes language of the app.
+     */
+    private fun changeLanguage() {
+        val currentLocale = resources.configuration.locales.get(0)
+        val currentLanguage = currentLocale.language
 
         val spanishButton = view?.findViewById<TextView>(R.id.spanishLang)
         val englishButton = view?.findViewById<TextView>(R.id.englishLang)
@@ -115,14 +128,6 @@ class SettingsFrag : Fragment() {
 
             recreate(requireActivity())
         }
-
-        changeLanguage()
-
-        return view
-    }
-
-    private fun changeLanguage() {
-
     }
 
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){

@@ -75,6 +75,9 @@ class ViewRestaurantActivity: AppCompatActivity() {
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val backButton = findViewById<ImageView>(R.id.backButton)
 
+        /**
+         * Initiates a chat with the user.
+         */
         val messageButton = findViewById<ImageView>(R.id.chatIcon)
         messageButton.setOnClickListener {
             val intent = Intent(this, MainChatActivity::class.java)
@@ -93,6 +96,9 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
     }
 
+    /**
+     * Charges the location onto the map based on the address provided via geocoding.
+     */
     private fun chargeLocation(address: String) {
         val geocoder = Geocoder(this, Locale.getDefault())
 
@@ -117,6 +123,10 @@ class ViewRestaurantActivity: AppCompatActivity() {
 
     }
 
+    /**
+     * Loads the restaurant's info. If no images have been provided, sets a default
+     * image.
+     */
     private fun loadInfo(restaurant: Restaurant){
         val profileUserName = findViewById<TextView>(R.id.profileUserName)
         val description = findViewById<TextView>(R.id.profileDescription)

@@ -67,6 +67,9 @@ class ViewMusicianActivity : AppCompatActivity() {
         val bottomSheet = findViewById<View>(R.id.profilesheet)
         val messageButton = findViewById<ImageView>(R.id.chatIcon)
 
+        /**
+         * Initiates a chat with the user.
+         */
         messageButton.setOnClickListener {
             val intent = Intent(this, MainChatActivity::class.java)
             intent.putExtra("userId", musicianId)
@@ -88,6 +91,9 @@ class ViewMusicianActivity : AppCompatActivity() {
         statsScreenClick(ratingsButton)
     }
 
+    /**
+     * Charges the multimedia of the musician.
+     */
     private fun chargeMultimedia(musician: Musician) {
         val multimediaRecycler = findViewById<RecyclerView>(R.id.multimediaUserRecyclerView)
 
@@ -108,6 +114,9 @@ class ViewMusicianActivity : AppCompatActivity() {
         multimediaRecycler.adapter = MultimediaAdapter(musician)
     }
 
+    /**
+     * Activates the stats fragment when clicked.
+     */
     private fun statsScreenClick(statsButton: TextView) {
         statsButton.setOnClickListener {
             val fragment = StatsFrag()
@@ -127,6 +136,9 @@ class ViewMusicianActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Loads the musician's info to the screen.
+     */
     private fun loadInfo(musician: Musician){
         val profileUserName = findViewById<TextView>(R.id.profileUserName)
         val profileDescription = findViewById<TextView>(R.id.profileDescription)

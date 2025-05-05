@@ -86,6 +86,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Verfies the user's credentials when logging in.
+     */
     private fun verifyUser(userName : String, password : String, userList : ArrayList<User>) : Boolean{
         var userFound = false
 
@@ -104,6 +107,9 @@ class LoginActivity : AppCompatActivity() {
         return userFound
     }
 
+    /**
+     * If the user credentials aren't valid, show a toast message.
+     */
     private fun showIncorrectCredentialsMessage(context: Context) {
         Toast.makeText(context, context.getString(R.string.incorrect_credentials), Toast.LENGTH_SHORT).show()
     }
