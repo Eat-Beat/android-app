@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.eatbeat.R
 import com.example.eatbeat.activities.main.SearchMusicianActivity
 import com.example.eatbeat.activities.main.SearchRestaurantActivity
+import com.example.eatbeat.activities.profile.MusicianProfile
 import com.example.eatbeat.data.UserData
 import com.example.eatbeat.users.User
 import com.example.eatbeat.utils.api.ApiRepository.getMusicians
@@ -53,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         signUpButton.setOnClickListener(){
-            val intent = Intent(this, NewUserActivity::class.java)
+            val intent = Intent(this, MusicianProfile::class.java)
             startActivity(intent)
         }
 

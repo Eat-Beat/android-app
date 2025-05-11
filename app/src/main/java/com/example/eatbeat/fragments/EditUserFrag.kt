@@ -4,6 +4,7 @@ import android.R.attr.path
 import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,9 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.lifecycleScope
@@ -25,17 +29,28 @@ import com.example.eatbeat.utils.api.ApiRepository.getRestaurants
 import com.example.eatbeat.utils.api.ApiRepository.updateMultimedia
 import com.example.eatbeat.utils.uploadBitmap
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 class EditUserFrag : Fragment() {
+    private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
+    private var photoUri: Uri? = null
+    private var buttonProfileImageEdit: ImageView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_modify_user, container, false)
-
         val exitStats = view.findViewById<ImageView>(R.id.close_modify_mr)
+
+        buttonProfileImageEdit = view.findViewById(R.id.profileImageEdit)
+
+        takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success && photoUri != null) {
+                buttonProfileImageEdit?.setImageURI(photoUri)
+            }
+        }
 
         exitStats.setOnClickListener {
             val fadeOut = AnimationUtils.loadAnimation(requireContext(), R.anim.alpha_disappear)
@@ -51,14 +66,22 @@ class EditUserFrag : Fragment() {
             closeAnimation(fadeOut, fragment)
         }
 
-
         val save = view.findViewById<ImageView>(R.id.saveChanges)
         save.setOnClickListener {
             saveChanges()
         }
 
-        val pickPhoto = view.findViewById<ImageView>(R.id.profileImageEdit)
-        pickPhoto.setOnClickListener {
+        buttonProfileImageEdit?.setOnClickListener {
+            val imageFile = File.createTempFile("photo_", ".jpg", requireContext().cacheDir).apply {
+                createNewFile()
+                deleteOnExit()
+            }
+            val uri = FileProvider.getUriForFile(requireContext(), "${requireContext().packageName}.provider", imageFile)
+            photoUri = uri
+            takePictureLauncher.launch(uri)
+        }
+
+        buttonProfileImageEdit?.setOnLongClickListener {
             getPhotoFromGallery()
         }
 
@@ -70,10 +93,11 @@ class EditUserFrag : Fragment() {
 
     }
 
-    private fun getPhotoFromGallery() {
+    private fun getPhotoFromGallery(): Boolean {
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = "image/*"
         startActivityForResult(photoPickerIntent, 1)
+        return true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -83,9 +107,7 @@ class EditUserFrag : Fragment() {
             val selectedImageUri = data?.data
 
             selectedImageUri?.let {
-                val profileImage = view?.findViewById<ImageView>(R.id.profileImageEdit)!!
-
-                Glide.with(this).load(it).into(profileImage)
+                Glide.with(this).load(it).into(buttonProfileImageEdit!!)
             }
         }
     }
