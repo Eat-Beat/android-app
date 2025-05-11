@@ -93,6 +93,9 @@ class EditUserFrag : Fragment() {
 
     }
 
+    /**
+     * Initates photoPicker to get an image from the gallery
+     */
     private fun getPhotoFromGallery(): Boolean {
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = "image/*"
@@ -100,6 +103,9 @@ class EditUserFrag : Fragment() {
         return true
     }
 
+    /**
+     * When ending gallery photoPicker, get the image and loads it into the view,
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -112,6 +118,9 @@ class EditUserFrag : Fragment() {
         }
     }
 
+    /**
+     * Closing animation when exiting the fragment.
+     */
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation?) {

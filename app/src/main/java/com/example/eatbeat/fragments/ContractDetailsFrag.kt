@@ -65,6 +65,9 @@ class ContractDetailsFrag : Fragment() {
         setContractDetails(contract, user)
     }
 
+    /**
+     * Load the contract info.
+     */
     @SuppressLint("SetTextI18n")
     private fun setContractDetails(contract: Perform?, user: Musician?) {
         val musicName = view?.findViewById<TextView>(R.id.musicName)
@@ -117,6 +120,9 @@ class ContractDetailsFrag : Fragment() {
 
     }
 
+    /**
+     * Closing animation when exiting fragment.
+     */
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation?) {

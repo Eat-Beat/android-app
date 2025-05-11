@@ -59,6 +59,9 @@ class SearchRestaurantActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Generates the list of restaurants on screen.
+     */
     private fun loadRestaurants(restaurants: ArrayList<Restaurant>) {
 
         val restaurantRecycler = findViewById<RecyclerView>(R.id.searchMusicRecyclerView)
@@ -68,6 +71,9 @@ class SearchRestaurantActivity : AppCompatActivity() {
         restaurantRecycler.adapter = RestaurantAdapter(restaurants){ restaurant -> openProfile(restaurant)}
     }
 
+    /**
+     * When clicking a restaurant, it will open its profile.
+     */
     private fun openProfile(restaurant: Restaurant){
         val intent = Intent(this, ViewRestaurantActivity::class.java)
         intent.putExtra("restaurantId", restaurant.getId())

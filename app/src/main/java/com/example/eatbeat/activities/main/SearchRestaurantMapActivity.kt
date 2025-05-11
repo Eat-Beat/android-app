@@ -74,11 +74,18 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
 
         restaurantCarousel.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
+        /**
+         * Adds a snap helper to the carousel to make it scroll horizontally.
+         */
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(restaurantCarousel)
 
         activateNavBar(this, this, 1)
 
+        /**
+         * Adds a listener to the scroll action. When the restaurant is scrolled, it will
+         * take its position, and update the map location to see the current one.
+         */
         restaurantCarousel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
@@ -106,6 +113,9 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
         activateNavBar(this, this, 1)
     }
 
+    /**
+     * Updates the map location.
+     */
     private fun updateMapLocation(context: Context, position: Int) {
         lifecycleScope.launch {
             try {
@@ -123,6 +133,9 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gets the latitude and longitude based on the address provided via geocoding.
+     */
     private fun chargeLocation(context: Context, address: String) {
         val geocoder = Geocoder(context, Locale.getDefault())
 
@@ -146,7 +159,7 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
 
                 val originalBitmap = bitmapFromDrawableRes(context, R.drawable.restaurant_waypoint)
 
-                val scaledBitmap = scaleBitmap(originalBitmap!!, 100, 100) // 100x100 for example
+                val scaledBitmap = scaleBitmap(originalBitmap!!, 100, 100)
 
                 val pointAnnotationOptions = PointAnnotationOptions()
                     .withPoint(Point.fromLngLat(longitude, latitude))
@@ -159,10 +172,16 @@ class SearchRestaurantMapActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Reescales the image to make it fit on screen.
+     */
     private fun scaleBitmap(original: Bitmap, width: Int, height: Int): Bitmap {
         return Bitmap.createScaledBitmap(original, width, height, false)
     }
 
+    /**
+     * Gets the pointer from the drawable, and loads it on the map.
+     */
     private fun bitmapFromDrawableRes(context: Context, @DrawableRes resId: Int): Bitmap? {
         return BitmapFactory.decodeResource(context.resources, resId)
     }

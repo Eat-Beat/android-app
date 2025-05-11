@@ -50,6 +50,9 @@ class EditRestaurantFrag : Fragment() {
         return view
     }
 
+    /**
+     * Closing animation when exiting fragment.
+     */
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation?) {

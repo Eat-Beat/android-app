@@ -65,6 +65,9 @@ class ManualSearchRestaurant : AppCompatActivity() {
 
     }
 
+    /**
+     * Updates the list of restaurants based on the text submitted on the search box.
+     */
     private fun updateListOnSearch() {
         val searchText = findViewById<EditText>(R.id.searchRestaurant)
         val filteredList = mutableListOf<Restaurant>()
@@ -82,6 +85,9 @@ class ManualSearchRestaurant : AppCompatActivity() {
         restaurantRecycler.adapter = ManualSearchAdapter(filteredList){ restaurant -> openProfile(restaurant)}
     }
 
+    /**
+     * Initates the spinner. Based on the option selected, it will sort the list of restaurants by alphabetic order.
+     */
     private fun activateSpinnerAlph() {
         val spinnerAlphabetic = findViewById<Spinner>(R.id.spinneralph)
         val sortOptions = arrayOf(getString(R.string.asc), getString(R.string.desc))
@@ -99,6 +105,10 @@ class ManualSearchRestaurant : AppCompatActivity() {
         }
     }
 
+    /**
+     * If the option selected is ascendent, it will sort the list. Moreover, if it is descendent, it will
+     * also apply the reverse method to the list.
+     */
     private fun sortRestaurants() {
         val spinnerAlphabetic = findViewById<Spinner>(R.id.spinneralph)
         val selectedSortOrder = spinnerAlphabetic.selectedItem.toString()
@@ -115,6 +125,9 @@ class ManualSearchRestaurant : AppCompatActivity() {
 
     }
 
+    /**
+     * Creates the list for the activity.
+     */
     private fun createList() {
         val restaurantRecycler = findViewById<RecyclerView>(R.id.recyclerManualSearch )
 
@@ -123,6 +136,9 @@ class ManualSearchRestaurant : AppCompatActivity() {
         restaurantRecycler.adapter = ManualSearchAdapter(restaurantList){ restaurant -> openProfile(restaurant)}
     }
 
+    /**
+     * When clicking a restaurant, it will open its profile.
+     */
     private fun openProfile(restaurant: Restaurant){
         val intent = Intent(this, ViewRestaurantActivity::class.java)
         intent.putExtra("restaurantId", restaurant.getId())

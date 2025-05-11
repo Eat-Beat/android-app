@@ -87,6 +87,9 @@ class StatsFrag : Fragment() {
 
     }
 
+    /**
+     * Closing animation when exiting fragment,
+     */
     private fun closeAnimation(fadeOut : Animation, fragment : Fragment?){
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationEnd(animation: Animation?) {
@@ -103,6 +106,10 @@ class StatsFrag : Fragment() {
         })
     }
 
+    /**
+     * Creates the event line chart. Filters contracts based on month, and
+     * counts the number of contracts per month. Then applies them to the chart.
+     */
     private fun createEventsLineChart(contracts: List<Perform>) {
         val actsCount = getMonthlyPerformances(contracts)
 
@@ -158,6 +165,9 @@ class StatsFrag : Fragment() {
         }
     }
 
+    /**
+     * Gets the number of performances per month. Returns a list of pairs with the month and the number of performances.
+     */
     private fun getMonthlyPerformances(contracts: List<Perform>): ArrayList<Pair<String, Int>> {
         val sdf = SimpleDateFormat("yyyy-MM", Locale.getDefault())
         val monthlyCounts = mutableMapOf<String, Int>()
@@ -178,6 +188,9 @@ class StatsFrag : Fragment() {
         return ArrayList(monthlyCounts.toList().sortedBy { it.first })
     }
 
+    /**
+     * Creates a bar chart with the reviews of the musician.
+     */
     private fun createReviewsChart() {
         val reviewsList = getReviewsArray()
         val totalReviews = reviewsList.sum()
@@ -243,6 +256,9 @@ class StatsFrag : Fragment() {
         }
     }
 
+    /**
+     * Filters reviews based on the number of stars. Then returns an array with the number of reviews per star.
+     */
     private fun getReviewsArray() : ArrayList<Int> {
         val array = ArrayList<Int>(5).apply {
             for (i in 0 until 5) add(0)
@@ -260,6 +276,9 @@ class StatsFrag : Fragment() {
         return array
     }
 
+    /**
+     * Gets the number of contracts from the musician.
+     */
     private fun getContractsFromMusician(){
         val contractsFromMusician: MutableList<Perform> = mutableListOf()
 
@@ -275,6 +294,9 @@ class StatsFrag : Fragment() {
 
     }
 
+    /**
+     * Fills the reviews the musician has received.
+     */
     private fun fillInReviews(){
         val reviewsRecyclerView : RecyclerView? = view?.findViewById(R.id.reviewsList)
 
